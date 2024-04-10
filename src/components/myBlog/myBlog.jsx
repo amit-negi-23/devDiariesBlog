@@ -1,5 +1,5 @@
-import Footer from "../../layouts/footer";
-import NavBar from "../../layouts/navBar";
+import Footer from "../common/footer";
+import NavBar from "../common/navBar";
 
 function MyBlog() {
   return (

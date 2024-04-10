@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import Footer from "../../layouts/footer";
-import NavBar from "../../layouts/navBar";
+import Footer from "../common/footer";
+import NavBar from "../common/navBar";
 import {useLocation,useNavigate} from 'react-router-dom';
 
 function Home() {
