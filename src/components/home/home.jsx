@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Footer from '../common/footer';
 import NavBar from '../common/navBar';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppContext } from '../../contextApi/context';
+import useCustomDispatch from '../../hooks/useCustomDispatch';
 
 function Home() {
 
@@ -11,7 +11,7 @@ function Home() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { dispatch } = useAppContext();
+  const dispatch = useCustomDispatch()
 
 
   useEffect(() => {
@@ -28,10 +28,7 @@ function Home() {
   }
 
   function submit() {
-    dispatch({
-      type: 'user-update',
-      payload: user
-    })
+    dispatch('user-update', user)
     setUser({});
   }
 
