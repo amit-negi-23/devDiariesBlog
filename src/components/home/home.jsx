@@ -71,7 +71,6 @@ function Home() {
           )}
         </main>
         <footer>
-          <p>&copy; {new Date().getFullYear()} </p>
           {<Footer />}
         </footer>
       </div>
