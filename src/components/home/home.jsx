@@ -1,24 +1,83 @@
-import { useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import Footer from "../common/footer";
 import NavBar from "../common/navBar";
-import {useLocation,useNavigate} from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import './homePage.css'
 
 function Home() {
-    const location=useLocation();
-    const navigate=useNavigate();
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-useEffect(()=>{
-if(location.pathname==='/'){
-    navigate('/home');
-}
-},[])
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      navigate('/home');
+    }
+  }, [])
+
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        const response = await fetch('https://dummyjson.com/posts');
+        if (!response.ok) {
+          throw new Error('Failed to fetch blog posts.');
+        }
+        const data = await response.json();
+        console.log("aa", data)
+        setBlogPosts(data.posts.slice(0, 6));
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchBlogPosts();
+  }, []);
 
   return (
     <>
-      {/* <NavBar hideLink={"/home"} /> */}
       <NavBar />
-      <h1>My Home Page</h1>
-      <Footer />
+      <div className="homepage">
+        <header>
+          <h1>Welcome to Dev Diaries Blog</h1>
+        </header>
+        <main>
+          {loading ? (
+            <div className="loader"></div>
+          ) : error ? (
+            <div className="error">{error}</div>
+          ) : (
+            <>
+              <section className="featured-posts">
+                <h2>Featured Posts</h2>
+                <div className="posts-list">
+                  {blogPosts.map(post => (
+                    <article key={post.id} className="post">
+                      <img src={`https://source.unsplash.com/400x200/?${post.id}`} alt={`Post ${post.id}`} />
+                      <div className="post-content">
+                        <h3>{post.title}</h3>
+                        <p>{post.body}</p>
+                        <Link to={`/posts/${post.id}`} className="read-more">Read more</Link>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            </>
+          )}
+        </main>
+        <footer>
+          <p>&copy; {new Date().getFullYear()} </p>
+          {<Footer />}
+        </footer>
+      </div>
+
+
+
     </>
   );
 }
