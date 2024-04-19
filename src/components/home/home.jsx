@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Footer from "../common/footer";
-import NavBar from "../common/navBar";
+import { useEffect, useState } from 'react';
+import Footer from '../common/footer';
+import NavBar from '../common/navBar';
+import useCustomDispatch from '../../hooks/useCustomDispatch';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import './homePage.css'
 
