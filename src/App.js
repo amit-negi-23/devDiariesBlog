@@ -4,24 +4,27 @@ import MyBlog from './components/myBlog/myBlog';
 import './App.css';
 import NotFound from './components/notFound/notFound';
 import PrivateRoute from './components/common/privateRoute';
+import { AppProvider } from './contextApi/context';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route
-          path="/myblog"
-          element={
-            <PrivateRoute>
-              <MyBlog />
-            </PrivateRoute>
-          }
-        ></Route>
-        <Route path="/*" element={<NotFound />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <AppProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/home" element={<Home />}></Route>
+          <Route
+            path="/myblog"
+            element={
+              <PrivateRoute>
+                <MyBlog />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route path="/*" element={<NotFound />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </AppProvider>
   );
 }
 
