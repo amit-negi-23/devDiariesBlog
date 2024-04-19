@@ -257,11 +257,7 @@ function Footer() {
               <p className=" text-white ">
                 © 2024 Company, Inc. All rights reserved.
               </p>
-              {/* <ul className="list-unstyled d-flex">
-      <li className="ms-3"><a className="link-dark" href="#"><svg className="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-      <li className="ms-3"><a className="link-dark" href="#"><svg className="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-      <li className="ms-3"><a className="link-dark" href="#"><svg className="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
-    </ul> */}
+             
             </div>
           </footer>
         </div>
