@@ -1,11 +1,11 @@
-import NavBar from "../header/navbar";
-import Footer from "../Footer/footer";
+import Footer from "../common/footer/footer";
+import NavBar from "../common/navBar/navBar";
 import "./register.css";
 
 function Register() {
   return (
     <>
-      <NavBar hideLink={"my-blog"} />
+    <NavBar/>
       <div className="container text-center form-container">
         <h1 className="heading"> Let's join Dev Diaries</h1>
         <p className="text-center w-50 p-3 mx-auto">
@@ -63,7 +63,7 @@ function Register() {
         </form>
       </div>
 
-      <Footer />
+       <Footer />
     </>
   );
 }

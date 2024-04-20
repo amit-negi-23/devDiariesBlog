@@ -1,6 +1,6 @@
 import { useAppContext } from '../../contextApi/context';
-import Footer from '../common/footer';
-import NavBar from '../common/navBar';
+import Footer from '../common/footer/footer';
+import NavBar from '../common/navBar/navBar';
 
 function MyBlog() {
   const { store } = useAppContext();
