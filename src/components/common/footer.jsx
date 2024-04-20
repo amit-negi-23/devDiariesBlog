@@ -1,36 +1,22 @@
+import '../stylesheet/footer.css'
 function Footer() {
   return (
     <>
       <div className="bg-black">
         <div className="container ">
           <footer className="py-5">
-            <div className="row">
-              <div
-                className="col-md-5  mb-3 "
-                style={{ paddingRight: "200px" }}
-              >
-                <h5 style={{ marginBottom: "22px", color: "white" }}>
-                  DevDiaries
-                </h5>
-                <p
-                  className="text-white text-opacity-50"
-                  style={{ marginTop: "24px", lineHeight: "2.5" }}
-                >
+            <div className="row ">
+              <div className="col-md-12 col-lg-5  mb-3">
+                <h5 className="heading">DevDiaries</h5>
+                <p className="text-white text-opacity-50 text">
                   Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.
                   rehenderit asperiores quo adipisci molestias commodi officiis
                   possimus?
                 </p>
-                {/* <div
-         className="d-flex flex-column flex-sm-row w-100 gap-2">
-          <label for="newsletter1" className="visually-hidden">Email address</label>
-          <input id="newsletter1" type="text" className="form-control" placeholder="Email address"/>
-          <button className="btn btn-primary" type="button">Subscribe</button>
-        </div> */}
               </div>
               <div
-                className="col-6 col-md-1 mb-3"
+                className="col col-lg-1 mb-3"
                 style={{
-                  width: "11.33333%",
                   fontSize: "1rem",
                   lineHeight: "2",
                 }}
@@ -79,15 +65,8 @@ function Footer() {
                   </li>
                 </ul>
               </div>
-              <div
-                className="col-6 col-md-1 mb-3"
-                style={{
-                  width: "11.33333%",
-                  fontSize: "1rem",
-                  lineHeight: "2",
-                }}
-              >
-                <h5 style={{ marginBottom: "22px", color: "white" }}>Tech</h5>
+              <div className="col col-lg-1 mb-3 footer-column">
+                <h5 className="heading">Tech</h5>
                 <ul className="nav flex-column">
                   <li className="nav-item mb-2">
                     <a
@@ -124,9 +103,8 @@ function Footer() {
                 </ul>
               </div>
               <div
-                className="col-6 col-md-1 mb-3"
+                className="col col-lg-1 mb-3"
                 style={{
-                  width: "11.33333%",
                   fontSize: "1rem",
                   lineHeight: "2",
                 }}
@@ -177,9 +155,8 @@ function Footer() {
               </div>
 
               <div
-                className="col-6 col-md-1 mb-3"
+                className="col col-lg-1 mb-3"
                 style={{
-                  width: "11.33333%",
                   fontSize: "1rem",
                   lineHeight: "2",
                 }}
@@ -216,9 +193,8 @@ function Footer() {
               </div>
 
               <div
-                className="col-6 col-md-1 mb-3"
+                className="col col-lg-1 mb-3"
                 style={{
-                  width: "11.33333%",
                   fontSize: "1rem",
                   lineHeight: "2",
                 }}
@@ -257,11 +233,6 @@ function Footer() {
               <p className=" text-white ">
                 © 2024 Company, Inc. All rights reserved.
               </p>
-              {/* <ul className="list-unstyled d-flex">
-      <li className="ms-3"><a className="link-dark" href="#"><svg className="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-      <li className="ms-3"><a className="link-dark" href="#"><svg className="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-      <li className="ms-3"><a className="link-dark" href="#"><svg className="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
-    </ul> */}
             </div>
           </footer>
         </div>
