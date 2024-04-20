@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import Footer from '../common/footer';
-import NavBar from '../common/navBar';
+import Footer from '../common/footer/footer';
+import NavBar from '../common/navBar/navBar';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useCustomDispatch from '../../hooks/useCustomDispatch';
 
