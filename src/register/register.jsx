@@ -8,8 +8,8 @@ function Register() {
       <NavBar hideLink={"my-blog"} />
       <div className="container text-center form-container">
         <h1 className="heading"> Let's join Dev Diaries</h1>
-        <p className="text-center w-50 p-3 mx-auto ">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
+        <p className="text-center w-50 p-3 mx-auto">
+          Lorem Ipsum is simply dummy dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown
         </p>
