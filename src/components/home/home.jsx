@@ -61,7 +61,7 @@ function Home() {
                       <div className="post-content">
                         <h3>{post.title}</h3>
                         <p>{post.body}</p>
-                        <Link to={`/posts/${post.id}`} className="read-more">Read more</Link>
+                        <Link to={`/blog/${post.id}`} className="read-more">Read more</Link>
                       </div>
                     </article>
                   ))}
