@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import Footer from '../common/footer';
-import NavBar from '../common/navBar';
-import useCustomDispatch from '../../hooks/useCustomDispatch';
+import Footer from '../common/footer/footer';
+import NavBar from '../common/navBar/navBar';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import './homePage.css'
 
@@ -62,7 +61,7 @@ function Home() {
                       <div className="post-content">
                         <h3>{post.title}</h3>
                         <p>{post.body}</p>
-                        <Link to={`/posts/${post.id}`} className="read-more">Read more</Link>
+                        <Link to={`/blog/${post.id}`} className="read-more">Read more</Link>
                       </div>
                     </article>
                   ))}

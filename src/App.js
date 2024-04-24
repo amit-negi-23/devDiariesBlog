@@ -6,6 +6,7 @@ import "./App.css";
 import NotFound from "./components/notFound/notFound";
 import PrivateRoute from "./components/common/privateRoute";
 import { AppProvider } from "./contextApi/context";
+import BlogDetailPage from "./components/myBlog/blogDetailPage";
 
 function App() {
   return (
@@ -21,6 +22,15 @@ function App() {
             element={
               <PrivateRoute>
                 <MyBlog />
+              </PrivateRoute>
+            }
+          ></Route>
+
+          <Route
+            path="/blog/:blogId"
+            element={
+              <PrivateRoute>
+                <BlogDetailPage />
               </PrivateRoute>
             }
           ></Route>
