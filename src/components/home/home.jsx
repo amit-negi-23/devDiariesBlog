@@ -70,11 +70,11 @@ function Home() {
             </>
           )}
         </main>
-        <footer>
-          {<Footer />}
-        </footer>
+        
       </div>
-
+      <footer>
+          {<Footer />}
+      </footer>
 
 
     </>
