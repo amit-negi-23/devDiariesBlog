@@ -4,6 +4,7 @@ import MyBlog from "./components/myBlog/myBlog";
 import Register from "./components/register/register";
 import "./App.css";
 import NotFound from "./components/notFound/notFound";
+import LogIn from "../src/components/login/login"
 import PrivateRoute from "./components/common/privateRoute";
 import { AppProvider } from "./contextApi/context";
 
