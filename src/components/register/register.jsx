@@ -5,7 +5,7 @@ import "./register.css";
 function Register() {
   return (
     <>
-    <NavBar/>
+      <NavBar />
       <div className="container text-center form-container">
         <h1 className="heading"> Let's join Dev Diaries</h1>
         <p className="text-center w-50 p-3 mx-auto">
@@ -61,9 +61,9 @@ function Register() {
           <p> Do you already have an account?? <a href="#">Login Now</a></p>
           </div>
         </form>
-      </div>
 
-       <Footer />
+      </div>
+      <Footer />
     </>
   );
 }
