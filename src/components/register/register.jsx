@@ -1,8 +1,34 @@
+import { useState } from "react";
 import Footer from "../common/footer/footer";
 import NavBar from "../common/navBar/navBar";
 import "./register.css";
 
 function Register() {
+  const [data, setData] = useState({
+    Name: "",
+    Email: "",
+    Password: "",
+    Confirm_password: "",
+  });
+
+  const getName = (event) => {
+    setData({ ...data, Name: event.target.value });
+  };
+  const getEmail = (event) => {
+    setData({ ...data, Email: event.target.value });
+  };
+
+  const getPassword = (event) => {
+    setData({ ...data, Password: event.target.value });
+  };
+
+  const getConfirmpassword = (event) => {
+    setData({ ...data, Confirm_password: event.target.value });
+  };
+  function Submit() {
+    console.log("Data", data);
+  }
+
   return (
     <>
       <NavBar />
@@ -25,6 +51,8 @@ function Register() {
             className="form-control"
             id="Name"
             placeholder="Enter your Name"
+            value={data.Name}
+            onChange={getName}
           />
           <label for="exampleInputEmail1">Email address</label>
 
@@ -33,18 +61,19 @@ function Register() {
             className="form-control"
             id="exampleInputEmail1"
             placeholder="Enter your email"
+            value={data.Email}
+            onChange={getEmail}
           />
 
           <label for="exampleInputPassword1">Password</label>
           <input
             type="password"
-            
             autoComplete="new-password"
             className="form-control"
             id="exampleInputPassword1"
-            
             placeholder="Enter your password"
-            
+            value={data.Password}
+            onChange={getPassword}
           />
           <label for="exampleInputPassword1">Confirm Password</label>
           <input
@@ -52,16 +81,24 @@ function Register() {
             className="form-control"
             id="ConfirmPassword"
             placeholder="Confirm your password"
+            value={data.Confirm_password}
+            onChange={getConfirmpassword}
           />
 
-          <button type="submit" className="btn btn-primary button">
+          <button
+            type="submit"
+            onClick={Submit}
+            className="btn btn-primary button"
+          >
             Register
           </button>
           <div className="para">
-          <p> Do you already have an account?? <a href="#">Login Now</a></p>
+            <p>
+              {" "}
+              Do you already have an account?? <a href="#">Login Now</a>
+            </p>
           </div>
         </form>
-
       </div>
       <Footer />
     </>
