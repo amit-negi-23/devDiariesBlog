@@ -7,6 +7,7 @@ import NotFound from "./components/notFound/notFound";
 import PrivateRoute from "./components/common/privateRoute";
 import { AppProvider } from "./contextApi/context";
 import BlogDetailPage from "./components/myBlog/blogDetailPage";
+import BlogPage from "./components/blogsPage/blogPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/:category" element={<BlogPage />}></Route>
 
           <Route
             path="/myblog"
