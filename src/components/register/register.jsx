@@ -80,6 +80,7 @@ function Register() {
             </p>
           </div>
         </form>
+
       </div>
 
       <Footer />
