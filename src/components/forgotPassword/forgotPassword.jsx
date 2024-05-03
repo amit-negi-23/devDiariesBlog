@@ -6,8 +6,8 @@ function ForgotPassword() {
   return (
     <>
       <NavBar />
-      <div class="d-flex flex-row p-4 py-5">
-        <div class="container p-2 me-5">
+      <div class="row py-5 ms-0 w-100">
+        <div class="col-lg-7 col-sm-12 my-4">
           <h1 className="fw-bolder ps-5 text-black">
             You forgot your password? calm down we will help
           </h1>
@@ -19,7 +19,7 @@ function ForgotPassword() {
             tempore officia ea tenetur
           </p>
         </div>
-        <div class="container p-2 mx-5">
+        <div class="col-lg-5 col-sm-12 my-4 px-1">
           <form className=" form-container border border-dark p-5 mx-5">
             <h1 className="heading ps-2 text-center">Dev Diaries</h1>
             <div className="mb-3">
