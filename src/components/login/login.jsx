@@ -68,9 +68,9 @@ function LogIn() {
                 <label className="form-check-label" htmlFor="exampleCheck1">
                   Remember me?
                 </label>
-                <a href="#" style={{ textDecoration: "none" }}>
+                <Link to="/forgotPassword" style={{ textDecoration: "none" }}>
                   Forgot Password
-                </a>
+                </Link>
               </div>
             </div>
             <button type="submit" className="btn btn-submit">

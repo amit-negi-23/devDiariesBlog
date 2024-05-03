@@ -1,5 +1,6 @@
 import Footer from "../common/footer/footer";
 import NavBar from "../common/navBar/navBar";
+import { Link } from "react-router-dom";
 import "./forgotPassword.css";
 
 function ForgotPassword() {
@@ -21,7 +22,7 @@ function ForgotPassword() {
         </div>
         <div class="col-lg-5 col-sm-12 my-4 px-1">
           <form className=" form-container border border-dark p-5 mx-5">
-            <h1 className="heading ps-2 text-center">Dev Diaries</h1>
+            <h1 className="heading ps-2 text-center">DevDiaries</h1>
             <div className="mb-3">
               {" "}
               <label for="exampleInputPassword1">Email</label>
@@ -41,9 +42,9 @@ function ForgotPassword() {
               <p>
                 {" "}
                 Do you already have an account??{" "}
-                <a href="#" className="text-decoration-none">
+                <Link to="/login" className="text-decoration-none">
                   Login Now
-                </a>
+                </Link>
               </p>
             </div>
           </form>

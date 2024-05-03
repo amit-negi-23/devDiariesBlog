@@ -1,5 +1,6 @@
 import Footer from "../common/footer/footer";
 import NavBar from "../common/navBar/navBar";
+import { Link } from "react-router-dom";
 import "./updatePassword.css";
 
 function UpdatePassword() {
@@ -48,9 +49,9 @@ function UpdatePassword() {
               <p>
                 {" "}
                 Do you already have an account??{" "}
-                <a href="#" className="text-decoration-none">
+                <Link to="/login" className="text-decoration-none">
                   Login Now
-                </a>
+                </Link>
               </p>
             </div>
           </form>
