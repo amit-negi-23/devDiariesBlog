@@ -4,6 +4,7 @@ import MyBlog from "./components/myBlog/myBlog";
 import Register from "./components/register/register";
 import "./App.css";
 import NotFound from "./components/notFound/notFound";
+import LogIn from "./components/login/login"
 import PrivateRoute from "./components/common/privateRoute";
 import { AppProvider } from "./contextApi/context";
 import BlogDetailPage from "./components/myBlog/blogDetailPage";
@@ -38,6 +39,7 @@ function App() {
               </PrivateRoute>
             }
           ></Route>
+          <Route path="/login" element={<LogIn />}></Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>

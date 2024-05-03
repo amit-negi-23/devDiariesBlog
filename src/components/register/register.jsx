@@ -1,8 +1,16 @@
 import Footer from "../common/footer/footer";
 import NavBar from "../common/navBar/navBar";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/fontawesome-free-solid';
 import "./register.css";
 
 function Register() {
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <>
       <NavBar />
@@ -21,8 +29,8 @@ function Register() {
 
           <label for="">Name</label>
           <input
-            type="text"
-            className="form-control"
+            type={showPassword ? "text" : "password"}
+            className="border  w-100 p-2 "
             id="Name"
             placeholder="Enter your Name"
           />
@@ -30,26 +38,31 @@ function Register() {
 
           <input
             type="email"
-            className="form-control"
+            className="border  w-100 p-2 "
             id="exampleInputEmail1"
             placeholder="Enter your email"
           />
-
+          
           <label for="exampleInputPassword1">Password</label>
+          <div className="position-relative">
           <input
-            type="password"
-            
+            type={showPassword ? "text" : "password"}
             autoComplete="new-password"
-            className="form-control"
+            className="border  w-100 p-2  "
             id="exampleInputPassword1"
-            
             placeholder="Enter your password"
-            
           />
+          <FontAwesomeIcon
+            icon={showPassword ? faEye : faEyeSlash }
+            className="eye-position"
+            onClick={togglePasswordVisibility}
+          />
+          </div>
           <label for="exampleInputPassword1">Confirm Password</label>
+
           <input
             type="password"
-            className="form-control"
+            className="border  w-100 p-2 "
             id="ConfirmPassword"
             placeholder="Confirm your password"
           />
@@ -58,11 +71,18 @@ function Register() {
             Register
           </button>
           <div className="para">
-          <p> Do you already have an account?? <a href="#">Login Now</a></p>
+            <p>
+              {" "}
+              Do you already have an account??{" "}
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                Login Now
+              </Link>
+            </p>
           </div>
         </form>
 
       </div>
+
       <Footer />
     </>
   );
