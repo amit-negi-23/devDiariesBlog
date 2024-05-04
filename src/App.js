@@ -9,6 +9,7 @@ import { AppProvider } from "./contextApi/context";
 import BlogDetailPage from "./components/myBlog/blogDetailPage";
 import UpdatePassword from "./components/updatePassword/updatePassword";
 import ForgotPassword from "./components/forgotPassword/forgotPassword"
+import Registerwithformic from "./components/register/registerwithformic";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/home" element={<Home />}></Route>
-          <Route path="/register" element={<Register />}></Route>
+          <Route path="/register" element={<Registerwithformic />}></Route>
           <Route path="/updatepassword" element={<UpdatePassword />}></Route>
           <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
 
