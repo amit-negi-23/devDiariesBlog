@@ -2,15 +2,35 @@ import Footer from "../common/footer/footer";
 import NavBar from "../common/navBar/navBar";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useFormik } from 'formik';
+import { signUpSchema } from "../Schema";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/fontawesome-free-solid';
 import "./register.css";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
+
+  const initialValues = {
+    Name: "",
+    Email: "",
+    Password: "",
+    ConfirmPassword: ""
+  };
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: signUpSchema,
+    onSubmit: function (values, action) {
+      console.log("Values: ", values)
+      action.resetForm()
+    }
+  });
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
   return (
     <>
       <NavBar />
@@ -22,50 +42,73 @@ function Register() {
           since the 1500s, when an unknown
         </p>
 
-        <form className="container form ">
+        <form className="container form " onSubmit={formik.handleSubmit}>
           <div className="contactus">
             <h4>Contact Us</h4>
           </div>
 
-          <label for="">Name</label>
+    <div>
+          <label htmlFor="Name">Name</label>
           <input
-            type={showPassword ? "text" : "password"}
+            type='text'
             className="border  w-100 p-2 "
             id="Name"
+            name="Name"
             placeholder="Enter your Name"
+            value={formik.values.Name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-          <label for="exampleInputEmail1">Email address</label>
+          </div>
+          {formik.errors.Name && formik.touched.Name ? (<p>{formik.errors.Name}</p>) : null}
+
+          <label htmlFor="Email">Email address</label>
 
           <input
             type="email"
             className="border  w-100 p-2 "
-            id="exampleInputEmail1"
+            id="Email"
+            name="Email"
             placeholder="Enter your email"
+            value={formik.values.Email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-          
-          <label for="exampleInputPassword1">Password</label>
+          {formik.errors.Email && formik.touched.Email ? (<p>{formik.errors.Email}</p>) : null}
+
+          <label htmlFor="Password">Password</label>
           <div className="position-relative">
-          <input
-            type={showPassword ? "text" : "password"}
-            autoComplete="new-password"
-            className="border  w-100 p-2  "
-            id="exampleInputPassword1"
-            placeholder="Enter your password"
-          />
-          <FontAwesomeIcon
-            icon={showPassword ? faEye : faEyeSlash }
-            className="eye-position"
-            onClick={togglePasswordVisibility}
-          />
+            <input
+              type={showPassword ? "text" : "password"}
+              autoComplete="new-password"
+              className="border  w-100 p-2  "
+              id="Password"
+              name="Password"
+              placeholder="Enter your password"
+              value={formik.values.Password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            <FontAwesomeIcon
+              icon={showPassword ? faEye : faEyeSlash}
+              className="eye-position"
+              onClick={togglePasswordVisibility}
+            />
+            {formik.errors.Password && formik.touched.Password ? (<p>{formik.errors.Password}</p>) : null}
           </div>
-          <label for="exampleInputPassword1">Confirm Password</label>
+          <label htmlFor="ConfirmPassword">Confirm Password</label>
 
           <input
             type="password"
             className="border  w-100 p-2 "
             id="ConfirmPassword"
+            name="ConfirmPassword"
             placeholder="Confirm your password"
+            value={formik.values.ConfirmPassword}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+          {formik.errors.ConfirmPassword && formik.touched.ConfirmPassword ? (<p>{formik.errors.ConfirmPassword}</p>) : null}
 
           <button type="submit" className="btn btn-primary button">
             Register
@@ -87,4 +130,5 @@ function Register() {
     </>
   );
 }
+
 export default Register;
