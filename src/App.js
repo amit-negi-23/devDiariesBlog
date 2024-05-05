@@ -10,6 +10,7 @@ import { AppProvider } from "./contextApi/context";
 import BlogDetailPage from "./components/myBlog/blogDetailPage";
 import UpdatePassword from "./components/updatePassword/updatePassword";
 import ForgotPassword from "./components/forgotPassword/forgotPassword"
+import BlogPage from "./components/blogsPage/blogPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/updatepassword" element={<UpdatePassword />}></Route>
           <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
+          <Route path="/:category" element={<BlogPage />}></Route>
 
           <Route
             path="/myblog"
