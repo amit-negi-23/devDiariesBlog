@@ -35,7 +35,7 @@ function Register() {
     <>
       <NavBar />
       <div className="container text-center form-container">
-        <h1 className="heading"> Let's join Dev Diaries</h1>
+        <h1 className="heading"> Let's join DevDiaries</h1>
         <p className="text-center w-50 p-3 mx-auto">
           Lorem Ipsum is simply dummy dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
