@@ -9,11 +9,11 @@ import { signUpSchema } from "../Schema";
 import "./login.css";
 
 function LogIn() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showpassword, setShowpassword] = useState(false);
 
   const initialValues = {
-    Email: "",
-    Password: ""
+    email: "",
+    password: ""
   };
 
   const formik = useFormik({
@@ -25,8 +25,8 @@ function LogIn() {
     }
   });
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const togglepasswordVisibility = () => {
+    setShowpassword(!showpassword);
   };
 
   return (
@@ -43,45 +43,45 @@ function LogIn() {
           <form onSubmit={formik.handleSubmit}>  
             <h1 className="text-center mb-5">Login</h1>
             <div className="mb-3">
-              <label htmlFor="Email" className="form-label">
-                Email address
+              <label htmlFor="email" className="form-label">
+                email address
               </label>
              
               <input
                 type="email"
                 className="border d-block w-100 p-2"
-                id="Email"
+                id="email"
                 aria-describedby="emailHelp"
                 placeholder="Enter your email"
-                value={formik.values.Email}
+                value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
             </div>
-            {formik.errors.Email && formik.touched.Email ? (<p>{formik.errors.Email}</p>) : null}
+            {formik.errors.email && formik.touched.email ? (<p>{formik.errors.email}</p>) : null}
 
             <div className="mb-3">
-              <label htmlFor="Password" className="form-label">
-                Password
+              <label htmlFor="password" className="form-label">
+                password
               </label>
               <div className=" position-relative">
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showpassword ? "text" : "password"}
                   className="border  w-100 p-2 d-flex mb-0"
-                  id="Password"
+                  id="password"
                   placeholder="Enter your password"
-                  value={formik.values.Password}
+                  value={formik.values.password}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
                 <FontAwesomeIcon
-            icon={showPassword ? faEye : faEyeSlash }
+            icon={showpassword ? faEye : faEyeSlash }
             className="eye-position"
-            onClick={togglePasswordVisibility}
+            onClick={togglepasswordVisibility}
           />
                 
               </div>
-              {formik.errors.Password && formik.touched.Password ? (<p>{formik.errors.Password}</p>) : null}
+              {formik.errors.password && formik.touched.password ? (<p>{formik.errors.password}</p>) : null}
             </div>
             <div className="mb-3 form-check">
               <div>
@@ -93,8 +93,8 @@ function LogIn() {
                 <label className="form-check-label" htmlFor="exampleCheck1">
                   Remember me?
                 </label>
-                <Link to="/forgotPassword" style={{ textDecoration: "none" }}>
-                  Forgot Password
+                <Link to="/forgotpassword" style={{ textDecoration: "none" }}>
+                  Forgot password
                 </Link>
               </div>
             </div>

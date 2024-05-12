@@ -65,12 +65,6 @@ function NavBar() {
       </ul>
     </div>
     <div className="d-flex align-items-center ms-auto d-block">
-      <img
-        src={search}
-        alt="search-icon"
-        style={{ width: "20px", height: "20px" }}
-        className="mx-2 my-1  d-lg-block"
-      />
       <span className="text-white mx-2 fw-light ">|</span>
       <Link
         className="text-white mx-2 fw-light text-decoration-none fs-6"
