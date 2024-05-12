@@ -62,7 +62,7 @@ function Register() {
           </div>
           {formik.errors.name && formik.touched.name ? (<p className="form-error">{formik.errors.name}</p>) : null}
 
-          <label htmlFor="email">Email address</label>
+          <label htmlFor="email">Email  address</label>
 
           <input
             type="email"
