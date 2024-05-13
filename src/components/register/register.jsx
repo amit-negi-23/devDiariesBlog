@@ -1,27 +1,53 @@
 import Footer from "../common/footer/footer";
 import NavBar from "../common/navBar/navBar";
 import { Link } from "react-router-dom";
+import { createUser } from "../componentAPI/componentAPI";
 import { useState } from "react";
 import { useFormik } from "formik";
-import { signUpSchema } from "../Schema";
+import { signUpSchema } from "../Schema/SignUpSchema";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/fontawesome-free-solid";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./register.css";
+
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues = {
+    username: "",
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
   };
 
+  const newUser = async (form_data) => {
+debugger
+    const res = await createUser(form_data);
+    console.log(res)
+    if (res && res.data.responseCode === 201) {
+      toast.success(res.data.resMessage);
+    }
+    
+    else if(res.response.data && res.response.data.responseCode === 400){
+      console.log("error")
+      toast.error(res.response.data.errMessage);
+    }
+    else{
+      toast.error("Something went wrong...")
+    }
+    return res;
+    }
+
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,
-    onSubmit: function (values, action) {
+    onSubmit: async function (values, action) {
+      const res = await newUser(values);
+      console.log("res", res);
       console.log("Values: ", values);
       action.resetForm();
     },
@@ -42,7 +68,7 @@ function Register() {
           since the 1500s, when an unknown
         </p>
 
-        <form className="container form " onSubmit={formik.handleSubmit}>
+        <form className="container form" onSubmit={formik.handleSubmit}>
           <div className="contactus">
             <h4>Registration</h4>
           </div>
@@ -51,7 +77,7 @@ function Register() {
             <label htmlFor="username">User Name</label>
             <input
               type="text"
-              className="border  w-100 p-2 "
+              className="border w-100 p-2 "
               id="username"
               name="username"
               placeholder="Enter your User Name"
@@ -68,7 +94,7 @@ function Register() {
             <label htmlFor="name">Name</label>
             <input
               type="text"
-              className="border  w-100 p-2 "
+              className="border w-100 p-2 "
               id="name"
               name="name"
               placeholder="Enter your Name"

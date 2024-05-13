@@ -5,7 +5,7 @@ import { faEye, faEyeSlash } from '@fortawesome/fontawesome-free-solid';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useFormik } from 'formik';
-import { signUpSchema } from "../Schema";
+import { signUpSchema } from "../Schema/SignUpSchema";
 import "./login.css";
 
 function LogIn() {

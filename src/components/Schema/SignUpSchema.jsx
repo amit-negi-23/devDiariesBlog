@@ -5,7 +5,8 @@ export const signUpSchema = Yup.object({
   .min(3, "userame must be at least 3 characters long")
   .max(20, "userame must be at most 20 characters long")
   .matches(
-    /^[a-zA-Z0-9_-]$/,
+    // /^[a-zA-Z0-9_-]$/
+    /^[a-zA-Z0-9_-]{3,20}$/,
     "username must contain only alphabetic characters, numbers, underscore and hyphen "
   )
   .required("Please enter your username"),
@@ -24,19 +25,19 @@ export const signUpSchema = Yup.object({
     .required("Please enter your email"),
 
 
-  // password: Yup.string()
-  // .matches(
-  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
-  //     "Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and be at least 6 characters long"
-  // ),
-
   password: Yup.string()
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]$/,
-      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-    )
-    .min(6, "Password must be at least 6 characters")
-    .required("Please enter your password"),
+  .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,25}$/,
+      "Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and be at least 6 characters long"
+  ).required("Please enter your password"),
+
+  // password: Yup.string()
+  //   .matches(
+  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]$/,
+  //     "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+  //   )
+  //   .min(6, "Password must be at least 6 characters")
+  //   .required("Please enter your password"),
 
   confirmPassword: Yup.string()
     .required()

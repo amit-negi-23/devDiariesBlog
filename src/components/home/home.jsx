@@ -26,7 +26,7 @@ function Home() {
           throw new Error('Failed to fetch blog posts.');
         }
         const data = await response.json();
-        console.log("aa", data)
+        // console.log("aa", data)
         setBlogPosts(data.posts.slice(0, 6));
         setLoading(false);
       } catch (error) {

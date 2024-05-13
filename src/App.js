@@ -11,12 +11,27 @@ import BlogDetailPage from "./components/myBlog/blogDetailPage";
 import UpdatePassword from "./components/updatePassword/updatePassword";
 import ForgotPassword from "./components/forgotPassword/forgotPassword"
 import BlogPage from "./components/blogsPage/blogPage";
+import { ToastContainer } from "react-toastify";
+
 
 function App() {
   return (
     <AppProvider>
+      <ToastContainer
+position="top-right"
+autoClose={3000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+/>
       <BrowserRouter>
         <Routes>
+   
           <Route path="/" element={<Home />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/register" element={<Register />}></Route>
