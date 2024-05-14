@@ -1,7 +1,7 @@
 import Footer from "../common/footer/footer";
 import NavBar from "../common/navBar/navBar";
 import { Link } from "react-router-dom";
-import { createUser } from "../componentAPI/componentAPI";
+import { createUser } from "../common/api/authUser";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { signUpSchema } from "../Schema/SignUpSchema";
@@ -10,7 +10,7 @@ import { faEye, faEyeSlash } from "@fortawesome/fontawesome-free-solid";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./register.css";
-
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,31 +23,35 @@ function Register() {
     confirmPassword: "",
   };
 
+  const navigate=useNavigate();
   const newUser = async (form_data) => {
     const res = await createUser(form_data);
-    console.log(res)
+    //  console.log(res.data)
     if (res && res.data.responseCode === 201) {
       toast.success(res.data.resMessage);
+     setTimeout(()=>{
+      navigate('/login');
+     },3000) 
     }
     
     else if(res && res.data.responseCode === 400){
-      console.log("error")
+      // console.log("error")
       toast.error(res.data.errMessage);
     }
     else{
       toast.error("Something went wrong...")
     }
-    return res;
+    // return res;
     }
-
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,
     onSubmit: async function (values, action) {
-      const res = await newUser(values);
-      console.log("res", res);
-      console.log("Values: ", values);
+      // const res = await newUser(values);
+      await newUser(values);
+      // console.log("res", res);
+      // console.log("Values: ", values);
       action.resetForm();
     },
   });
