@@ -24,16 +24,15 @@ function Register() {
   };
 
   const newUser = async (form_data) => {
-debugger
     const res = await createUser(form_data);
     console.log(res)
     if (res && res.data.responseCode === 201) {
       toast.success(res.data.resMessage);
     }
     
-    else if(res.response.data && res.response.data.responseCode === 400){
+    else if(res && res.data.responseCode === 400){
       console.log("error")
-      toast.error(res.response.data.errMessage);
+      toast.error(res.data.errMessage);
     }
     else{
       toast.error("Something went wrong...")
