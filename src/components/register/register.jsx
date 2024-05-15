@@ -25,6 +25,7 @@ function Register() {
 
   const navigate=useNavigate();
   const newUser = async (form_data) => {
+    console.log(form_data)
     const res = await createUser(form_data);
     //  console.log(res.data)
     if (res && res.data.responseCode === 201) {
@@ -41,7 +42,7 @@ function Register() {
     else{
       toast.error("Something went wrong...")
     }
-    // return res;
+   return res;
     }
 
   const formik = useFormik({

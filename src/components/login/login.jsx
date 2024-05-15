@@ -1,28 +1,62 @@
 import NavBar from "../common/navBar/navBar";
 import Footer from "../common/footer/footer";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faEyeSlash } from '@fortawesome/fontawesome-free-solid';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/fontawesome-free-solid";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useFormik } from 'formik';
-import { signUpSchema } from "../Schema/SignUpSchema";
+import { useFormik } from "formik";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+//import { signUpSchema } from "../Schema/SignUpSchema";
+import useCustomDispatch from "../../hooks/useCustomDispatch"
 import "./login.css";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../common/api/authUser";
+import strings from "../../utils/constant/stringConstant";
+import { useContext } from "react";
+import { AppContext } from "../../contextApi/context"
 
 function LogIn() {
   const [showpassword, setShowpassword] = useState(false);
-
+  const { dispatch } = useContext(AppContext);
   const initialValues = {
-    email: "",
-    password: ""
+    username_email: "",
+    password: "",
   };
+  
+  const navigate=useNavigate();
+  const loginInfo = async (user_data) => {
+    const resp = await loginUser(user_data);
+    //  console.log(res.data)
+    if (resp && resp.data.responseCode === 200) {
+      console.log("error201", resp.data.data)
+      toast.success(resp.data.resMessage);
+      
+      dispatch({type: strings.LOG_IN, payload: resp.data.data});
+     setTimeout(()=>{
+      navigate('/');
+     },3000) 
+    }
+    
+    else if(resp && resp.data.responseCode === 400){
+       console.log("error")
+      toast.error(resp.data.errMessage);
+    }
+    else{
+      toast.error("Something went wrong...")
+    }
+   return resp;
+    }
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: signUpSchema,
-    onSubmit: function (values, action) {
-      console.log("Values: ", values)
-      action.resetForm()
-    }
+   // validationSchema: signUpSchema,
+    onSubmit: async function (values, action) {
+      await loginInfo(values);
+     
+      console.log("Values: ", values);
+      action.resetForm();
+    },
   });
 
   const togglepasswordVisibility = () => {
@@ -33,36 +67,35 @@ function LogIn() {
     <>
       <NavBar />
       <div className="container  login-page">
-
         <div className="left">
           <h1>this is left side with width 60%</h1>
         </div>
-       
-      
+
         <div className="login">
-          <form onSubmit={formik.handleSubmit}>  
+          <form onSubmit={formik.handleSubmit}>
             <h1 className="text-center mb-5">Login</h1>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                email address
+              <label htmlFor="username_email" className="form-label">
+                Email address or User Name
               </label>
-             
+
               <input
-                type="email"
+                type="text"
                 className="border d-block w-100 p-2"
-                id="email"
-                aria-describedby="emailHelp"
-                placeholder="Enter your email"
-                value={formik.values.email}
+                id="username_email"
+                placeholder="Enter your email or username"
+                value={formik.values.username_email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
+              {formik.touched.username_email && formik.errors.username_email ? (
+                <p className="error-message">{formik.errors.username_email}</p>
+              ) : null}
             </div>
-            {formik.errors.email && formik.touched.email ? (<p>{formik.errors.email}</p>) : null}
 
             <div className="mb-3">
               <label htmlFor="password" className="form-label">
-                password
+                Password
               </label>
               <div className=" position-relative">
                 <input
@@ -75,13 +108,14 @@ function LogIn() {
                   onBlur={formik.handleBlur}
                 />
                 <FontAwesomeIcon
-            icon={showpassword ? faEye : faEyeSlash }
-            className="eye-position"
-            onClick={togglepasswordVisibility}
-          />
-                
+                  icon={showpassword ? faEye : faEyeSlash}
+                  className="eye-position"
+                  onClick={togglepasswordVisibility}
+                />
               </div>
-              {formik.errors.password && formik.touched.password ? (<p>{formik.errors.password}</p>) : null}
+              {formik.touched.password && formik.errors.password ? (
+                <p className="error-message">{formik.errors.password}</p>
+              ) : null}
             </div>
             <div className="mb-3 form-check">
               <div>
@@ -112,7 +146,6 @@ function LogIn() {
           </form>
         </div>
       </div>
-      
 
       <Footer />
     </>
