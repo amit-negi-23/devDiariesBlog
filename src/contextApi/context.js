@@ -5,7 +5,13 @@ import strings from '../utils/constant/stringConstant';
 const AppContext = createContext();
 
 const initialState = {
-  user: {}
+  user: {
+    id: "",
+    username: "",
+    email: "",
+    isLogin:false,
+    accessToken:""
+  }
 };
 
 const AppProvider = ({ children }) => {
