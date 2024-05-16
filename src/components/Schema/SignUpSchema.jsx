@@ -2,18 +2,18 @@ import * as Yup from "yup";
 
 export const signUpSchema = Yup.object({
   username: Yup.string()
-    .min(3, "username must be at least 3 characters long")
-    .max(20, "username must be at most 20 characters long")
+    .min(3, "username must be atleast 3 characters long")
+    .max(25, "username must be atmost 25 characters long")
     .matches(
       // /^[a-zA-Z0-9_-]$/
-      /^[a-zA-Z0-9_-]{3,20}$/,
-      "username must contain only alphabetic characters, numbers, underscore and hyphen "
+      /^[a-zA-Z0-9_-]+$/,
+      "Username must contain only alphabetic characters, numbers, underscore and hyphen"
     )
     .required("Please enter your username"),
 
   name: Yup.string()
-    .min(3, "Name must be at least 3 characters long")
-    .max(20, "Name must be at most 20 characters long")
+    .min(3, "Name must be atleast 3 characters long")
+    .max(25, "Name must be atmost 25 characters long")
     .matches(
       /^[A-Za-z\s]+$/,
       "Name must contain only alphabetic characters and spaces"
@@ -41,12 +41,6 @@ export const signUpSchema = Yup.object({
 
   confirmPassword: Yup.string()
     .required("Please confirm your password")
-    .oneOf([Yup.ref("password"), null], "Password must match"),
-
-  //schema for login
-//   username_email: Yup.string()
-//     .min(3, "username must be at least 3 characters long")
-//     .max(20, "username must be at most 20 characters long")
-//     .required("Username/Email is required")
+    .oneOf([Yup.ref("password"), null], "Password should be same"),
     
  });

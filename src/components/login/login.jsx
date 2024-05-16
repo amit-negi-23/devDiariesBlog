@@ -7,14 +7,14 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-//import { signUpSchema } from "../Schema/SignUpSchema";
-import useCustomDispatch from "../../hooks/useCustomDispatch"
+import { loginSchema } from "../Schema/loginSchema";
+import useCustomDispatch from "../../hooks/useCustomDispatch";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../common/api/authUser";
 import strings from "../../utils/constant/stringConstant";
 import { useContext } from "react";
-import { AppContext } from "../../contextApi/context"
+import { AppContext } from "../../contextApi/context";
 
 function LogIn() {
   const [showpassword, setShowpassword] = useState(false);
@@ -23,37 +23,34 @@ function LogIn() {
     username_email: "",
     password: "",
   };
-  
-  const navigate=useNavigate();
+
+  const navigate = useNavigate();
   const loginInfo = async (user_data) => {
     const resp = await loginUser(user_data);
     //  console.log(res.data)
     if (resp && resp.data.responseCode === 200) {
-      console.log("error201", resp.data.data)
+      // console.log("error201", resp.data.data)
       toast.success(resp.data.resMessage);
-      
-      dispatch({type: strings.LOG_IN, payload: resp.data.data});
-     setTimeout(()=>{
-      navigate('/');
-     },3000) 
-    }
-    
-    else if(resp && resp.data.responseCode === 400){
-       console.log("error")
+
+      dispatch({ type: strings.LOG_IN, payload: resp.data.data });
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    } else if (resp && resp.data.responseCode === 400) {
+      //  console.log("error")
       toast.error(resp.data.errMessage);
+    } else {
+      toast.error("Something went wrong...");
     }
-    else{
-      toast.error("Something went wrong...")
-    }
-   return resp;
-    }
+    return resp;
+  };
 
   const formik = useFormik({
     initialValues: initialValues,
-   // validationSchema: signUpSchema,
+    validationSchema: loginSchema,
     onSubmit: async function (values, action) {
       await loginInfo(values);
-     
+
       console.log("Values: ", values);
       action.resetForm();
     },
@@ -78,21 +75,22 @@ function LogIn() {
               <label htmlFor="username_email" className="form-label">
                 Email address or User Name
               </label>
-
-              <input
-                type="text"
-                className="border d-block w-100 p-2"
-                id="username_email"
-                placeholder="Enter your email or username"
-                value={formik.values.username_email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.username_email && formik.errors.username_email ? (
-                <p className="error-message">{formik.errors.username_email}</p>
-              ) : null}
+              <div>
+                <input
+                  type="text"
+                  className="border d-block w-100 p-2"
+                  id="username_email"
+                  placeholder="Enter your email or username"
+                  value={formik.values.username_email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.username_email &&
+                formik.errors.username_email ? (
+                  <p className="form-error">{formik.errors.username_email}</p>
+                ) : null}
+              </div>
             </div>
-
             <div className="mb-3">
               <label htmlFor="password" className="form-label">
                 Password
@@ -114,7 +112,7 @@ function LogIn() {
                 />
               </div>
               {formik.touched.password && formik.errors.password ? (
-                <p className="error-message">{formik.errors.password}</p>
+                <p className="form-error">{formik.errors.password}</p>
               ) : null}
             </div>
             <div className="mb-3 form-check">
