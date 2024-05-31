@@ -1,118 +1,171 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import search from "../../../assets/images/search-icon.png";
+import { useAppContext } from "../../../contextApi/context";
+import { useState } from "react";
 
 function NavBar() {
+  const { store: { user } } = useAppContext()
+  // const [isLogin, setIsLogin] = useState(user.isLogin);
+
+  const [isFullWidth, setIsFullWidth] = useState(true);
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
+  const [isrightSidebarExpanded, setIsRightSidebarExpanded] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarExpanded(prevState => !prevState); 
+  };
+
+  const toggleWidth = () => {
+    setIsFullWidth(prevState => !prevState); 
+  };
+
+
+  const handleClick = () => {
+    toggleSidebar();
+    toggleWidth();
+  };
+
+  const toggleProfile = () => {
+    setIsRightSidebarExpanded(prevState => !prevState);
+  }
+
   return (
-    <nav className="navbar navbar-expand-lg">
-      <div className="container">
-        <button
-          // added bg-white to set background color to white
-          className="navbar-toggler border-0 bg-white"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-
-        </button>
-        <Link className="navbar-brand text-white d-none d-lg-block" to="#">
-          DevDiaries
-        </Link>
-        <div
-          className="collapse navbar-collapse justify-content-center"
-          id="navbarText"
-        >
-          <ul className="navbar-nav mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link active text-white" to="/sport">
-                Sport
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/health">
-                Health
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/political">
-                Political
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/business">
-                Business
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/finance">
-                Finance
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/life">
-                Life
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/entertainment">
-                Entertainment
-              </Link>
-            </li>
-          </ul>
+    <>
+      {user.isLogin ?
+        <div className='navbar'>
+          <div className='start'>
+            <button className='btn bg-white' onClick={handleClick}>
+              <svg focusable="false" viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+              </svg>
+            </button>
+          </div>
+          <div className="searchbar">
+            <input
+              type="text"
+              placeholder="Search posts"
+              className="search_input d-none d-lg-flex"
+            />
+          </div>
+          <div className="end" onClick={toggleProfile}>
+            <img src="" alt="Profile" className="profile" />
+          </div>
+          <div className={`rightsidebar ${isrightSidebarExpanded ? 'expanded' : ''} user-profile-info`}>
+            <h2>{user.username}</h2>
+            <button className='btn btn-danger rounded-4'>Logout </button>
+          </div>
         </div>
-        <div className="d-flex align-items-center ms-auto d-block">
-          <img
-            src={search}
-            alt="search-icon"
-            style={{ width: "20px", height: "20px" }}
-            className="mx-2 my-1  d-lg-block"
-          />
-          <span className="text-white mx-2 fw-light ">|</span>
+        : <nav className="navbar navbar-expand-lg">
+          <div className="container">
+            <button
+              // added bg-white to set background color to white
+              className="navbar-toggler border-0 bg-white"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarText"
+              aria-controls="navbarText"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
 
-          <Link
-            className="text-white mx-2 fw-light text-decoration-none fs-6"
-            to="/login"
-          >
-            Login
-          </Link>
-          <Link
-            className="text-white mx-2 fw-light text-decoration-none fs-6"
-            to="/register"
-          >
-            Register
-          </Link>
-        </div>
-        <div className=" ms-3">
-          <button className="btn btn-outline-primary text-white " data-bs-toggle="modal" data-bs-target="#exampleModal">+ Create Post</button>
-        </div>
+            </button>
+            <Link className="navbar-brand text-white d-none d-lg-block" to="#">
+              DevDiaries
+            </Link>
+            <div
+              className="collapse navbar-collapse justify-content-center"
+              id="navbarText"
+            >
+              <ul className="navbar-nav mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link className="nav-link active text-white" to="/sport">
+                    Sport
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/health">
+                    Health
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/political">
+                    Political
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/business">
+                    Business
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/finance">
+                    Finance
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/life">
+                    Life
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/entertainment">
+                    Entertainment
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="d-flex align-items-center ms-auto d-block">
+              <img
+                src={search}
+                alt="search-icon"
+                style={{ width: "20px", height: "20px" }}
+                className="mx-2 my-1  d-lg-block"
+              />
+              <span className="text-white mx-2 fw-light ">|</span>
 
-        <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div className="alert alert-primary">
-                <div class="modal-header p-0">
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <Link
+                className="text-white mx-2 fw-light text-decoration-none fs-6"
+                to="/login"
+              >
+                Login
+              </Link>
+              <Link
+                className="text-white mx-2 fw-light text-decoration-none fs-6"
+                to="/register"
+              >
+                Register
+              </Link>
+            </div>
+            <div className=" ms-3">
+              <button className="btn btn-outline-primary text-white " data-bs-toggle="modal" data-bs-target="#exampleModal">Create Blog</button>
+            </div>
+
+            <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div className="alert alert-primary">
+                    <div class="modal-header p-0">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body fs-5 fw-bold text-center p-2">
+                      You are not logged in. Please login to continue!
+                    </div>
+                  </div>
+                  <div class="modal-footer border-top-0 p-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <Link to="/login">
+                      <button type="button" class="btn btn-primary " data-bs-dismiss="modal">Login</button>
+                    </Link>
+                  </div>
                 </div>
-                <div class="modal-body fs-5 fw-bold text-center p-2">
-                  You need to login first !
-                </div>
-              </div>
-              <div class="modal-footer border-top-0 p-0">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <Link to="/login">
-                  <button type="button" class="btn btn-primary " data-bs-dismiss="modal">okay!</button>
-                </Link>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </nav>
+        </nav>}
 
+    </>
   );
 }
 
