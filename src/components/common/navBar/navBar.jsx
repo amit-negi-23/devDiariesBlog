@@ -86,6 +86,14 @@ function NavBar() {
         Register
       </Link>
     </div>
+    <div className="btn btn-outline-primary ms-3">
+    <Link
+        className="text-white mx-2 fw-light text-decoration-none fs-6"
+        to="/login"
+      >
+        + Create Post
+      </Link>
+    </div>
   </div>
 </nav>
 
