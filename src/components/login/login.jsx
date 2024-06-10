@@ -34,7 +34,7 @@ function LogIn() {
 
       dispatch({ type: strings.LOG_IN, payload: resp.data.data });
       setTimeout(() => {
-        navigate("/");
+        navigate(`/userPage/${resp.data.data.id}`);
       }, 3000);
     } else if (resp && resp.data.responseCode === 400) {
       //  console.log("error")

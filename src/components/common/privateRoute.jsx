@@ -1,21 +1,45 @@
-import { Navigate } from 'react-router-dom';
-
-const isLogin = true;
+import { Navigate, useLocation } from "react-router-dom";
+import { useAppContext } from "../../contextApi/context";
 
 function PrivateRoute({ children }) {
-  let decisionInput = '';
-
-  if (!isLogin) {
-    return <Navigate to="/home" />;
+  const {
+    store: { user },
+  } = useAppContext();
+  console.log("Private route hit");
+  let decisionInput = useLocation();
+  if (!user.isLogin) {
+    console.log("user.isLogout hit");
+    switch (decisionInput.pathname) {
+      case "/":
+        return children;
+      case "/home":
+        return children;
+      case "/login":
+        return children;
+      case "/register":
+        return children;
+      case "/forgotpassword":
+        return children;
+      default:
+        return <Navigate to="/" />;
+    }
   }
-
-  switch (decisionInput) {
-    case 'case-1':
-      return <Navigate to="/case-1-page" />;
-    case 'case-2':
-      return <Navigate to="/case-2-page" />;
-    default:
-      return children;
+  if (user.isLogin) {
+    console.log("user.isLogin hit");
+    switch (decisionInput.pathname) {
+      case "/":
+        return <Navigate to={`/userPage/${user.id}`} />;
+      case "/home":
+        return <Navigate to={`/userPage/${user.id}`} />;
+      case "/login":
+        return <Navigate to={`/userPage/${user.id}`} />;
+      case "/register":
+        return <Navigate to={`/userPage/${user.id}`} />;
+      case "/forgotpassword":
+        return <Navigate to={`/userPage/${user.id}`} />;
+      default:
+        return children;
+    }
   }
 }
 

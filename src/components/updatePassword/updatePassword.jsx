@@ -1,12 +1,12 @@
-import Footer from "../common/footer/footer";
-import NavBar from "../common/navBar/navBar";
+// import Footer from "../common/footer/footer";
+// import NavBar from "../common/navBar/navBar";
 import { Link } from "react-router-dom";
 import "./updatePassword.css";
 
 function UpdatePassword() {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div class="row py-5 ms-0 w-100">
         <div class="col-lg-7 col-sm-12 my-4">
           <h1 className="fw-bolder ps-5 text-black">
@@ -57,7 +57,7 @@ function UpdatePassword() {
           </form>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
