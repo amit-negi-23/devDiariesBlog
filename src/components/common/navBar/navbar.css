@@ -1,5 +1,8 @@
 .navbar {
   background-color: #2b2d42;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 .button {
@@ -14,6 +17,10 @@ svg {
 
 /* App.css */
 .sidebar {
+  height: 100vh;
+  background-color: #c6cbc6;
+  position: fixed;
+  top: 66px;
   transition: width 0.3s;
   overflow: hidden;
   width: 0;

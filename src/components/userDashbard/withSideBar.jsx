@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../contextApi/context";
+import Footer from "../common/footer/footer";
 
 const WithSideBar = ({
   children,
@@ -15,7 +16,8 @@ const WithSideBar = ({
     height: "100vh -66px",
     overflow: "auto ",
     transition: "width 0.3s",
-    // position: "absolute",
+    position: "absolute",
+    top:"66px",
     right: 0,
     display: "inline-block",
   };
@@ -197,6 +199,7 @@ const WithSideBar = ({
               </b>
             </p>
           </div> */}
+        <Footer/>
         </div>
       </div>
     </>

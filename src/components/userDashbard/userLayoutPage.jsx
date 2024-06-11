@@ -26,8 +26,9 @@ export default function UserLayoutPage({ children }) {
       <NavBar handleClick={handleClick} />
       <WithSideBar stateWidth={{ isFullWidth, isSidebarExpanded }}>
         {children}
+
       </WithSideBar>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
