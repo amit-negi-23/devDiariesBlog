@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import search from "../../../assets/images/search-icon.png";
 import { useAppContext } from "../../../contextApi/context";
 import { useState } from "react";
+import demoimg from "../../../assets/images/demo-img.jpg"
 
 function NavBar({ handleClick }) {
   const {
@@ -36,14 +37,15 @@ function NavBar({ handleClick }) {
               />
             </div>
             <div className="end" onClick={toggleProfile}>
-              <img src="" alt="Profile" className="profile bg-white" />
+              <img src={demoimg} alt="Profile" className="profile bg-white" />
             </div>
             <div
-              className={`rightsidebar ${
+              className={`rightsidebar text-center ${
                 isrightSidebarExpanded ? "expanded " : ""
               } z-2`}
             >
-              <h2>{user.username}</h2>
+              <img src={demoimg} alt="" className="bg-white  rounded-circle" style={{width:"100px", height:"100px", objectFit:"cover"}}/>
+              <h2 className="text-primary">@{user.username}</h2>
               <button className="btn btn-danger rounded-4" onClick={()=>(localStorage.clear())}>Logout </button>
             </div>
           </div>
