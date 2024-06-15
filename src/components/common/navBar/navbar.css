@@ -4,7 +4,7 @@
   top:0;
   margin-bottom: 30px;
   width: 100%;
-  /* z-index: 1; */
+  z-index: 1;
 }
 
 .button {
@@ -93,7 +93,7 @@ input:focus {
   margin: 0;
 }
 
-.modal-backdrop.show{
+/* .modal-backdrop.show{
   position: absolute !important;
   z-index: -1 !important;
-}
+} */
