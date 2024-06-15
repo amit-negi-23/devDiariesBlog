@@ -64,7 +64,7 @@ function Register() {
   return (
     <>
       <NavBar />
-      <div className="container text-center form-container">
+      <div className="container text-center register-form-container position-relative z-0">
         <h1 className="heading"> Let's join DevDiaries</h1>
         <p className="text-center w-50 p-3 mx-auto">
           Lorem Ipsum is simply dummy dummy text of the printing and typesetting

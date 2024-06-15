@@ -41,7 +41,7 @@ function Home() {
   return (
     <>
       <NavBar />
-      <div className="homepage">
+      <div className="homepage position-relative z-n1">
         <header className='mt-5'>
           <h1>Welcome to Dev Diaries Blog</h1>
         </header>

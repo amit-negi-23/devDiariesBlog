@@ -21,7 +21,7 @@ function NavBar({ handleClick }) {
     <>
       {user.isLogin ? (
         <div>
-          <div className="navbar ">
+          <div className="navbar z-1 fixed-top">
             <div className="start">
               <button className="btn bg-white" onClick={handleClick}>
                 <svg focusable="false" viewBox="0 0 24 24" className="">

@@ -63,7 +63,7 @@ function LogIn() {
   return (
     <>
       <NavBar />
-      <div className="container  login-page">
+      <div className="container  login-page position-relative z-0">
         <div className="left">
           <h1>this is left side with width 60%</h1>
         </div>
