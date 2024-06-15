@@ -143,31 +143,31 @@ function NavBar({ handleClick }) {
             </div>
 
             <div
-              class="modal fade "
+              className="modal fade"
               id="exampleModal"
               tabindex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
+              <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
                   <div className="alert alert-primary">
-                    <div class="modal-header p-0">
+                    <div className="modal-header p-0">
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body fs-5 fw-bold text-center p-2">
+                    <div className="modal-body fs-5 fw-bold text-center p-2">
                       You are not logged in. Please login to continue!
                     </div>
                   </div>
-                  <div class="modal-footer border-top-0 p-0">
+                  <div className="modal-footer border-top-0 p-0">
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      className="btn btn-secondary"
                       data-bs-dismiss="modal"
                     >
                       Close
@@ -175,7 +175,7 @@ function NavBar({ handleClick }) {
                     <Link to="/login">
                       <button
                         type="button"
-                        class="btn btn-primary "
+                        className="btn btn-primary "
                         data-bs-dismiss="modal"
                       >
                         Login

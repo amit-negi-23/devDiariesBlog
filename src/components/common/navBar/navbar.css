@@ -1,8 +1,10 @@
 .navbar {
   background-color: #2b2d42;
   position: fixed;
+  top:0;
+  margin-bottom: 30px;
   width: 100%;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .button {
@@ -91,12 +93,7 @@ input:focus {
   margin: 0;
 }
 
-/* .navBar {
-    position: fixed !important;
-    top: 50px;
-    bottom: 0;
-    left: 0;
-    width: 300px;
-    font-size: 18px;
-    transition: 300ms;
-} */
+.modal-backdrop.show{
+  position: absolute !important;
+  z-index: -1 !important;
+}

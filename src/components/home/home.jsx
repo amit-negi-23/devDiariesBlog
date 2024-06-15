@@ -42,7 +42,7 @@ function Home() {
     <>
       <NavBar />
       <div className="homepage">
-        <header>
+        <header className='mt-5'>
           <h1>Welcome to Dev Diaries Blog</h1>
         </header>
         <main>
