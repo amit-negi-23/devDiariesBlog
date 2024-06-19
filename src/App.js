@@ -13,6 +13,7 @@ import ForgotPassword from "./components/forgotPassword/forgotPassword";
 import BlogPage from "./components/blogsPage/blogPage";
 import { ToastContainer } from "react-toastify";
 import UserLayoutPage from "./components/userDashbard/userLayoutPage";
+import RichTextEditor from "./components/createPost/richTextEditor";
 
 function App() {
   return (
@@ -86,6 +87,17 @@ function App() {
               </PrivateRoute>
             }
           ></Route>
+          <Route
+            path="/userpage/post/:userId"
+            element={
+              <PrivateRoute>
+                <UserLayoutPage>
+            <RichTextEditor/>
+                </UserLayoutPage>
+              </PrivateRoute>
+            }
+          ></Route>
+
           <Route
             path="/userpage/blogs/:category"
             element={
