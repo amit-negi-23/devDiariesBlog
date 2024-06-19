@@ -38,7 +38,7 @@ const WithSideBar = ({
             </div>
             <div className="newpost">
               <Link
-                to="/quillEditor"
+                to={`/userpage/post/${user.id}`}
                 className="nav-link list-group-item"
                 style={{ color: "orange" }}
               >
