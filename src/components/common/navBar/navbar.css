@@ -1,7 +1,95 @@
-.navbar{
-    background-color: #2B2D42;
+.navbar {
+  background-color: #2b2d42;
+  position: fixed;
+  margin-bottom: 30px;
+  width: 100%;
+  z-index: 1;
 }
-.button{
-    background-color: white;
-    border: 0px;
+
+.button {
+  background-color: white;
+  border: 0px;
+}
+
+/**/
+svg {
+  width: 25px;
+}
+
+/* App.css */
+.sidebar {
+  height: 100vh;
+  background-color: #c6cbc6;
+  position: fixed;
+  top: 66px;
+  transition: width 0.3s;
+  overflow: hidden;
+  width: 0;
+  align-items: center !important;
+}
+.row.sidebar-con {
+  --bs-gutter-x: 0rem !important;
+    flex-wrap: nowrap
+}
+
+.sidebar.expanded {
+  display: block;
+  transition: width 0.3s;
+  width: 300px;
+}
+
+input:focus {
+  background-color: #fdfdfd;
+  border: 1px solid #ccc;
+}
+
+.rightsidebar {
+  display: none;
+  padding: 30px;
+  width: 300px;
+  background-color: #cacdcd !important;
+  position: absolute;
+  right: 0;
+  top: 67px;
+  border-radius: 12px;
+}
+.rightsidebar.expanded {
+  display: block;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+}
+
+.start,
+.end {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.profile {
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  object-fit:cover;
+}
+
+.search_input {
+  width: 800px;
+  height: 50px;
+  background-color: #ebe8e8;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.modal-backdrop.show{
+  z-index: 0 !important;
 }

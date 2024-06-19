@@ -34,7 +34,7 @@ function LogIn() {
 
       dispatch({ type: strings.LOG_IN, payload: resp.data.data });
       setTimeout(() => {
-        navigate("/");
+        navigate(`/userPage/${resp.data.data.id}`);
       }, 3000);
     } else if (resp && resp.data.responseCode === 400) {
       //  console.log("error")
@@ -63,7 +63,7 @@ function LogIn() {
   return (
     <>
       <NavBar />
-      <div className="container  login-page">
+      <div className="container  login-page position-relative z-0">
         <div className="left">
           <h1>this is left side with width 60%</h1>
         </div>

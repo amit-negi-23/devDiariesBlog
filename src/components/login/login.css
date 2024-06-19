@@ -8,6 +8,10 @@
     padding: 45px;
     margin: 55px 0px;
 }
+.login-page{
+  /* margin-top: 60px; */
+  padding-top: 60px;
+}
 .btn-submit{
   width:100%;
   display: block;

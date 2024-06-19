@@ -1,21 +1,53 @@
-import { Navigate } from 'react-router-dom';
-
-const isLogin = true;
+import { Navigate, useLocation } from "react-router-dom";
+import { useAppContext } from "../../contextApi/context";
 
 function PrivateRoute({ children }) {
-  let decisionInput = '';
+  const {
+    store: { user },
+  } = useAppContext();
+  console.log("Private route hit");
+  let decisionInput = useLocation();
+  if (!user.isLogin) {
+    console.log("user.isLogout hit");
 
-  if (!isLogin) {
-    return <Navigate to="/home" />;
+    switch (decisionInput.pathname) {
+      case "/":
+      case "/home":
+      case "/login":
+      case "/register":
+      case "/forgotpassword":
+        return children;
+      default:
+        return <Navigate to="/" />;
+    }
+
+    // const validPath = ["/", "/home", "/login", "/register", "/forgotpassword"];
+    // if(validPath.includes(decisionInput.pathname)){
+    //   return children;
+    // }else{
+    //   return <Navigate to="/" />;
+    // }
   }
+  if (user.isLogin) {
+    console.log("user.isLogin hit");
 
-  switch (decisionInput) {
-    case 'case-1':
-      return <Navigate to="/case-1-page" />;
-    case 'case-2':
-      return <Navigate to="/case-2-page" />;
-    default:
-      return children;
+    switch (decisionInput.pathname) {
+      case "/":
+      case "/home":
+      case "/login":
+      case "/register":
+      case "/forgotpassword":
+        return <Navigate to={`/userPage/${user.id}`} />;
+        default:
+        return children;
+    }
+
+    // const invalidPath = ["/", "/home", "/login", "/register", "/forgotpassword"];
+    // if(invalidPath.includes(decisionInput.pathname)){
+    //   return <Navigate to={`/userPage/${user.id}`} />;
+    //   }else{
+    //   return children;
+    // }
   }
 }
 

@@ -1,5 +1,6 @@
 import './footer.css'
 function Footer() {
+  console.log('footer is called')
   return (
     <>
       <div className="bg-black">
