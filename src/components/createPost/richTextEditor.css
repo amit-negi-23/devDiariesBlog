@@ -1,0 +1,31 @@
+.quill-container{
+    width: 100%;
+   margin: 20px 0;
+}
+
+.input{
+    border: none;
+    border-bottom: 1px solid red;
+}
+.ql-editor{
+    min-height: 400px;
+}
+.ql-container.ql-snow{
+    width: 60%;
+    margin: 20px auto;
+    background-color: #f5f5f5;
+}
+.ql-container.ql-snow{
+    padding: 20px 0;
+}
+.editor-btn{
+    margin-left: 310px;
+}
+.ql-toolbar.ql-snow{
+    width: 60%;
+    margin: 20px auto;
+}
+.quill_title{
+    width: 60%;
+    margin: 20px auto;
+}
