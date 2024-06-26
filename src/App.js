@@ -14,6 +14,7 @@ import BlogPage from "./components/blogsPage/blogPage";
 import { ToastContainer } from "react-toastify";
 import UserLayoutPage from "./components/userDashbard/userLayoutPage";
 import RichTextEditor from "./components/createPost/richTextEditor";
+import NavBar from "./components/common/navBar/navBar";
 
 function App() {
   return (
@@ -91,9 +92,10 @@ function App() {
             path="/userpage/post/:userId"
             element={
               <PrivateRoute>
-                <UserLayoutPage>
+                 <div>
+                <NavBar/>
             <RichTextEditor/>
-                </UserLayoutPage>
+            </div>
               </PrivateRoute>
             }
           ></Route>

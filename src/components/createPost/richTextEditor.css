@@ -1,6 +1,5 @@
 .quill-container{
-    width: 100%;
-   margin: 20px 0;
+    margin-top: 66px;
 }
 
 .input{
@@ -8,24 +7,28 @@
     border-bottom: 1px solid red;
 }
 .ql-editor{
-    min-height: 400px;
+    min-height: 330px;
 }
 .ql-container.ql-snow{
-    width: 60%;
+    width: 75%;
     margin: 20px auto;
     background-color: #f5f5f5;
-}
-.ql-container.ql-snow{
-    padding: 20px 0;
+    padding: 20px 0 ;
 }
 .editor-btn{
-    margin-left: 310px;
+    background-color: #2b2d42;
 }
 .ql-toolbar.ql-snow{
-    width: 60%;
+    /* width: 60%; */
     margin: 20px auto;
+    padding: 20px !important;
 }
-.quill_title{
-    width: 60%;
-    margin: 20px auto;
+
+.quillSidebar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cont_1{
+    padding: 15px 40px;
 }
