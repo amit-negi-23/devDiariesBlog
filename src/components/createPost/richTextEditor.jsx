@@ -4,7 +4,7 @@ import "./richTextEditor.css";
 import "react-quill/dist/quill.snow.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/fontawesome-free-solid";
-import { getLabel } from "../common/api/label";
+import { getLabel, getLabelByName } from "../common/api/label";
 
 function RichTextEditor() {
   const initialState = () => {
@@ -19,6 +19,7 @@ function RichTextEditor() {
   const [labels, setLabels] = useState([]);
   const [flag, setFlag] = useState(false);
   const [myLabel, setMyLabel] = useState([]);
+  const [labelName, setLabelName] = useState({ name: "" });
 
   const selectedLabel = (label) => {
     setMyLabel((preVal) => {
@@ -39,6 +40,16 @@ function RichTextEditor() {
     setLabels(labelData.data.data);
   };
 
+  const getLabelName = async () => {
+    let labelData = await getLabelByName(labelName);
+    console.log("labelData", labelData);
+    if (labelData && labelData.data.responseCode == 200) {
+      setLabels(labelData.data.data);
+      console.log("abcd", labels)
+    }
+    console.log("Name", labelData.data.data)
+  };
+
   const onChangeHandler = (value, e) => {
     if (flag) return;
     console.log(value);
@@ -50,6 +61,11 @@ function RichTextEditor() {
     console.log(post);
   };
   console.log("Test:", post);
+
+  const onChangeHandlerLabel = (event) => {
+    setLabelName({ [event.target.name]: event.target.value });
+    getLabelName();
+  };
 
   const publish = (e) => {
     e.preventDefault();
@@ -178,6 +194,9 @@ function RichTextEditor() {
                       type="text"
                       className="form-control label-input"
                       onClick={getLabelData}
+                      onChange={onChangeHandlerLabel}
+                      name="name"
+                      value={labelName.name}
                     />
                     {myLabel.map((label) => {
                       return (
@@ -199,21 +218,24 @@ function RichTextEditor() {
                     })}
                     <div
                       className="all_labels"
-                      style={{ display: labels.length === 0 ? "none" : "block" }}
+                      style={{
+                        display: labels.length === 0 ? "none" : "block",
+                      }}
                     >
                       <ul className="list-group">
-                        {labels.map((label) => {
-                          return (
-                            <li
-                              className="list-group-item"
-                              onClick={() => {
-                                selectedLabel(label);
-                              }}
-                            >
-                              {label.name}
-                            </li>
-                          );
-                        })}
+                        {labels.length &&
+                          labels.map((label) => {
+                            return (
+                              <li
+                                className="list-group-item"
+                                onClick={() => {
+                                  selectedLabel(label);
+                                }}
+                              >
+                                {label.name}
+                              </li>
+                            );
+                          })}
                       </ul>
                     </div>
                   </div>
