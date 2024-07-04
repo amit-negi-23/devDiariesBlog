@@ -4,7 +4,11 @@ import "./richTextEditor.css";
 import "react-quill/dist/quill.snow.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/fontawesome-free-solid";
-import {getAllLabels, getLabelByName, createNewLabel} from "../common/api/label";
+import {
+  getAllLabels,
+  getLabelByName,
+  createNewLabel,
+} from "../common/api/label";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -75,7 +79,9 @@ function RichTextEditor() {
     const res = await createNewLabel(searchedLabel.name);
     if (res && res.data.responseCode === 201) {
       toast.success(res.data.resMessage);
-      setMyLabel([res.data.data]);
+      setMyLabel((preVal)=>{
+        return [...preVal, res.data.data]
+      });
     } else {
       toast.error(res.data.errMessage);
     }
@@ -203,12 +209,6 @@ function RichTextEditor() {
                   aria-labelledby="panelsStayOpen-headingOne"
                 >
                   <div className="accordion-body">
-                    <button
-                      className="btn btn-primary mb-3"
-                      onClick={addNewLabel}
-                    >
-                      Add New Label
-                    </button>
                     <input
                       type="text"
                       className="form-control label-input"
@@ -217,6 +217,14 @@ function RichTextEditor() {
                       name="name"
                       value={searchedLabel.name}
                     />
+                    <div>
+                      <button
+                        className="btn btn-primary mb-3"
+                        onClick={addNewLabel}
+                      >
+                        Add New Label
+                      </button>
+                    </div>
                     {myLabel.map((label) => {
                       return (
                         <>
