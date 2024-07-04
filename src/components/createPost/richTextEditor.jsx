@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "./richTextEditor.css";
 import "react-quill/dist/quill.snow.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/fontawesome-free-solid";
-import { getLabel, getLabelByName } from "../common/api/label";
+import {getAllLabels, getLabelByName, createNewLabel} from "../common/api/label";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function RichTextEditor() {
   const initialState = () => {
@@ -16,10 +18,10 @@ function RichTextEditor() {
   };
 
   const [post, setPost] = useState(initialState);
-  const [labels, setLabels] = useState([]);
+  const [allLabels, setAllLabels] = useState([]);
   const [flag, setFlag] = useState(false);
   const [myLabel, setMyLabel] = useState([]);
-  const [labelName, setLabelName] = useState({ name: "" });
+  const [searchedLabel, setSearchedLAbel] = useState({ name: null });
 
   const selectedLabel = (label) => {
     setMyLabel((preVal) => {
@@ -34,20 +36,18 @@ function RichTextEditor() {
     setMyLabel(filteredLabel);
   };
 
-  const getLabelData = async () => {
-    let labelData = await getLabel();
-    // console.log(labelData.data.data);
-    setLabels(labelData.data.data);
+  const getAllLabelData = async () => {
+    let labelData = await getAllLabels();
+    setAllLabels(labelData.data.data);
   };
 
   const getLabelName = async () => {
-    let labelData = await getLabelByName(labelName);
-    console.log("labelData", labelData);
-    if (labelData && labelData.data.responseCode == 200) {
-      setLabels(labelData.data.data);
-      console.log("abcd", labels)
+    let labelData = await getLabelByName(searchedLabel);
+    if (labelData && labelData.data.responseCode === 200) {
+      setAllLabels(labelData.data.data);
+    } else {
+      setAllLabels([]);
     }
-    console.log("Name", labelData.data.data)
   };
 
   const onChangeHandler = (value, e) => {
@@ -60,11 +60,25 @@ function RichTextEditor() {
     }
     console.log(post);
   };
-  console.log("Test:", post);
 
   const onChangeHandlerLabel = (event) => {
-    setLabelName({ [event.target.name]: event.target.value });
+    setSearchedLAbel({ [event.target.name]: event.target.value });
+  };
+  useEffect(() => {
     getLabelName();
+    if (searchedLabel.name === "") {
+      getAllLabelData();
+    }
+  }, [searchedLabel]);
+
+  const addNewLabel = async () => {
+    const res = await createNewLabel(searchedLabel.name);
+    if (res && res.data.responseCode === 201) {
+      toast.success(res.data.resMessage);
+      setMyLabel([res.data.data]);
+    } else {
+      toast.error(res.data.errMessage);
+    }
   };
 
   const publish = (e) => {
@@ -189,14 +203,19 @@ function RichTextEditor() {
                   aria-labelledby="panelsStayOpen-headingOne"
                 >
                   <div className="accordion-body">
-                    <button className="btn btn-primary mb-3">Add Label </button>
+                    <button
+                      className="btn btn-primary mb-3"
+                      onClick={addNewLabel}
+                    >
+                      Add New Label
+                    </button>
                     <input
                       type="text"
                       className="form-control label-input"
-                      onClick={getLabelData}
+                      onClick={getAllLabelData}
                       onChange={onChangeHandlerLabel}
                       name="name"
-                      value={labelName.name}
+                      value={searchedLabel.name}
                     />
                     {myLabel.map((label) => {
                       return (
@@ -219,14 +238,15 @@ function RichTextEditor() {
                     <div
                       className="all_labels"
                       style={{
-                        display: labels.length === 0 ? "none" : "block",
+                        display: allLabels.length === 0 ? "none" : "block",
                       }}
                     >
                       <ul className="list-group">
-                        {labels.length &&
-                          labels.map((label) => {
+                        {allLabels.length &&
+                          allLabels.map((label) => {
                             return (
                               <li
+                                key={label._id}
                                 className="list-group-item"
                                 onClick={() => {
                                   selectedLabel(label);

@@ -2,15 +2,13 @@ import axios from "axios";
 
 //---------------GET LABEL---------------------
 
-export const getLabel = async () => {
+export const getAllLabels = async () => {
   try {
     const response = await axios.get(
       "http://localhost:8080/label/get-all-label"
     );
-    console.log("data", response.data);
     return response;
   } catch (error) {
-    // console.log("error : ", error);
     return error.response;
   }
 };
@@ -27,3 +25,17 @@ export const getLabelByName = async (label_name) => {
     return error.response;
   }
 };
+
+
+/* Create New Label */
+
+export const createNewLabel = async (labelName)=>{
+ try {
+  const response =  await axios.post("http://localhost:8080/label/create-label",{
+    name: labelName
+  });
+  return response;
+ } catch (error) {
+    return error.response;
+ }
+}
