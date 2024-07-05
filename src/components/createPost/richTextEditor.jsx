@@ -11,15 +11,19 @@ import {
 } from "../common/api/label";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { createNewPost } from "../common/api/createPost";
+import { useAppContext } from "../../contextApi/context";
 
 function RichTextEditor() {
   const initialState = () => {
     return {
       title: "",
       content: "",
-      label: "",
+      labels: "",
     };
   };
+
+  const {store: { user: {accessToken} }} = useAppContext();
 
   const [post, setPost] = useState(initialState);
   const [allLabels, setAllLabels] = useState([]);
@@ -42,7 +46,9 @@ function RichTextEditor() {
 
   const getAllLabelData = async () => {
     let labelData = await getAllLabels();
-    setAllLabels(labelData.data.data);
+    if(labelData){
+      setAllLabels(labelData.data.data);
+    }
   };
 
   const getLabelName = async () => {
@@ -91,16 +97,27 @@ function RichTextEditor() {
     e.preventDefault();
     setFlag(true);
     // debugger;
+    createPost()
     setPost({
       title: "",
       content: "",
-      label: "",
+      labels: "",
     });
-    console.log("post:", post);
     setTimeout(() => {
       setFlag(false);
     }, 1000);
   };
+
+  const createPost = async ()=>{
+      let res = await createNewPost({...post, labels: myLabel},accessToken)
+      if(res && res.data.responseCode ===201){
+        toast.success(res.data.resMessage);
+      }else if(res && res.data.responseCode===400){
+        toast.error(res.data.errMessage)
+      }else{
+      toast.error("Something went wrong! ")
+    }
+  }
 
   const modules = {
     toolbar: [
