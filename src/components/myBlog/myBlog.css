@@ -1,0 +1,10 @@
+.thumbnail {
+  height: 80px;
+  width: 80px;
+}
+
+.profile_pic {
+  display: flex;
+  height: 25px;
+  width: 25px;
+}
