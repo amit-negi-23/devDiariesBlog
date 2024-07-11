@@ -93,11 +93,11 @@ function RichTextEditor() {
     }
   };
 
-  const publish = (e) => {
+  const publish = async (e) => {
     e.preventDefault();
     setFlag(true);
     // debugger;
-    createPost()
+   await createPost()
     setPost({
       title: "",
       content: "",
