@@ -1,6 +1,6 @@
 import { useAppContext } from "../../contextApi/context";
-import pp from './images/profile.png'
-import './myBlog.css'
+import pp from "./images/profile.png";
+import "./myBlog.css";
 import { getPost } from "../common/api/createPost";
 import { useEffect, useState } from "react";
 
@@ -12,15 +12,14 @@ function MyBlog() {
 
   const [posts, setPosts] = useState(null);
 
-  const getmyPost = async ()=>{
-    let data = await getPost(user.accessToken)
-    console.log(data.data.data)
-    setPosts(data.data.data)
-  }
-useEffect(()=>{
-  
-  getmyPost()
-},[])
+  const getmyPost = async () => {
+    let data = await getPost(user.accessToken);
+    console.log(data.data.data);
+    setPosts(data.data.data);
+  };
+  useEffect(() => {
+    getmyPost();
+  }, []);
   return (
     <>
       {user != null ? (
@@ -33,39 +32,56 @@ useEffect(()=>{
           <div className="container my-3 py-3 border border-1">
             <h4>All Posts</h4>
             <ul className="list-group">
-             {posts!==null && posts?.map((item)=>{
-              return <li className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2">
-               <div className="start d-flex align-items-center">
-                 <div className="thumbnail img-fluid m-2 border border-2 rounded">
-                   <img src="" alt="U" />
-                 </div>
-                 <div className="post-detail">
-                   <h6>{item.title}</h6>
-                   <p>{}</p>
-                   <span>{item.createdAt.split(".")[0].replace("T", " ")}</span>
-                 </div>
-               </div>
-               <div className="last">
-                 <div className="username d-flex gap-1">
-                   <h6>{user.username}</h6>
-                   {/* <i class="fa-solid fa-trash"></i> */}
-                   <div className="profile_pic broder border-2 rounded-circle">
-                     <img src={pp} alt="U" className="img-fluid" />
-                   </div>
-                 </div>
-                 <div className="stats d-flex gap-0 p-2">
-                   <div className="comment">
-                     <span className="p-2">4</span>
-                     <i class="fa-regular fa-comment"></i>
-                   </div>
-                   <div className="count">
-                     <span className="p-2">3</span>
-                     <i class="fa-solid fa-chart-simple"></i>
-                   </div>
-                 </div>
-               </div>
-             </li>
-             })}
+              {posts !== null &&
+                posts?.map((item) => {
+                  return (
+                    <li className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2">
+                      <div className="start d-flex align-items-center">
+                        <div className="thumbnail img-fluid m-2 border border-2 rounded">
+                          <img src="" alt="U" />
+                        </div>
+                        <div className="post-detail">
+                          <h6>{item.title}</h6>
+                          <p>{}</p>
+                          <span>
+                            {item.createdAt.split(".")[0].replace("T", " ")}
+                          </span>
+                        </div>
+                        <div className="mid d-flex gap-2 align-self-end">
+                        <div className="label border border-3 rounded-4 px-2">Health</div>
+                        <div className="label border border-3 rounded-4 px-2">Health</div>
+                        <div className="label border border-3 rounded-4 px-2">Health</div>
+                      </div>
+                      </div>
+                     
+                      <div className="last d-flex gap-4">
+                        <div className="end_btn">
+                          <i className="fa-solid fa-trash pe-5 fs-5 del_btn"></i>
+                          <i className="fa-solid fa-pen edit_btn pe-3 fs-5"></i>
+                        </div>
+                        <div className="end_icons">
+                          <div className="username d-flex align-items-center gap-1">
+                            <h6 className="m-0">{user.username}</h6>
+                            {/* <i class="fa-solid fa-trash"></i> */}
+                            <div className="profile_pic broder border-2 rounded-circle">
+                              <img src={pp} alt="U" className="img-fluid" />
+                            </div>
+                          </div>
+                          <div className="stats d-flex gap-0 p-2">
+                            <div className="comment">
+                              <span className="p-2">4</span>
+                              <i class="fa-regular fa-comment"></i>
+                            </div>
+                            <div className="count">
+                              <span className="p-2">3</span>
+                              <i class="fa-solid fa-chart-simple"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
         </div>

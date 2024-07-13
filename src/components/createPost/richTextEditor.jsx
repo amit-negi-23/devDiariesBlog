@@ -23,7 +23,11 @@ function RichTextEditor() {
     };
   };
 
-  const {store: { user: {accessToken} }} = useAppContext();
+  const {
+    store: {
+      user: { accessToken },
+    },
+  } = useAppContext();
 
   const [post, setPost] = useState(initialState);
   const [allLabels, setAllLabels] = useState([]);
@@ -46,7 +50,7 @@ function RichTextEditor() {
 
   const getAllLabelData = async () => {
     let labelData = await getAllLabels();
-    if(labelData){
+    if (labelData) {
       setAllLabels(labelData.data.data);
     }
   };
@@ -85,8 +89,8 @@ function RichTextEditor() {
     const res = await createNewLabel(searchedLabel.name);
     if (res && res.data.responseCode === 201) {
       toast.success(res.data.resMessage);
-      setMyLabel((preVal)=>{
-        return [...preVal, res.data.data]
+      setMyLabel((preVal) => {
+        return [...preVal, res.data.data];
       });
     } else {
       toast.error(res.data.errMessage);
@@ -97,7 +101,7 @@ function RichTextEditor() {
     e.preventDefault();
     setFlag(true);
     // debugger;
-   await createPost()
+    await createPost();
     setPost({
       title: "",
       content: "",
@@ -108,16 +112,16 @@ function RichTextEditor() {
     }, 1000);
   };
 
-  const createPost = async ()=>{
-      let res = await createNewPost({...post, labels: myLabel},accessToken)
-      if(res && res.data.responseCode ===201){
-        toast.success(res.data.resMessage);
-      }else if(res && res.data.responseCode===400){
-        toast.error(res.data.errMessage)
-      }else{
-      toast.error("Something went wrong! ")
+  const createPost = async () => {
+    let res = await createNewPost({ ...post, labels: myLabel }, accessToken);
+    if (res && res.data.responseCode === 201) {
+      toast.success(res.data.resMessage);
+    } else if (res && res.data.responseCode === 400) {
+      toast.error(res.data.errMessage);
+    } else {
+      toast.error("Something went wrong! ");
     }
-  }
+  };
 
   const modules = {
     toolbar: [
@@ -328,7 +332,42 @@ function RichTextEditor() {
                   className="accordion-collapse collapse"
                   aria-labelledby="panelsStayOpen-headingThree"
                 >
-                  <div className="accordion-body"></div>
+                  <div className="accordion-body">
+                    <h6 className="mb-4 fw-bold">Comments</h6>
+                    <div>
+                    <input
+                      type="radio"
+                      name="comment_options"
+                      id="allow"
+                      value={"allow"}
+                      className="me-2"
+                      checked={true}
+                    />
+                  
+                    <label htmlFor="allow">Allow</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="comment_options"
+                      id="show_existing"
+                      value={"show_existing"}
+                      className="me-2"
+                    />
+                    <label htmlFor="show_existing">Show Existing</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="comment_options"
+                      id="hide_existing"
+                      value={"hide_existing"}
+                      className="me-2"
+                    />
+                 
+                    <label htmlFor="hide_existing">Hide Existing</label>
+                  </div>
+                  </div>
                 </div>
               </div>
             </div>
