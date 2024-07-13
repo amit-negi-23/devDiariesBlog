@@ -33,7 +33,7 @@ useEffect(()=>{
           <div className="container my-3 py-3 border border-1">
             <h4>All Posts</h4>
             <ul className="list-group">
-             {posts!==null && posts.map((item)=>{
+             {posts!==null && posts?.map((item)=>{
               return <li className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2">
                <div className="start d-flex align-items-center">
                  <div className="thumbnail img-fluid m-2 border border-2 rounded">
