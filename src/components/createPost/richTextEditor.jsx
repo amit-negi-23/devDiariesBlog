@@ -11,7 +11,7 @@ import {
 } from "../common/api/label";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { createNewPost } from "../common/api/createPost";
+import { createNewPost } from "../common/api/postApi.jsx";
 import { useAppContext } from "../../contextApi/context";
 
 function RichTextEditor() {

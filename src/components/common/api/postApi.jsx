@@ -25,3 +25,15 @@ export const getPost = async (accessToken)=>{
         return error.response;
     }
 }
+
+export const deletePost = async (postId, accessToken)=>{
+    try {
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`
+        };
+        let res = await axios.delete(`http://localhost:8080/post/delete-post?postId=${postId}`, {headers})
+        return res;
+    } catch (error) {
+        return error.response;
+    }
+}

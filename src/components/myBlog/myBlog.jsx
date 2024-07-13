@@ -1,8 +1,9 @@
 import { useAppContext } from "../../contextApi/context";
 import pp from "./images/profile.png";
 import "./myBlog.css";
-import { getPost } from "../common/api/createPost";
+import { getPost , deletePost} from "../common/api/postApi";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 function MyBlog() {
   const {
@@ -17,13 +18,25 @@ function MyBlog() {
     console.log(data.data.data);
     setPosts(data.data.data);
   }
+
+  const removePost = async (postId)=>{
+    let res = await deletePost(postId, user.accessToken);
+    if(res && res.data.responseCode ===200){
+      toast.success(res.data.resMessage)
+      getmyPost()
+    }else{
+     toast.error( res.data.errMessage)
+    }
+  console.log(res)
+    
+  }
 useEffect(()=>{
   getmyPost();
 },[])
 
-const extractImage =()=>{
+// const extractImage =()=>{
 
-}
+// }
   return (
     <>
       {user != null ? (
@@ -60,7 +73,7 @@ const extractImage =()=>{
                      
                       <div className="last d-flex gap-4">
                         <div className="end_btn">
-                          <i className="fa-solid fa-trash pe-5 fs-5 del_btn"></i>
+                          <i className="fa-solid fa-trash pe-5 fs-5 del_btn" onClick={()=>{removePost(item._id)}}></i>
                           <i className="fa-solid fa-pen edit_btn pe-3 fs-5"></i>
                         </div>
                         <div className="end_icons">
