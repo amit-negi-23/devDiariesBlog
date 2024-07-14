@@ -5,6 +5,7 @@ import { getPost , deletePost} from "../common/api/postApi";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import pimg from "../../assets/images/catwallpaper.jpg"
 
 function MyBlog() {
   const {
@@ -51,7 +52,7 @@ useEffect(()=>{
                     <li key={item._id} className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2">
                       <div className="start d-flex align-items-center">
                         <div className="thumbnail img-fluid m-2 border border-2 rounded">
-                          <img src="" alt="U" />
+                          <img src={pimg} alt="U" className="img-fluid h-100"></img>
                         </div>
                         <div className="post-detail">
                           <h6>{item.title}</h6>
