@@ -13,12 +13,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createNewPost, updatePost } from "../common/api/postApi";
 import { useAppContext } from "../../contextApi/context";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 function RichTextEditor() {
   // const {postId} = useParams(null);
   const [edtPost, setEdtPost] = useState(null);
-  const postdata = useLocation().state;
+  const navigate = useNavigate()
+  const location = useLocation();
+  const postdata = location.state;
   // console.log(postdata);
   const initialState = () => {
     return {
@@ -29,11 +31,7 @@ function RichTextEditor() {
     };
   };
 
-  const {
-    store: {
-      user: { accessToken },
-    },
-  } = useAppContext();
+  const {store: {user}} = useAppContext();
 
   const [post, setPost] = useState(initialState);
   const [allLabels, setAllLabels] = useState([]);
@@ -124,12 +122,14 @@ function RichTextEditor() {
       }, 1000);
     }else{
      let res = await editPost({...post,postId:postdata._id})
+     toast.success(res.data.resMessage)
+      navigate(`/userpage/${user.id}`)
      console.log("check", res)
     }
   };
 
   const createPost = async () => {
-    let res = await createNewPost({ ...post, labels: myLabel }, accessToken);
+    let res = await createNewPost({ ...post, labels: myLabel }, user.accessToken);
     if (res && res.data.responseCode === 201) {
       toast.success(res.data.resMessage);
     } else if (res && res.data.responseCode === 400) {
@@ -140,7 +140,7 @@ function RichTextEditor() {
   };
 
   const editPost = async (data) => {
-    let res = await updatePost(data, accessToken);
+    let res = await updatePost(data, user.accessToken);
     setEdtPost(res.data);
     console.log("editpostRes", res.data);
     return res;

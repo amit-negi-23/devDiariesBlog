@@ -37,7 +37,7 @@ function PrivateRoute({ children }) {
       case "/login":
       case "/register":
       case "/forgotpassword":
-        return <Navigate to={`/userPage/${user.id}`} />;
+        return <Navigate to={`/userpage/${user.id}`} />;
         default:
         return children;
     }

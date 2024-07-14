@@ -42,11 +42,6 @@ useEffect(()=>{
     <>
       {user != null ? (
         <div className="col-10 offset-1">
-          <h1>My Blog Page </h1>
-          <h3>
-            This blog page belong to
-            <i className=" text-danger">@{user.username}</i>
-          </h3>
           <div className="container my-3 py-3 border border-1">
             <h4>All Posts</h4>
             <ul className="list-group">
