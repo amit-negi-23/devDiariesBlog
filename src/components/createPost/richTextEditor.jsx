@@ -11,15 +11,21 @@ import {
 } from "../common/api/label";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { createNewPost } from "../common/api/postApi.jsx";
+import { createNewPost, updatePost } from "../common/api/postApi";
 import { useAppContext } from "../../contextApi/context";
+import { useLocation, useParams } from "react-router-dom";
 
 function RichTextEditor() {
+  // const {postId} = useParams(null);
+  const [edtPost, setEdtPost] = useState(null);
+  const postdata = useLocation().state;
+  // console.log(postdata);
   const initialState = () => {
     return {
-      title: "",
-      content: "",
-      labels: "",
+      userId: postdata?.userId ?? "",
+      title: postdata?.title ?? "",
+      content: postdata?.content ?? "",
+      labels: postdata?.label ?? "",
     };
   };
 
@@ -34,6 +40,11 @@ function RichTextEditor() {
   const [flag, setFlag] = useState(false);
   const [myLabel, setMyLabel] = useState([]);
   const [searchedLabel, setSearchedLAbel] = useState({ name: null });
+
+  // if (postdata.labels.length !== 0) {
+  //   //  let res = getAllLabels()
+  //   //  res.filter()
+  // }
 
   const selectedLabel = (label) => {
     setMyLabel((preVal) => {
@@ -66,13 +77,13 @@ function RichTextEditor() {
 
   const onChangeHandler = (value, e) => {
     if (flag) return;
-    console.log(value);
+    // console.log(value);
     if (e) {
       setPost({ ...post, [e.target.name]: e.target.value });
     } else {
       setPost({ ...post, content: value });
     }
-    console.log(post);
+    // console.log(post);
   };
 
   const onChangeHandlerLabel = (event) => {
@@ -87,6 +98,7 @@ function RichTextEditor() {
 
   const addNewLabel = async () => {
     const res = await createNewLabel(searchedLabel.name);
+    console.log(res.data);
     if (res && res.data.responseCode === 201) {
       toast.success(res.data.resMessage);
       setMyLabel((preVal) => {
@@ -100,16 +112,20 @@ function RichTextEditor() {
   const publish = async (e) => {
     e.preventDefault();
     setFlag(true);
-    // debugger;
-    await createPost();
-    setPost({
-      title: "",
-      content: "",
-      labels: "",
-    });
-    setTimeout(() => {
-      setFlag(false);
-    }, 1000);
+    if (!postdata) {
+      await createPost();
+      setPost({
+        title: "",
+        content: "",
+        labels: "",
+      });
+      setTimeout(() => {
+        setFlag(false);
+      }, 1000);
+    }else{
+     let res = await editPost({...post,postId:postdata._id})
+     console.log("check", res)
+    }
   };
 
   const createPost = async () => {
@@ -123,6 +139,15 @@ function RichTextEditor() {
     }
   };
 
+  const editPost = async (data) => {
+    let res = await updatePost(data, accessToken);
+    setEdtPost(res.data);
+    console.log("editpostRes", res.data);
+    return res;
+  };
+  // useEffect(()=>{
+  //   editPost()
+  // },[postId])
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { font: [] }],
@@ -179,7 +204,7 @@ function RichTextEditor() {
               id="floatingInput"
               placeholder=""
             />
-            <label for="floatingInput" className="px-4">
+            <label htmlFor="floatingInput" className="px-4">
               Title
             </label>
           </div>
@@ -249,12 +274,12 @@ function RichTextEditor() {
                     {myLabel.map((label) => {
                       return (
                         <>
-                          <span class="badge badge-pill badge-secondary bg-secondary mb-2 ms-2">
+                          <span className="badge badge-pill badge-secondary bg-secondary mb-2 ms-2">
                             {label.name}
                           </span>
                           <button
                             type="button"
-                            class="btn-close"
+                            className="btn-close"
                             aria-label="Close"
                             onClick={() => {
                               removeSelectedLabel(label);
@@ -335,38 +360,38 @@ function RichTextEditor() {
                   <div className="accordion-body">
                     <h6 className="mb-4 fw-bold">Comments</h6>
                     <div>
-                    <input
-                      type="radio"
-                      name="comment_options"
-                      id="allow"
-                      value={"allow"}
-                      className="me-2"
-                      checked={true}
-                    />
-                  
-                    <label htmlFor="allow">Allow</label>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="comment_options"
-                      id="show_existing"
-                      value={"show_existing"}
-                      className="me-2"
-                    />
-                    <label htmlFor="show_existing">Show Existing</label>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      name="comment_options"
-                      id="hide_existing"
-                      value={"hide_existing"}
-                      className="me-2"
-                    />
-                 
-                    <label htmlFor="hide_existing">Hide Existing</label>
-                  </div>
+                      <input
+                        type="radio"
+                        name="comment_options"
+                        id="allow"
+                        value={"allow"}
+                        className="me-2"
+                        defaultChecked={true}
+                      />
+
+                      <label htmlFor="allow">Allow</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="comment_options"
+                        id="show_existing"
+                        value={"show_existing"}
+                        className="me-2"
+                      />
+                      <label htmlFor="show_existing">Show Existing</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="comment_options"
+                        id="hide_existing"
+                        value={"hide_existing"}
+                        className="me-2"
+                      />
+
+                      <label htmlFor="hide_existing">Hide Existing</label>
+                    </div>
                   </div>
                 </div>
               </div>

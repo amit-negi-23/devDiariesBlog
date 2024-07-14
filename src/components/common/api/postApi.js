@@ -37,3 +37,15 @@ export const deletePost = async (postId, accessToken)=>{
         return error.response;
     }
 }
+
+export const updatePost = async (data, accessToken)=>{
+    try {
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`
+        };
+        let res = await axios.put("http://localhost:8080/post/update-post",data , {headers});
+        return res;
+    } catch (error) {
+        return error.response;
+    }
+}

@@ -92,10 +92,22 @@ function App() {
             path="/userpage/post/:userId"
             element={
               <PrivateRoute>
-                 <div>
-                <NavBar/>
-            <RichTextEditor/>
-            </div>
+                <div>
+                  <NavBar />
+                  <RichTextEditor />
+                </div>
+              </PrivateRoute>
+            }
+          ></Route>
+
+          <Route
+            path="/userpage/post/:postId/edit"
+            element={
+              <PrivateRoute>
+                <div>
+                  <NavBar />
+                  <RichTextEditor />
+                </div>
               </PrivateRoute>
             }
           ></Route>

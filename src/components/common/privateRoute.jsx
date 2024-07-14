@@ -5,10 +5,10 @@ function PrivateRoute({ children }) {
   const {
     store: { user },
   } = useAppContext();
-  console.log("Private route hit");
+  // console.log("Private route hit");
   let decisionInput = useLocation();
   if (!user.isLogin) {
-    console.log("user.isLogout hit");
+    // console.log("user.isLogout hit");
 
     switch (decisionInput.pathname) {
       case "/":
@@ -29,7 +29,7 @@ function PrivateRoute({ children }) {
     // }
   }
   if (user.isLogin) {
-    console.log("user.isLogin hit");
+    // console.log("user.isLogin hit");
 
     switch (decisionInput.pathname) {
       case "/":

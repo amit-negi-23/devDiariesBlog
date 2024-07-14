@@ -4,6 +4,7 @@ import "./myBlog.css";
 import { getPost , deletePost} from "../common/api/postApi";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 function MyBlog() {
   const {
@@ -52,7 +53,7 @@ useEffect(()=>{
               {posts !== null &&
                 posts?.map((item) => {
                   return (
-                    <li className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2">
+                    <li key={item._id} className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2">
                       <div className="start d-flex align-items-center">
                         <div className="thumbnail img-fluid m-2 border border-2 rounded">
                           <img src="" alt="U" />
@@ -74,7 +75,7 @@ useEffect(()=>{
                       <div className="last d-flex gap-4">
                         <div className="end_btn">
                           <i className="fa-solid fa-trash pe-5 fs-5 del_btn" onClick={()=>{removePost(item._id)}}></i>
-                          <i className="fa-solid fa-pen edit_btn pe-3 fs-5"></i>
+                          <Link to={`/userpage/post/${item._id}/edit`}  state={item}><i className="fa-solid fa-pen edit_btn pe-3 fs-5" ></i></Link>
                         </div>
                         <div className="end_icons">
                           <div className="username d-flex align-items-center gap-1">
@@ -87,11 +88,11 @@ useEffect(()=>{
                           <div className="stats d-flex gap-0 p-2">
                             <div className="comment">
                               <span className="p-2">4</span>
-                              <i class="fa-regular fa-comment"></i>
+                              <i className="fa-regular fa-comment"></i>
                             </div>
                             <div className="count">
                               <span className="p-2">3</span>
-                              <i class="fa-solid fa-chart-simple"></i>
+                              <i className="fa-solid fa-chart-simple"></i>
                             </div>
                           </div>
                         </div>
