@@ -89,6 +89,16 @@ function App() {
             }
           ></Route>
           <Route
+            path="/userpage/:userId/blogdetailpage"
+            element={
+              <PrivateRoute>
+                <UserLayoutPage>
+                  <BlogDetailPage />
+                </UserLayoutPage>
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
             path="/userpage/post/:userId"
             element={
               <PrivateRoute>

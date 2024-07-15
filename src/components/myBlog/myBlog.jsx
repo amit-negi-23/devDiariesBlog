@@ -1,5 +1,5 @@
 import { useAppContext } from "../../contextApi/context";
-import pp from "./images/profile.png";
+import pp from "../../assets/images/profile.png";
 import "./myBlog.css";
 import { getPost , deletePost} from "../common/api/postApi";
 import { useEffect, useState } from "react";
