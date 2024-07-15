@@ -1,11 +1,11 @@
 import { useAppContext } from "../../contextApi/context";
 import pp from "./images/profile.png";
 import "./myBlog.css";
-import { getPost , deletePost} from "../common/api/postApi";
+import { getPost, deletePost } from "../common/api/postApi";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import pimg from "../../assets/images/catwallpaper.jpg"
+import pimg from "../../assets/images/catwallpaper.jpg";
 
 function MyBlog() {
   const {
@@ -15,30 +15,29 @@ function MyBlog() {
 
   const [posts, setPosts] = useState(null);
 
-  const getmyPost = async ()=>{
+  const getmyPost = async () => {
     let data = await getPost(user.accessToken);
     console.log(data.data.data);
     setPosts(data.data.data);
-  }
+  };
 
-  const removePost = async (postId)=>{
+  const removePost = async (postId) => {
     let res = await deletePost(postId, user.accessToken);
-    if(res && res.data.responseCode ===200){
-      toast.success(res.data.resMessage)
-      getmyPost()
-    }else{
-     toast.error( res.data.errMessage)
+    if (res && res.data.responseCode === 200) {
+      toast.success(res.data.resMessage);
+      getmyPost();
+    } else {
+      toast.error(res.data.errMessage);
     }
-  console.log(res)
-    
-  }
-useEffect(()=>{
-  getmyPost();
-},[])
+    console.log(res);
+  };
+  useEffect(() => {
+    getmyPost();
+  }, []);
 
-// const extractImage =()=>{
+  // const extractImage =()=>{
 
-// }
+  // }
   return (
     <>
       {user != null ? (
@@ -49,10 +48,17 @@ useEffect(()=>{
               {posts !== null &&
                 posts?.map((item) => {
                   return (
-                    <li key={item._id} className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2">
+                    <li
+                      key={item._id}
+                      className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2"
+                    >
                       <div className="start d-flex align-items-center">
                         <div className="thumbnail img-fluid m-2 border border-2 rounded">
-                          <img src={pimg} alt="U" className="img-fluid h-100"></img>
+                          <img
+                            src={pimg}
+                            alt="U"
+                            className="img-fluid h-100"
+                          ></img>
                         </div>
                         <div className="post-detail">
                           <h6>{item.title}</h6>
@@ -62,16 +68,28 @@ useEffect(()=>{
                           </span>
                         </div>
                         <div className="mid d-flex gap-2 align-self-end">
-                        <div className="label border border-3 rounded-4 px-2">Health</div>
-                        <div className="label border border-3 rounded-4 px-2">Health</div>
-                        <div className="label border border-3 rounded-4 px-2">Health</div>
+                          {item.labels.map((label) => {
+                            return (
+                              <div className="label border border-3 rounded-4 px-2" key={label._id}>{label.name}</div>
+                            );
+                          })}
+                        </div>
                       </div>
-                      </div>
-                     
+
                       <div className="last d-flex gap-4">
                         <div className="end_btn">
-                          <i className="fa-solid fa-trash pe-5 fs-5 del_btn" onClick={()=>{removePost(item._id)}}></i>
-                          <Link to={`/userpage/post/${item._id}/edit`}  state={item}><i className="fa-solid fa-pen edit_btn pe-3 fs-5" ></i></Link>
+                          <i
+                            className="fa-solid fa-trash pe-5 fs-5 del_btn"
+                            onClick={() => {
+                              removePost(item._id);
+                            }}
+                          ></i>
+                          <Link
+                            to={`/userpage/post/${item._id}/edit`}
+                            state={item}
+                          >
+                            <i className="fa-solid fa-pen edit_btn pe-3 fs-5"></i>
+                          </Link>
                         </div>
                         <div className="end_icons">
                           <div className="username d-flex align-items-center gap-1">
@@ -152,12 +170,6 @@ export default MyBlog;
 
 // export default ImageRenderer;
 
-
-
-
-
-
-
 // import React from 'react';
 
 // const HtmlTagDeleter = ({ htmlString, tagToDelete }) => {
@@ -188,7 +200,7 @@ export default MyBlog;
 //     <div>
 //       <h2>HTML Tag Deleter</h2>
 //       <button onClick={deleteTag}>Delete {tagToDelete} tag</button>
-      
+
 //       {/* Display the original HTML string (for demonstration) */}
 //       <div style={{ marginTop: '20px', border: '1px solid #ccc', padding: '10px' }}>
 //         <h3>Original HTML String:</h3>
@@ -199,4 +211,3 @@ export default MyBlog;
 // };
 
 // export default HtmlTagDeleter;
-

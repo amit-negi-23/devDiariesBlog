@@ -21,13 +21,13 @@ function RichTextEditor() {
   const navigate = useNavigate()
   const location = useLocation();
   const postdata = location.state;
-  // console.log(postdata);
+  console.log(postdata);
   const initialState = () => {
     return {
       userId: postdata?.userId ?? "",
       title: postdata?.title ?? "",
       content: postdata?.content ?? "",
-      labels: postdata?.label ?? "",
+      labels: postdata?.labels ?? "",
     };
   };
 
@@ -36,13 +36,9 @@ function RichTextEditor() {
   const [post, setPost] = useState(initialState);
   const [allLabels, setAllLabels] = useState([]);
   const [flag, setFlag] = useState(false);
-  const [myLabel, setMyLabel] = useState([]);
+  const [myLabel, setMyLabel] = useState(postdata.labels ?? []);
   const [searchedLabel, setSearchedLAbel] = useState({ name: null });
 
-  // if (postdata.labels.length !== 0) {
-  //   //  let res = getAllLabels()
-  //   //  res.filter()
-  // }
 
   const selectedLabel = (label) => {
     setMyLabel((preVal) => {
@@ -50,6 +46,15 @@ function RichTextEditor() {
     });
   };
 
+  useEffect(()=>{
+    setPost((preVal)=>{
+      let labelId = myLabel.map((item)=>{
+        return item._id;
+      })
+      return {...preVal, labels:labelId}
+    })
+  },[myLabel])
+  
   const removeSelectedLabel = (label) => {
     const filteredLabel = myLabel.filter((myLab) => {
       return myLab._id !== label._id;
@@ -121,15 +126,15 @@ function RichTextEditor() {
         setFlag(false);
       }, 1000);
     }else{
-     let res = await editPost({...post,postId:postdata._id})
+     let res = await editPost({...post, postId:postdata._id})
      toast.success(res.data.resMessage)
-      navigate(`/userpage/${user.id}`)
-     console.log("check", res)
+    //  console.log("check", res)
     }
+    navigate(`/userpage/${user.id}`)
   };
 
   const createPost = async () => {
-    let res = await createNewPost({ ...post, labels: myLabel }, user.accessToken);
+    let res = await createNewPost(post, user.accessToken);
     if (res && res.data.responseCode === 201) {
       toast.success(res.data.resMessage);
     } else if (res && res.data.responseCode === 400) {
@@ -142,7 +147,7 @@ function RichTextEditor() {
   const editPost = async (data) => {
     let res = await updatePost(data, user.accessToken);
     setEdtPost(res.data);
-    console.log("editpostRes", res.data);
+    // console.log("editpostRes", res.data);
     return res;
   };
   // useEffect(()=>{
