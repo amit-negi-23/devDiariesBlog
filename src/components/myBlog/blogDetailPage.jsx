@@ -38,7 +38,7 @@ function BlogDetailPage() {
             </h5>
             <hr />
             <div className="user_details">
-              <div className="profile_pic">
+              <div className="bd_profile_pic">
                 <img src={pp} className="img-fluid" alt="" />
               </div>
               <div className="blog_details">
@@ -62,7 +62,7 @@ function BlogDetailPage() {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

@@ -17,8 +17,12 @@ function MyBlog() {
 
   const getmyPost = async ()=>{
     let data = await getPost(user.accessToken);
-    console.log(data.data.data);
-    setPosts(data.data.data);
+    if(data !== undefined){
+      setPosts(data.data.data);
+    }
+    else{
+    console.log("Backend Error")
+    }
   }
 
   const removePost = async (postId)=>{
