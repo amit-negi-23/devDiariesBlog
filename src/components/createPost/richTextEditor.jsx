@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "./richTextEditor.css";
 import "react-quill/dist/quill.snow.css";
@@ -13,11 +13,10 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createNewPost, updatePost } from "../common/api/postApi";
 import { useAppContext } from "../../contextApi/context";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";  /**, useParams */
 
 function RichTextEditor() {
   // const {postId} = useParams(null);
-  const [edtPost, setEdtPost] = useState(null);
   const navigate = useNavigate()
   const location = useLocation();
   const postdata = location.state;
@@ -36,8 +35,8 @@ function RichTextEditor() {
   const [post, setPost] = useState(initialState);
   const [allLabels, setAllLabels] = useState([]);
   const [flag, setFlag] = useState(false);
-  const [myLabel, setMyLabel] = useState(postdata.labels ?? []);
-  const [searchedLabel, setSearchedLAbel] = useState({ name: null });
+  const [myLabel, setMyLabel] = useState(postdata?.labels ?? []);
+  const [searchedLabel, setSearchedLAbel] = useState({ name: undefined });
 
 
   const selectedLabel = (label) => {
@@ -68,15 +67,27 @@ function RichTextEditor() {
       setAllLabels(labelData.data.data);
     }
   };
-
-  const getLabelName = async () => {
+/**************** code under review******************* */
+  const getLabelName = useCallback(async () => {
     let labelData = await getLabelByName(searchedLabel);
     if (labelData && labelData.data.responseCode === 200) {
       setAllLabels(labelData.data.data);
     } else {
       setAllLabels([]);
     }
-  };
+  },[searchedLabel]);
+
+
+  useEffect(() => {
+    if (searchedLabel.name === "") {
+      getAllLabelData();
+    }else{
+      getLabelName();
+    }
+  },[searchedLabel,getLabelName]);
+  //**React Hook useEffect has a missing dependency: 'getLabelName'. Either include it or remove the dependency array */
+
+  /******************end ****************** */
 
   const onChangeHandler = (value, e) => {
     if (flag) return;
@@ -88,16 +99,11 @@ function RichTextEditor() {
     }
     // console.log(post);
   };
-
+  
   const onChangeHandlerLabel = (event) => {
     setSearchedLAbel({ [event.target.name]: event.target.value });
   };
-  useEffect(() => {
-    getLabelName();
-    if (searchedLabel.name === "") {
-      getAllLabelData();
-    }
-  }, [searchedLabel]);
+  
 
   const addNewLabel = async () => {
     const res = await createNewLabel(searchedLabel.name);
@@ -146,7 +152,6 @@ function RichTextEditor() {
 
   const editPost = async (data) => {
     let res = await updatePost(data, user.accessToken);
-    setEdtPost(res.data);
     // console.log("editpostRes", res.data);
     return res;
   };
