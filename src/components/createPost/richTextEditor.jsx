@@ -150,9 +150,7 @@ function RichTextEditor() {
     // console.log("editpostRes", res.data);
     return res;
   };
-  // useEffect(()=>{
-  //   editPost()
-  // },[postId])
+
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { font: [] }],

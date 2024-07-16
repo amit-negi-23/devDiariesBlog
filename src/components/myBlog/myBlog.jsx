@@ -91,6 +91,7 @@ function MyBlog() {
                           <Link
                             to={`/userpage/post/${item._id}/edit`}
                             state={item}
+                            className="nav-link d-inline-block"
                           >
                             <i className="fa-solid fa-pen edit_btn pe-3 fs-5"></i>
                           </Link>
