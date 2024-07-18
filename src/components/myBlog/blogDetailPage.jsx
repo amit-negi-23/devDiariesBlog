@@ -1,26 +1,13 @@
 import { useLocation } from "react-router-dom";
-import Footer from "../common/footer/footer";
-import NavBar from "../common/navBar/navBar";
 import "./blogDetailPage.css";
-import { useEffect } from "react";
-import { useState } from "react";
 import pp from '../../assets/images/profile.png'
 import { useAppContext } from "../../contextApi/context";
 
 function BlogDetailPage() {
-  const [blog, setBlog] = useState({});
   const {store: {user}} = useAppContext();
 
-  const blogIdFromUrl = useLocation().pathname.split("/")[2];
-
-  useEffect(() => {
-    getBlogDetailById();
-  }, []);
-
-  async function getBlogDetailById() {
-    // const response  = api call
-    setBlog({ name: "my first blog", description: "this is blog description" });
-  }
+  const location = useLocation();
+  const post = location.state;
 
   return (
     <>

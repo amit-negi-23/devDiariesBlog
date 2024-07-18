@@ -376,7 +376,7 @@ function RichTextEditor() {
                         value={"allow"}
                         className="me-2"
                         onChange={(e)=>{onChangeHandler("",e)}}
-                        defaultChecked={postdata?.comment_options=="allow"?true:postdata?false:true}
+                        defaultChecked={postdata?.comment_options==="allow"?true:postdata?false:true}
                       />
 
                       <label htmlFor="allow">Allow</label>
@@ -389,7 +389,7 @@ function RichTextEditor() {
                         value={"show_existing"}
                         className="me-2"
                         onChange={(e)=>{onChangeHandler("",e)}}
-                        defaultChecked={postdata?.comment_options=="show_existing"?true:false}
+                        defaultChecked={postdata?.comment_options==="show_existing"?true:false}
                       />
                       <label htmlFor="show_existing">Show Existing</label>
                     </div>
@@ -401,7 +401,7 @@ function RichTextEditor() {
                         value={"hide_existing"}
                         className="me-2"
                         onChange={(e)=>{onChangeHandler("",e)}}
-                        defaultChecked={postdata?.comment_options=="hide_existing"?true:false}
+                        defaultChecked={postdata?.comment_options==="hide_existing"?true:false}
                       />
 
                       <label htmlFor="hide_existing">Hide Existing</label>

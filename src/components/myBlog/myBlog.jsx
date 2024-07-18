@@ -53,7 +53,6 @@ function MyBlog() {
               {posts !== null &&
                 posts?.map((item) => {
                   return (
-                    <Link to={`/userpage/${user.id}/blogdetailpage`} className="nav-link">
                        <li
                       key={item._id}
                       className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2"
@@ -124,8 +123,6 @@ function MyBlog() {
                         </div>
                       </div>
                     </li>
-                    </Link>
-                   
                   );
                 })}
             </ul>
