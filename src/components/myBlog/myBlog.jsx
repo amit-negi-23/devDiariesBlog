@@ -25,7 +25,7 @@ function MyBlog() {
     }
   }
 
-  const removePost = async (postId) => {
+  const removePost = async (e,postId) => {
     let res = await deletePost(postId, user.accessToken);
     if (res && res.data.responseCode === 200) {
       toast.success(res.data.resMessage);
@@ -34,6 +34,7 @@ function MyBlog() {
       toast.error(res.data.errMessage);
     }
     console.log(res);
+    e.stopPropagation();
   };
   useEffect(() => {
     getmyPost();
@@ -52,7 +53,8 @@ function MyBlog() {
               {posts !== null &&
                 posts?.map((item) => {
                   return (
-                    <li
+                    <Link to={`/userpage/${user.id}/blogdetailpage`} className="nav-link">
+                       <li
                       key={item._id}
                       className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2"
                     >
@@ -68,7 +70,7 @@ function MyBlog() {
                           <h6>{item.title}</h6>
                           <p>{}</p>
                           <span>
-                            {item.createdAt.split(".")[0].replace("T", " ")}
+                          {item.updatedAt}
                           </span>
                         </div>
                         <div className="mid d-flex gap-2 align-self-end">
@@ -84,9 +86,7 @@ function MyBlog() {
                         <div className="end_btn">
                           <i
                             className="fa-solid fa-trash pe-5 fs-5 del_btn"
-                            onClick={() => {
-                              removePost(item._id);
-                            }}
+                            onClick={(e) => removePost(e, item._id)}
                           ></i>
                           <Link
                             to={`/userpage/post/${item._id}/edit`}
@@ -94,6 +94,13 @@ function MyBlog() {
                             className="nav-link d-inline-block"
                           >
                             <i className="fa-solid fa-pen edit_btn pe-3 fs-5"></i>
+                          </Link>
+                          <Link
+                            to={`/userpage/${user.id}/post/blogdetailpage`}
+                            state={item}
+                            className="nav-link d-inline-block"
+                          >
+                            <i className="fa-regular fa-eye edit_btn pe-3 fs-5"></i>
                           </Link>
                         </div>
                         <div className="end_icons">
@@ -117,6 +124,8 @@ function MyBlog() {
                         </div>
                       </div>
                     </li>
+                    </Link>
+                   
                   );
                 })}
             </ul>

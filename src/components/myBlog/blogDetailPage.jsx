@@ -5,9 +5,11 @@ import "./blogDetailPage.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import pp from '../../assets/images/profile.png'
+import { useAppContext } from "../../contextApi/context";
 
 function BlogDetailPage() {
   const [blog, setBlog] = useState({});
+  const {store: {user}} = useAppContext();
 
   const blogIdFromUrl = useLocation().pathname.split("/")[2];
 
@@ -22,14 +24,11 @@ function BlogDetailPage() {
 
   return (
     <>
-      {/* <NavBar hideLink={"/myblog"} /> */}
-      <NavBar />
       <div className="container">
         <div className="row">
           <div className="col-md-8 mt-5">
             <h1>
-              Mental Health in the Workplace: Why resilience and relevance
-              matter
+              {post.title}
             </h1>
             <h5 className="text-secondary">
               From expanding access to quality mental health care to fostering
@@ -42,8 +41,8 @@ function BlogDetailPage() {
                 <img src={pp} className="img-fluid" alt="" />
               </div>
               <div className="blog_details">
-                <h6 className="fs-5 pb-3"> BY ARUNDHATI BHATTACHARYA</h6>
-                <h6>UPDATED: Jun 3, 2024 12:39:09 PM UTC</h6>
+                <h6 className="fs-5 pb-3"> BY {user.name.toUpperCase()}</h6>
+                <h6>UPDATED: {post.updatedAt}</h6>
               </div>
               </div>
               <hr />
@@ -56,13 +55,12 @@ function BlogDetailPage() {
                 />
 
                 <p className="my-5">
-                Once relegated to the shadows, mental health is now central to public discourse. Especially since the pandemic, more people are willing to talk about mental health within the workplace and beyond. Millennials and Gen Z, in particular, are unafraid to prioritise their mental wellbeing. Encouraged by their peers and celebrities opening up about mental health issues on social media, young people recognise that it's no longer something to be ashamed of. Mental illness can happen to anyone, anytime; it's no one's fault, and it's ok to seek help.
+                {post.content}
                 </p>
               </div>
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </>
   );
 }
