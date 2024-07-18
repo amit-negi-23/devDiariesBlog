@@ -17,15 +17,14 @@ function MyBlog() {
 
   const getmyPost = async () => {
     let data = await getPost(user.accessToken);
-    if(data !== undefined){
+    if (data !== undefined) {
       setPosts(data.data.data);
+    } else {
+      console.log("Backend Error");
     }
-    else{
-    console.log("Backend Error")
-    }
-  }
+  };
 
-  const removePost = async (e,postId) => {
+  const removePost = async (e, postId) => {
     let res = await deletePost(postId, user.accessToken);
     if (res && res.data.responseCode === 200) {
       toast.success(res.data.resMessage);
@@ -53,7 +52,7 @@ function MyBlog() {
               {posts !== null &&
                 posts?.map((item) => {
                   return (
-                       <li
+                    <li
                       key={item._id}
                       className="list-group-items border border-1 d-flex justify-content-between align-items-center rounded-0 p-3 my-2"
                     >
@@ -68,14 +67,17 @@ function MyBlog() {
                         <div className="post-detail">
                           <h6>{item.title}</h6>
                           <p>{}</p>
-                          <span>
-                          {item.updatedAt}
-                          </span>
+                          <span>Updated :{item.updatedAt.split("GMT")[0]}</span>
                         </div>
                         <div className="mid d-flex gap-2 align-self-end">
                           {item.labels.map((label) => {
                             return (
-                              <div className="label border border-3 rounded-4 px-2" key={label._id}>{label.name}</div>
+                              <div
+                                className="label border border-3 rounded-4 px-2"
+                                key={label._id}
+                              >
+                                {label.name}
+                              </div>
                             );
                           })}
                         </div>
