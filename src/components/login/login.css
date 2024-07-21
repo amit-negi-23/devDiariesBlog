@@ -4,7 +4,8 @@
 }
 .login{
     width: 45%;
-    border: 1px solid black;
+    box-shadow: 5px -6px 20px #2b2d4242;
+    border-radius: 10px;
     padding: 45px;
     margin: 55px 0px;
 }

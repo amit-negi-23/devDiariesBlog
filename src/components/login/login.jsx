@@ -122,7 +122,7 @@ function LogIn() {
                   className="form-check-input"
                   id="exampleCheck1"
                 />
-                <label className="form-check-label" htmlFor="exampleCheck1">
+                <label className="form-check-label pe-2" htmlFor="exampleCheck1">
                   Remember me?
                 </label>
                 <Link to="/forgotpassword" style={{ textDecoration: "none" }}>

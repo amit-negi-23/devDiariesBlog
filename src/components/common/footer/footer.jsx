@@ -8,7 +8,7 @@ function Footer() {
           <footer className="py-5">
             <div className="row ">
               <div className="col-md-12 col-lg-5  mb-3">
-                <h5 className="heading">DevDiaries</h5>
+                <h5 className="text-white">DevDiaries</h5>
                 <p className="text-white text-opacity-50 text">
                   Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.
                   rehenderit asperiores quo adipisci molestias commodi officiis
@@ -67,7 +67,7 @@ function Footer() {
                 </ul>
               </div>
               <div className="col col-lg-1 mb-3 footer-column">
-                <h5 className="heading">Tech</h5>
+                <h5 className="text-white mb-4">Tech</h5>
                 <ul className="nav flex-column">
                   <li className="nav-item mb-2">
                     <a
