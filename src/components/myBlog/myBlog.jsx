@@ -16,11 +16,15 @@ function MyBlog() {
   const [posts, setPosts] = useState(null);
 
   const getmyPost = async () => {
-    let data = await getPost(user.accessToken);
-    if (data !== undefined) {
-      setPosts(data.data.data);
+    let res = await getPost(user.accessToken);
+    if (res && res.data.responseCode===200) {
+      setPosts(res.data.data);
+    }
+    else if(res && res.data.responseCode === 400){
+      setPosts([])
+      toast.error(res.data.errMessage)
     } else {
-      console.log("Backend Error");
+      toast.error("Something went wrong...");
     }
   };
 
@@ -94,14 +98,14 @@ function MyBlog() {
                             state={item}
                             className="nav-link d-inline-block"
                           >
-                            <i className="fa-solid fa-pen edit_btn pe-3 fs-5"></i>
+                            <i className="fa-solid fa-pen edit_btn pe-5 fs-5"></i>
                           </Link>
                           <Link
                             to={`/userpage/${user.id}/post/blogdetailpage`}
                             state={item}
                             className="nav-link d-inline-block"
                           >
-                            <i className="fa-regular fa-eye edit_btn pe-3 fs-5"></i>
+                            <i className="fa-regular fa-eye edit_btn pe-4 fs-5"></i>
                           </Link>
                         </div>
                         <div className="end_icons">

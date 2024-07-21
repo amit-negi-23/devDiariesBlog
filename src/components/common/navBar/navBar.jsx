@@ -12,7 +12,6 @@ function NavBar({ handleClick }) {
   } = useAppContext();
   let location = useLocation();
   let pathArr = location.pathname.split("/");
-
   const [isrightSidebarExpanded, setIsRightSidebarExpanded] = useState(false);
 
   const toggleProfile = () => {
@@ -25,7 +24,11 @@ function NavBar({ handleClick }) {
         <div>
           <div className="navbar z-1 fixed-top">
             {pathArr[2] === "post" ? (
-              <Link className="btn bg-white rounded-circle d-flex justify-content-center align-items-center" style={{height:"40px", width: "40px"}} to={`/userpage/${pathArr[3]}`}>
+              <Link
+                className="btn bg-white rounded-circle d-flex justify-content-center align-items-center"
+                style={{ height: "40px", width: "40px" }}
+                to={`/userpage/${pathArr[3]}`}
+              >
                 <FontAwesomeIcon icon="fa-solid fa-chevron-left" />
               </Link>
             ) : (
@@ -64,7 +67,10 @@ function NavBar({ handleClick }) {
               <h2 className="text-primary">@{user.username}</h2>
               <button
                 className="btn btn-danger rounded-4"
-                onClick={() => localStorage.clear()}
+                onClick={() => {
+                  localStorage.clear();
+                  window.location.reload();
+                }}
               >
                 Logout{" "}
               </button>
