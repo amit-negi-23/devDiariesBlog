@@ -13,11 +13,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createNewPost, updatePost } from "../common/api/postApi";
 import { useAppContext } from "../../contextApi/context";
-import { useLocation, useNavigate } from "react-router-dom";  /**, useParams */
+import { useLocation, useNavigate } from "react-router-dom"; /**, useParams */
 
 function RichTextEditor() {
   // const {postId} = useParams(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
   const postdata = location.state;
   console.log(postdata);
@@ -27,11 +27,11 @@ function RichTextEditor() {
       title: postdata?.title ?? "",
       content: postdata?.content ?? "",
       labels: postdata?.labels ?? "",
-      comment_options: postdata?.comment_options??"allow",
+      comment_options: postdata?.comment_options ?? "allow",
     };
   };
 
-  const {store: {user}} = useAppContext();
+  const {store: { user }} = useAppContext();
 
   const [post, setPost] = useState(initialState);
   const [allLabels, setAllLabels] = useState([]);
@@ -39,22 +39,21 @@ function RichTextEditor() {
   const [myLabel, setMyLabel] = useState(postdata?.labels ?? []);
   const [searchedLabel, setSearchedLAbel] = useState({ name: undefined });
 
-
   const selectedLabel = (label) => {
     setMyLabel((preVal) => {
       return [...preVal, label];
     });
   };
 
-  useEffect(()=>{
-    setPost((preVal)=>{
-      let labelId = myLabel.map((item)=>{
+  useEffect(() => {
+    setPost((preVal) => {
+      let labelId = myLabel.map((item) => {
         return item._id;
-      })
-      return {...preVal, labels:labelId}
-    })
-  },[myLabel])
-  
+      });
+      return { ...preVal, labels: labelId };
+    });
+  }, [myLabel]);
+
   const removeSelectedLabel = (label) => {
     const filteredLabel = myLabel.filter((myLab) => {
       return myLab._id !== label._id;
@@ -68,7 +67,7 @@ function RichTextEditor() {
       setAllLabels(labelData.data.data);
     }
   };
-/**************** code under review******************* */
+  /**************** code under review******************* */
   const getLabelName = useCallback(async () => {
     let labelData = await getLabelByName(searchedLabel);
     if (labelData && labelData.data.responseCode === 200) {
@@ -76,16 +75,15 @@ function RichTextEditor() {
     } else {
       setAllLabels([]);
     }
-  },[searchedLabel]);
-
+  }, [searchedLabel]);
 
   useEffect(() => {
     if (searchedLabel.name === "") {
       getAllLabelData();
-    }else{
+    } else {
       getLabelName();
     }
-  },[searchedLabel,getLabelName]);
+  }, [searchedLabel, getLabelName]);
   //**React Hook useEffect has a missing dependency: 'getLabelName'. Either include it or remove the dependency array */
 
   /******************end ****************** */
@@ -100,11 +98,10 @@ function RichTextEditor() {
     }
     // console.log(post);
   };
-  
+
   const onChangeHandlerLabel = (event) => {
     setSearchedLAbel({ [event.target.name]: event.target.value });
   };
-  
 
   const addNewLabel = async () => {
     const res = await createNewLabel(searchedLabel.name);
@@ -132,18 +129,20 @@ function RichTextEditor() {
       setTimeout(() => {
         setFlag(false);
       }, 1000);
-    }else{
-     let res = await editPost({...post, postId:postdata._id})
-     toast.success(res.data.resMessage)
-    //  console.log("check", res)
+    } else {
+      editPost({ ...post, postId: postdata._id });
     }
-    navigate(`/userpage/${user.id}`)
   };
 
   const createPost = async () => {
     let res = await createNewPost(post, user.accessToken);
-    if (res && res.data.responseCode === 201) {
+    if (res && res.data.responseCode === 401) {
+      toast.error(res.data.errMessage);
+    } else if (res && res.data.responseCode === 403) {
+      toast.error(res.data.errMessage);
+    } else if (res && res.data.responseCode === 201) {
       toast.success(res.data.resMessage);
+      navigate(`/userpage/${user.id}`);
     } else if (res && res.data.responseCode === 400) {
       toast.error(res.data.errMessage);
     } else {
@@ -153,8 +152,22 @@ function RichTextEditor() {
 
   const editPost = async (data) => {
     let res = await updatePost(data, user.accessToken);
-    // console.log("editpostRes", res.data);
-    return res;
+    if(res && res.data.responseCode ===401){
+      toast.error(res.data.errMessage)
+    }
+    else if(res && res.data.responseCode ===403){
+      toast.error(res.data.errMessage)
+    }
+    else if(res.data.responseCode ===200){
+        toast.success(res.data.resMessage)
+     navigate(`/userpage/${user.id}`)
+    }
+    else if (res && res.data.responseCode === 400) {
+      toast.error(res.data.errMessage);
+    }
+    else {
+      toast.error("Something went wrong! ");
+    }
   };
 
   const modules = {
@@ -375,8 +388,8 @@ function RichTextEditor() {
                         id="allow"
                         value={"allow"}
                         className="me-2"
-                        onChange={(e)=>{onChangeHandler("",e)}}
-                        defaultChecked={postdata?.comment_options==="allow"?true:postdata?false:true}
+                        onChange={(e) => {onChangeHandler("", e);}}
+                        defaultChecked={postdata?.comment_options === "allow"? true: postdata? false: true}
                       />
 
                       <label htmlFor="allow">Allow</label>
@@ -388,8 +401,8 @@ function RichTextEditor() {
                         id="show_existing"
                         value={"show_existing"}
                         className="me-2"
-                        onChange={(e)=>{onChangeHandler("",e)}}
-                        defaultChecked={postdata?.comment_options==="show_existing"?true:false}
+                        onChange={(e) => {onChangeHandler("", e);}}
+                        defaultChecked={postdata?.comment_options === "show_existing"? true: false}
                       />
                       <label htmlFor="show_existing">Show Existing</label>
                     </div>
@@ -400,8 +413,8 @@ function RichTextEditor() {
                         id="hide_existing"
                         value={"hide_existing"}
                         className="me-2"
-                        onChange={(e)=>{onChangeHandler("",e)}}
-                        defaultChecked={postdata?.comment_options==="hide_existing"?true:false}
+                        onChange={(e) => {onChangeHandler("", e);}}
+                        defaultChecked={postdata?.comment_options === "hide_existing"? true: false}
                       />
 
                       <label htmlFor="hide_existing">Hide Existing</label>

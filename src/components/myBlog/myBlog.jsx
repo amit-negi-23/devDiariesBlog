@@ -11,16 +11,19 @@ function MyBlog() {
   const {
     store: { user },
   } = useAppContext();
-  console.log(user);
+  // console.log(user);
 
   const [posts, setPosts] = useState(null);
 
   const getmyPost = async () => {
     let res = await getPost(user.accessToken);
-    if (res && res.data.responseCode===200) {
+    if (res && res.data.responseCode === 401) {
+      toast.error(res.data.errMessage);
+    } else if (res && res.data.responseCode === 403) {
+      toast.error(res.data.errMessage);
+    } else if (res && res.data.responseCode===200) {
       setPosts(res.data.data);
-    }
-    else if(res && res.data.responseCode === 400){
+    } else if(res && res.data.responseCode === 400){
       setPosts([])
       toast.error(res.data.errMessage)
     } else {
@@ -30,11 +33,17 @@ function MyBlog() {
 
   const removePost = async (e, postId) => {
     let res = await deletePost(postId, user.accessToken);
-    if (res && res.data.responseCode === 200) {
+    if (res && res.data.responseCode === 401) {
+      toast.error(res.data.errMessage);
+    } else if (res && res.data.responseCode === 403) {
+      toast.error(res.data.errMessage);
+    } else if (res && res.data.responseCode === 200) {
       toast.success(res.data.resMessage);
       getmyPost();
-    } else {
+    } else if (res && res.data.responseCode ===400){
       toast.error(res.data.errMessage);
+    } else {
+      toast.error("Something went wrong..")
     }
     console.log(res);
     e.stopPropagation();
@@ -71,7 +80,7 @@ function MyBlog() {
                         <div className="post-detail">
                           <h6>{item.title}</h6>
                           <p>{}</p>
-                          <span>Updated :{item.updatedAt.split("GMT")[0]}</span>
+                          {item.createdAt == item.updatedAt?<span>Created : {item.createdAt.split("GMT")[0]}</span>:<span>Updated : {item.updatedAt.split("GMT")[0]}</span>}
                         </div>
                         <div className="mid d-flex gap-2 align-self-end">
                           {item.labels.map((label) => {
@@ -88,24 +97,24 @@ function MyBlog() {
                       </div>
 
                       <div className="last d-flex gap-4">
-                        <div className="end_btn">
+                        <div className="end_btn me-4">
                           <i
-                            className="fa-solid fa-trash pe-5 fs-5 del_btn"
+                            className="fa-solid fa-trash me-5 fs-5 del_btn"
                             onClick={(e) => removePost(e, item._id)}
                           ></i>
                           <Link
                             to={`/userpage/post/${item._id}/edit`}
                             state={item}
-                            className="nav-link d-inline-block"
+                            className="nav-link d-inline-block me-5"
                           >
-                            <i className="fa-solid fa-pen edit_btn pe-5 fs-5"></i>
+                            <i className="fa-solid fa-pen edit_btn fs-5"></i>
                           </Link>
                           <Link
                             to={`/userpage/${user.id}/post/blogdetailpage`}
                             state={item}
                             className="nav-link d-inline-block"
                           >
-                            <i className="fa-regular fa-eye edit_btn pe-4 fs-5"></i>
+                            <i className="fa-regular fa-eye edit_btn fs-5"></i>
                           </Link>
                         </div>
                         <div className="end_icons">
