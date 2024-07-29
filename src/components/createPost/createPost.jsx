@@ -26,7 +26,7 @@ function CreatePost() {
       userId: postdata?.userId ?? "",
       title: postdata?.title ?? "",
       content: postdata?.content ?? "",
-      labels: postdata?.labels ?? "",
+      labels: postdata?.labels ?? [],
       comment_options: postdata?.comment_options ?? "allow",
     };
   };
@@ -67,15 +67,15 @@ function CreatePost() {
       setAllLabels(labelData.data.data);
     }
   };
-  /**************** code under review******************* */
-  const getLabelName = useCallback(async () => {
+
+  const getLabelName = async () => {
     let labelData = await getLabelByName(searchedLabel);
     if (labelData && labelData.data.responseCode === 200) {
       setAllLabels(labelData.data.data);
     } else {
       setAllLabels([]);
     }
-  }, [searchedLabel]);
+  };
 
   useEffect(() => {
     if (searchedLabel.name === "") {
@@ -83,10 +83,7 @@ function CreatePost() {
     } else {
       getLabelName();
     }
-  }, [searchedLabel, getLabelName]);
-  //**React Hook useEffect has a missing dependency: 'getLabelName'. Either include it or remove the dependency array */
-
-  /******************end ****************** */
+  }, [searchedLabel]);
 
   const onChangeHandler = (value, e) => {
     if (flag) return;
@@ -124,7 +121,7 @@ function CreatePost() {
       setPost({
         title: "",
         content: "",
-        labels: "",
+        labels: [],
       });
       setTimeout(() => {
         setFlag(false);
