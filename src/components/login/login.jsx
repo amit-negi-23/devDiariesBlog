@@ -51,7 +51,7 @@ function LogIn() {
     onSubmit: async function (values, action) {
       await loginInfo(values);
 
-      console.log("Values: ", values);
+      // console.log("Values: ", values);
       action.resetForm();
     },
   });
