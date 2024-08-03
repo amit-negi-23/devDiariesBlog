@@ -1,5 +1,5 @@
-import NavBar from "../common/navBar/navBar";
-import Footer from "../common/footer/footer";
+import NavBar from "../common/navBar/NavBar";
+import Footer from "../common/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/fontawesome-free-solid";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginSchema } from "../../Schema/loginSchema";
 import useCustomDispatch from "../../hooks/useCustomDispatch";
-import "./login.css";
+import "./LogIn.css";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../common/api/authUser";
 import strings from "../../utils/constant/stringConstant";

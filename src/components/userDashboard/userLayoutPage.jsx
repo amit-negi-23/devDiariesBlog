@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "../common/navBar/navBar";
-import WithSideBar from "./withSideBar";
+import NavBar from "../common/navBar/NavBar";
+import WithSideBar from "./WithSideBar";
 import { useState } from "react";
 
 export default function UserLayoutPage({ children }) {

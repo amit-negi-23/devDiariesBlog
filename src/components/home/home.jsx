@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Footer from '../common/footer/footer';
-import NavBar from '../common/navBar/navBar';
+import Footer from '../common/footer/Footer';
+import NavBar from '../common/navBar/NavBar';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import './homePage.css'
+import './Home.css'
 
 function Home() {
   const [blogPosts, setBlogPosts] = useState([]);

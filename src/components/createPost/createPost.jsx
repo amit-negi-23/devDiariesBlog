@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import ReactQuill from "react-quill";
-import "./createPost.css";
+import "./CreatePost.css";
 import "react-quill/dist/quill.snow.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/fontawesome-free-solid";

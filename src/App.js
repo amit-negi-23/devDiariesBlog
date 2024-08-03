@@ -1,20 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/home/home";
-import MyBlog from "./components/myBlog/myBlog";
-import Register from "./components/register/register";
+import Home from "./components/home/Home";
+import MyBlog from "./components/myBlog/MyBlog";
+import Register from "./components/register/Register";
 import "./App.css";
-import NotFound from "./components/notFound/notFound";
-import LogIn from "./components/login/login";
-import PrivateRoute from "./components/common/privateRoute";
+import NotFound from "./components/notFound/NotFound";
+import LogIn from "./components/login/LogIn";
+import PrivateRoute from "./components/common/PrivateRoute";
 import { AppProvider } from "./contextApi/context";
-import BlogDetailPage from "./components/blogDetailPage/blogDetailPage";
-import UpdatePassword from "./components/updatePassword/updatePassword";
-import ForgotPassword from "./components/forgotPassword/forgotPassword";
-import BlogPage from "./components/blogsPage/blogPage";
+import BlogDetailPage from "./components/blogDetailPage/BlogDetailPage";
+import UpdatePassword from "./components/updatePassword/UpdatePassword";
+import ForgotPassword from "./components/forgotPassword/ForgotPassword";
+import BlogPage from "./components/blogsPage/BlogPage";
 import { ToastContainer } from "react-toastify";
-import UserLayoutPage from "./components/userDashboard/userLayoutPage";
-import CreatePost from "./components/createPost/createPost";
-import NavBar from "./components/common/navBar/navBar";
+import UserLayoutPage from "./components/userDashboard/UserLayoutPage";
+import CreatePost from "./components/createPost/CreatePost";
+import NavBar from "./components/common/navBar/NavBar";
 
 function App() {
   return (

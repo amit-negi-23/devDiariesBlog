@@ -1,7 +1,7 @@
-import Footer from "../common/footer/footer";
-import NavBar from "../common/navBar/navBar";
+import Footer from "../common/footer/Footer";
+import NavBar from "../common/navBar/NavBar";
 import { Link } from "react-router-dom";
-import "./forgotPassword.css";
+import "./ForgotPassword.css";
 
 function ForgotPassword() {
   return (

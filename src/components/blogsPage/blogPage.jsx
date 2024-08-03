@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import "./blogPage.css";
-import NavBar from "../common/navBar/navBar";
-import Footer from "../common/footer/footer";
+import "./BlogPage.css";
+import NavBar from "../common/navBar/NavBar";
+import Footer from "../common/footer/Footer";
 
 export default function BlogPage({ isLayout }) {
   const { category } = useParams("");

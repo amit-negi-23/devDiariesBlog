@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import "./blogDetailPage.css";
+import "./BlogDetailPage.css";
 import profilePic from '../../assets/images/profile.png'
 import { useAppContext } from "../../contextApi/context";
 

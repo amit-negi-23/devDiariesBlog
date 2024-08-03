@@ -1,6 +1,6 @@
 import { useAppContext } from "../../contextApi/context";
 import profilePic from "../../assets/images/profile.png";
-import "./myBlog.css";
+import "./MyBlog.css";
 import { getPost, deletePost } from "../common/api/postApi";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";

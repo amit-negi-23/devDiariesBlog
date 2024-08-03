@@ -1,4 +1,4 @@
-import './footer.css'
+import './Footer.css'
 function Footer() {
   // console.log('footer is called')
   return (

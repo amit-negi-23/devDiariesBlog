@@ -1,7 +1,7 @@
 // import Footer from "../common/footer/footer";
 // import NavBar from "../common/navBar/navBar";
 import { Link } from "react-router-dom";
-import "./updatePassword.css";
+import "./UpdatePassword.css";
 
 function UpdatePassword() {
   return (

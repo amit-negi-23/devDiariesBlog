@@ -1,5 +1,5 @@
-import Footer from "../common/footer/footer";
-import NavBar from "../common/navBar/navBar";
+import Footer from "../common/footer/Footer";
+import NavBar from "../common/navBar/NavBar";
 import { Link } from "react-router-dom";
 import { createUser } from "../common/api/authUser";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/fontawesome-free-solid";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./register.css";
+import "./Register.css";
 import { useNavigate } from "react-router-dom";
 
 function Register() {

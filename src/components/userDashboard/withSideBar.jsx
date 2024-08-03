@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../contextApi/context";
-import Footer from "../common/footer/footer";
+import Footer from "../common/footer/Footer";
 
 const WithSideBar = ({
   children,

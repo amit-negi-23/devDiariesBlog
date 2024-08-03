@@ -1,4 +1,4 @@
-import "./navbar.css";
+import "./NavBar.css";
 import { Link, useLocation } from "react-router-dom";
 import search from "../../../assets/images/search-icon.png";
 import { useAppContext } from "../../../contextApi/context";
