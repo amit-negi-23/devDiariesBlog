@@ -1,16 +1,16 @@
 .navbar {
-  background-color: #EBF3FF;
+  /* background-color: #EBF3FF; */
   position: fixed;
   margin-bottom: 30px;
   width: 100%;
   z-index: 1;
 }
 .logo {
-    color: #401CEB;
+  color: white;
 }
 .nav-item .categories {
-  color: #1E4682 !important;
- 
+color: white !important;
+
 }
 .btn-create-blog {
   color : #1BB9BE;
@@ -26,7 +26,9 @@
   background-color: white;
   border: 0px;
 }
-
+.button_text {
+  color: var(--primary-text-color);
+}
 /**/
 svg {
   width: 25px;
@@ -96,16 +98,20 @@ input:focus {
 }
 
 .search_input {
-  width: 800px;
-  height: 50px;
-  background-color: #ebe8e8;
+  width: 600px;
+  height: 42px;
+  /* background-color: #ebe8e8; */
   border: none;
   outline: none;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 0 10px;
   margin: 0;
 }
 
 .modal-backdrop.show{
   z-index: 0 !important;
+}
+.modal.fade .modal-dialog {
+  transform: none !important; /* Disable the default Y translation */
+  transition: none !important; /* Disable any transition/animation */
 }

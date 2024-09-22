@@ -1,21 +1,30 @@
 import "./NavBar.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 // import search from "../../../assets/images/search-icon.png";
 import { useAppContext } from "../../../contextApi/context";
 import { useState } from "react";
 import demoimg from "../../../assets/images/demo-img.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function NavBar({ handleClick , handleInputTitle}) {
+function NavBar({ handleClick, handleInputTitle }) {
   const {
     store: { user },
   } = useAppContext();
   let location = useLocation();
   let pathArr = location.pathname.split("/");
+
+  // const navigate = useNavigate();
   const [isrightSidebarExpanded, setIsRightSidebarExpanded] = useState(false);
 
   const toggleProfile = () => {
     setIsRightSidebarExpanded((prevState) => !prevState);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+
+    // navigate("/home");
   };
 
   return (
@@ -44,7 +53,7 @@ function NavBar({ handleClick , handleInputTitle}) {
                   <input
                     type="text"
                     placeholder="Search posts"
-                    className="search_input d-none d-lg-flex"
+                    className="search_input icon-button d-none d-lg-flex"
                     onChange={handleInputTitle}
                   />
                 </div>
@@ -54,6 +63,7 @@ function NavBar({ handleClick , handleInputTitle}) {
             <div className="end" onClick={toggleProfile}>
               <img src={demoimg} alt="Profile" className="profile bg-white" />
             </div>
+
             <div
               className={`rightsidebar text-center ${
                 isrightSidebarExpanded ? "expanded " : ""
@@ -68,10 +78,9 @@ function NavBar({ handleClick , handleInputTitle}) {
               <h2 className="text-primary">@{user.username}</h2>
               <button
                 className="btn btn-danger rounded-4"
-                onClick={() => {
-                  localStorage.clear();
-                  window.location.reload();
-                }}
+                data-bs-toggle="modal"
+                data-bs-target="#logoutModal"
+                
               >
                 Logout{" "}
               </button>
@@ -110,8 +119,8 @@ function NavBar({ handleClick , handleInputTitle}) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                <Link className="nav-link categories " to="/blogs/health">
-                Programming language
+                  <Link className="nav-link categories " to="/blogs/health">
+                    Programming language
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -143,28 +152,30 @@ function NavBar({ handleClick , handleInputTitle}) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link
-                    className="nav-link text-white"
-                    to="/blogs/general"
-                  >
+                  <Link className="nav-link text-white" to="/blogs/general">
                     Others
                   </Link>
                 </li>
               </ul>
             </div>
             <div className="d-flex align-items-center ms-auto d-block">
-            <FontAwesomeIcon icon="fas fa-search" style={{color: "#1E4682"}} />
+              <FontAwesomeIcon
+                icon="fas fa-search"
+                style={{ color: "#1E4682" }}
+              />
 
-            <span className="categories mx-2  ">|</span>
+              <span className="categories mx-2  ">|</span>
 
               <Link
-                className="mx-2 fw-light text-decoration-none fs-6" style={{color : "#1BB9BE"}}
+                className="mx-2 fw-light text-decoration-none fs-6"
+                style={{ color: "#1BB9BE" }}
                 to="/login"
               >
                 Login
               </Link>
               <Link
-                className="mx-2 fw-light text-decoration-none fs-6" style={{color : "#1BB9BE"}}
+                className="mx-2 fw-light text-decoration-none fs-6"
+                style={{ color: "#1BB9BE" }}
                 to="/register"
               >
                 Register
@@ -174,58 +185,105 @@ function NavBar({ handleClick , handleInputTitle}) {
               <button
                 className=" btn-create-blog "
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                data-bs-target="#createBlogModal"
               >
                 Create Blog
               </button>
             </div>
-
-            <div
-              className="modal fade"
-              id="exampleModal"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                  <div className="alert alert-primary">
-                    <div className="modal-header p-0">
-                      <button
-                        type="button"
-                        className="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div className="modal-body fs-5 fw-bold text-center p-2">
-                      You are not logged in. Please login to continue!
-                    </div>
-                  </div>
-                  <div className="modal-footer border-top-0 p-0">
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <Link to="/login">
-                      <button
-                        type="button"
-                        className="btn btn-primary "
-                        data-bs-dismiss="modal"
-                      >
-                        Login
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </nav>
       )}
+
+
+      {/*------- create blog modal --------*/}
+      <div
+        className="modal fade"
+        id="createBlogModal"
+        tabindex="-1"
+        aria-labelledby="createBlogModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="alert alert-primary">
+              <div className="modal-header p-0">
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body fs-5 fw-bold text-center p-2">
+                You are not logged in. Please login to create a blog!
+              </div>
+            </div>
+            <div className="modal-footer border-top-0 p-0">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <Link to="/login">
+                <button
+                  type="button"
+                  className="btn btn-primary "
+                  data-bs-dismiss="modal"
+                >
+                  Login
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/*-------- logout modal ---------*/}
+      <div
+        className="modal fade"
+        id="logoutModal"
+        tabIndex="-1"
+        aria-labelledby="logoutModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="alert alert-primary">
+              <div className="modal-header p-0">
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body fs-5 fw-bold text-center p-2">
+                Logout of your account ?
+              </div>
+            </div>
+            <div className="modal-footer border-top-0 p-0">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

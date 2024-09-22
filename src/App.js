@@ -15,6 +15,8 @@ import { ToastContainer } from "react-toastify";
 import UserLayoutPage from "./components/userDashboard/UserLayoutPage";
 import CreatePost from "./components/createPost/CreatePost";
 import NavBar from "./components/common/navBar/NavBar";
+import ResetPassword from "./components/resetPassword/ResetPassword";
+
 
 function App() {
   return (
@@ -79,6 +81,16 @@ function App() {
             }
           ></Route>
           <Route
+            path="/resetpassword"
+            element={
+
+              <UserLayoutPage>
+                <ResetPassword />
+              </UserLayoutPage>
+
+            }
+          ></Route>
+          <Route
             path="/userpage/:userId"
             element={
               <PrivateRoute>
@@ -114,8 +126,8 @@ function App() {
             path="/userpage/post/:postId/edit"
             element={
               <PrivateRoute>
-                <div>
                   <NavBar />
+                <div>
                   <CreatePost />
                 </div>
               </PrivateRoute>

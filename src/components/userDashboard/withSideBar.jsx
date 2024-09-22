@@ -13,7 +13,7 @@ const WithSideBar = ({
   } = useAppContext();
   const mainContentStyle = {
     width: isFullWidth ? "100%" : "calc(100% - 300px)",
-    // minHeight: "100vh -66px",
+    minHeight: "100vh -66px",
     height: "100vh -66px",
     overflow: "auto ",
     transition: "width 0.3s",
@@ -176,7 +176,7 @@ const WithSideBar = ({
             </div>
           </div>
         </div>
-        <div style={mainContentStyle} className="min-vh-100">
+        <div style={mainContentStyle} className="min-vh-100 body-color">
           {children}
         <Footer/>
         </div>
