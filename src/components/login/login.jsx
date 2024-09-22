@@ -70,16 +70,16 @@ function LogIn() {
 
         <div className="login">
           <form onSubmit={formik.handleSubmit}>
-            <h1 className="text-center mb-5">Login</h1>
-            <div className="mb-3">
+          <h1 className="text-center mb-5" style={{color: "#1E4682"}}>Login</h1>
+          <div className="mb-3">
               <label htmlFor="username_email" className="form-label">
                 Email address or User Name
               </label>
               <div>
                 <input
                   type="text"
-                  className="border d-block w-100 p-2"
-                  id="username_email"
+                  className= {formik.touched.username_email &&
+                    formik.errors.username_email ? "border border-danger register_input  d-block w-100 p-2" : "border register_input  d-block w-100 p-2" }                  id="username_email"
                   placeholder="Enter your email or username"
                   value={formik.values.username_email}
                   onChange={formik.handleChange}
@@ -87,7 +87,7 @@ function LogIn() {
                 />
                 {formik.touched.username_email &&
                 formik.errors.username_email ? (
-                  <p className="form-error">{formik.errors.username_email}</p>
+                  <p className="form-error mt-0">{formik.errors.username_email}</p>
                 ) : null}
               </div>
             </div>
@@ -98,7 +98,7 @@ function LogIn() {
               <div className=" position-relative">
                 <input
                   type={showpassword ? "text" : "password"}
-                  className="border  w-100 p-2 d-flex mb-0"
+                  className={formik.touched.password && formik.errors.password ? "border border-danger  w-100 p-2 d-flex mb-0" : "border  w-100 p-2 d-flex mb-0" }
                   id="password"
                   placeholder="Enter your password"
                   value={formik.values.password}
@@ -112,7 +112,7 @@ function LogIn() {
                 />
               </div>
               {formik.touched.password && formik.errors.password ? (
-                <p className="form-error">{formik.errors.password}</p>
+                <p className="form-error mt-2">{formik.errors.password}</p>
               ) : null}
             </div>
             <div className="mb-3 form-check">
@@ -125,6 +125,7 @@ function LogIn() {
                 <label className="form-check-label pe-2" htmlFor="exampleCheck1">
                   Remember me?
                 </label>
+                {" "}
                 <Link to="/forgotpassword" style={{ textDecoration: "none" }}>
                   Forgot password
                 </Link>

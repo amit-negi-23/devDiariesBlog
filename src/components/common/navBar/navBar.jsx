@@ -1,6 +1,6 @@
 import "./NavBar.css";
 import { Link, useLocation } from "react-router-dom";
-import search from "../../../assets/images/search-icon.png";
+// import search from "../../../assets/images/search-icon.png";
 import { useAppContext } from "../../../contextApi/context";
 import { useState } from "react";
 import demoimg from "../../../assets/images/demo-img.jpg";
@@ -22,7 +22,7 @@ function NavBar({ handleClick , handleInputTitle}) {
     <>
       {user.isLogin ? (
         <div>
-          <div className="navbar z-1 fixed-top">
+          <div className="navbar z-3 fixed-top">
             {pathArr[2] === "post" ? (
               <Link
                 className="btn bg-white rounded-circle d-flex justify-content-center align-items-center"
@@ -93,7 +93,7 @@ function NavBar({ handleClick , handleInputTitle}) {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <Link className="navbar-brand text-white d-none d-lg-block" to="/">
+            <Link className="navbar-brand logo d-none d-lg-block" to="/">
               DevDiaries
             </Link>
             <div
@@ -103,35 +103,35 @@ function NavBar({ handleClick , handleInputTitle}) {
               <ul className="navbar-nav mb-2 mb-lg-0">
                 <li className="nav-item">
                   <Link
-                    className="nav-link active text-white"
+                    className="nav-link active categories"
                     to="/blogs/sport"
                   >
-                    Sport
+                    Development
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-white" to="/blogs/health">
-                    Health
+                <Link className="nav-link categories " to="/blogs/health">
+                Programming language
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-white" to="/blogs/political">
-                    Political
+                  <Link className="nav-link text-white" to="/blogs/technology">
+                    Technology
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link text-white" to="/blogs/business">
-                    Business
+                    Devops
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-white" to="/blogs/finance">
-                    Finance
+                  <Link className="nav-link text-white" to="/blogs/science">
+                    Cloud
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-white" to="/blogs/life">
-                    Life
+                  <Link className="nav-link text-white" to="/blogs/general">
+                    Career & growth
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -139,36 +139,40 @@ function NavBar({ handleClick , handleInputTitle}) {
                     className="nav-link text-white"
                     to="/blogs/entertainment"
                   >
-                    Entertainment
+                    Tools
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link text-white"
+                    to="/blogs/general"
+                  >
+                    Others
                   </Link>
                 </li>
               </ul>
             </div>
             <div className="d-flex align-items-center ms-auto d-block">
-              <img
-                src={search}
-                alt="search-icon"
-                style={{ width: "20px", height: "20px" }}
-                className="mx-2 my-1  d-lg-block"
-              />
-              <span className="text-white mx-2 fw-light ">|</span>
+            <FontAwesomeIcon icon="fas fa-search" style={{color: "#1E4682"}} />
+
+            <span className="categories mx-2  ">|</span>
 
               <Link
-                className="text-white mx-2 fw-light text-decoration-none fs-6"
+                className="mx-2 fw-light text-decoration-none fs-6" style={{color : "#1BB9BE"}}
                 to="/login"
               >
                 Login
               </Link>
               <Link
-                className="text-white mx-2 fw-light text-decoration-none fs-6"
+                className="mx-2 fw-light text-decoration-none fs-6" style={{color : "#1BB9BE"}}
                 to="/register"
               >
                 Register
               </Link>
             </div>
-            <div className=" ms-3">
+            <div className=" ms-2">
               <button
-                className="btn btn-outline-primary text-white "
+                className=" btn-create-blog "
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
               >
