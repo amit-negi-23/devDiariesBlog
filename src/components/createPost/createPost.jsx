@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "./CreatePost.css";
 import "react-quill/dist/quill.snow.css";
@@ -28,10 +28,13 @@ function CreatePost() {
       content: postdata?.content ?? "",
       labels: postdata?.labels ?? [],
       comment_options: postdata?.comment_options ?? "allow",
+      category: postdata?.category ?? "others",
     };
   };
 
-  const {store: { user }} = useAppContext();
+  const {
+    store: { user },
+  } = useAppContext();
 
   const [post, setPost] = useState(initialState);
   const [allLabels, setAllLabels] = useState([]);
@@ -138,7 +141,7 @@ function CreatePost() {
     }
     //  else if (res && res.data.responseCode === 403) {
     //   toast.error(res.data.errMessage);
-    // } 
+    // }
     else if (res && res.data.responseCode === 201) {
       toast.success(res.data.resMessage);
       navigate(`/userpage/${user.id}`);
@@ -151,20 +154,18 @@ function CreatePost() {
 
   const editPost = async (data) => {
     let res = await updatePost(data, user.accessToken);
-    if(res && res.data.responseCode ===401){
-      toast.error(res.data.errMessage)
+    if (res && res.data.responseCode === 401) {
+      toast.error(res.data.errMessage);
     }
     // else if(res && res.data.responseCode ===403){
     //   toast.error(res.data.errMessage)
     // }
-    else if(res.data.responseCode ===200){
-        toast.success(res.data.resMessage)
-     navigate(`/userpage/${user.id}`)
-    }
-    else if (res && res.data.responseCode === 400) {
+    else if (res.data.responseCode === 200) {
+      toast.success(res.data.resMessage);
+      navigate(`/userpage/${user.id}`);
+    } else if (res && res.data.responseCode === 400) {
       toast.error(res.data.errMessage);
-    }
-    else {
+    } else {
       toast.error("Something went wrong! ");
     }
   };
@@ -254,10 +255,179 @@ function CreatePost() {
                 <FontAwesomeIcon icon={faChevronCircleRight} />
                 Publish
               </button>
+              <div className="post_setting p-2">
+                <h6>Post Settings</h6>
+              </div>
+
               <div className="accordion-item">
-                <div className="post_setting p-2">
-                  <h6>Post Settings</h6>
+                <h2
+                  className="accordion-header"
+                  id="panelsStayOpen-headingFour"
+                >
+                  <button
+                    className="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseFour"
+                    aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseFour"
+                  >
+                    Post category
+                  </button>
+                </h2>
+                <div
+                  id="panelsStayOpen-collapseFour"
+                  className="accordion-collapse collapse"
+                  aria-labelledby="panelsStayOpen-headingFour"
+                >
+                  <div className="accordion-body">
+                    <h6 className="mb-4 fw-bold">Select</h6>
+                    <div>
+                      <input
+                        type="radio"
+                        name="category"
+                        id="development_ctgy"
+                        value={"development"}
+                        className="me-2"
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.category == "development" ? true : false
+                        }
+                      />
+
+                      <label htmlFor="development_ctgy">Development</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="category"
+                        id="prog_lang_ctgy"
+                        value={"programming language"}
+                        className="me-2"
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.category == "programming language"
+                            ? true
+                            : false
+                        }
+                      />
+                      <label htmlFor="prog_lang_ctgy">
+                        Programming Language
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="category"
+                        id="technology_ctgy"
+                        value={"technology"}
+                        className="me-2"
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.category == "technology" ? true : false
+                        }
+                      />
+
+                      <label htmlFor="technology_ctgy">Technology</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="category"
+                        id="devops_ctgy"
+                        value={"devOps"}
+                        className="me-2"
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.category == "devOps" ? true : false
+                        }
+                      />
+                      <label htmlFor="devops_ctgy">DevOps</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="category"
+                        id="cloud_ctgy"
+                        value={"cloud"}
+                        className="me-2"
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.category == "cloud" ? true : false
+                        }
+                      />
+                      <label htmlFor="cloud_ctgy">Cloud</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="category"
+                        id="career_growth_ctgy"
+                        value={"career and growth"}
+                        className="me-2"
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.category == "career and growth"
+                            ? true
+                            : false
+                        }
+                      />
+                      <label htmlFor="career_growth_ctgy">
+                        Career & Growth
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="category"
+                        id="tools_ctgy"
+                        value={"tools"}
+                        className="me-2"
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.category == "tools" ? true : false
+                        }
+                      />
+                      <label htmlFor="tools_ctgy">Tools</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        name="category"
+                        id="other_ctgy"
+                        value={"others"}
+                        className="me-2"
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.category == "others"
+                            ? true
+                            : postdata
+                            ? false
+                            : true
+                        }
+                      />
+                      <label htmlFor="other_ctgy">Others</label>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div className="accordion-item">
                 <h2 className="accordion-header" id="panelsStayOpen-headingOne">
                   <button
                     className="accordion-button"
@@ -387,8 +557,16 @@ function CreatePost() {
                         id="allow"
                         value={"allow"}
                         className="me-2"
-                        onChange={(e) => {onChangeHandler("", e);}}
-                        defaultChecked={postdata?.comment_options === "allow"? true: postdata? false: true}
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.comment_options === "allow"
+                            ? true
+                            : postdata
+                            ? false
+                            : true
+                        }
                       />
 
                       <label htmlFor="allow">Allow</label>
@@ -400,8 +578,14 @@ function CreatePost() {
                         id="show_existing"
                         value={"show_existing"}
                         className="me-2"
-                        onChange={(e) => {onChangeHandler("", e);}}
-                        defaultChecked={postdata?.comment_options === "show_existing"? true: false}
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.comment_options === "show_existing"
+                            ? true
+                            : false
+                        }
                       />
                       <label htmlFor="show_existing">Show Existing</label>
                     </div>
@@ -412,8 +596,14 @@ function CreatePost() {
                         id="hide_existing"
                         value={"hide_existing"}
                         className="me-2"
-                        onChange={(e) => {onChangeHandler("", e);}}
-                        defaultChecked={postdata?.comment_options === "hide_existing"? true: false}
+                        onChange={(e) => {
+                          onChangeHandler("", e);
+                        }}
+                        defaultChecked={
+                          postdata?.comment_options === "hide_existing"
+                            ? true
+                            : false
+                        }
                       />
 
                       <label htmlFor="hide_existing">Hide Existing</label>
