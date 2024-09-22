@@ -65,11 +65,10 @@ function Register() {
     <>
       <NavBar />
       <div className="container text-center register-form-container position-relative z-0">
-        <h1 className="heading"> Let's join DevDiaries</h1>
-        <p className="text-center w-50 px-3 py-1 mx-auto">
-          Lorem Ipsum is simply dummy dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown
+        <h1 className="heading mt-4"> Let's join DevDiaries</h1>
+        <p className="text-center w-50 px-3 py-1 mx-auto ">
+        Welcome to our vibrant community of readers and writers! By registering for our blog, you'll unlock a world of exclusive content, interactive features, and personalized updates tailored just for you.
+
         </p>
 
         <form className="container form" onSubmit={formik.handleSubmit}>

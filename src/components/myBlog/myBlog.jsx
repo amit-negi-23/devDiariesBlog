@@ -1,7 +1,7 @@
 import { useAppContext } from "../../contextApi/context";
 import profilePic from "../../assets/images/profile.png";
 import "./MyBlog.css";
-import { getPost, deletePost,searchPostByTitle } from "../common/api/postApi";
+import { getPost, deletePost, searchPostByTitle } from "../common/api/postApi";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
@@ -11,33 +11,42 @@ import debounce from "../../utils/helper/debounceFunction";
 import { labelUsedByUser, getPostByLabel } from "../common/api/postApi";
 import moment from "moment";
 import "moment-timezone";
+import InfiniteScroll from "react-infinite-scroll-component";
 
-function MyBlog({postTitle}) {
+function MyBlog({ postTitle }) {
   const {
     store: { user },
   } = useAppContext();
-  // console.log(user);
 
   const [posts, setPosts] = useState([]);
   const [usedLabels, setUsedLabels] = useState([]);
-  const [active,setActive] = useState("all")
+  const [hasMore, setHasMore] = useState(true);
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
+  const [active, setActive] = useState("all");
   // console.log(typeof active)
 
-    // const debounce = useDebounce()
+  // const debounce = useDebounce()
 
   const getmyPost = async () => {
-    let res = await getPost(user.accessToken);
+    let res = await getPost(user.accessToken, page, limit);
     if (res && res.data.responseCode === 401) {
       toast.error(res.data.errMessage);
     }
     //  else if (res && res.data.responseCode === 403) {
     //   toast.error(res.data.errMessage);
     // }
-     else if (res && res.data.responseCode===200) {
-      setPosts(res.data.data);
-    } else if(res && res.data.responseCode === 400){
-      setPosts([])
-      toast.error(res.data.errMessage)
+    else if (res && res.data.responseCode === 200) {
+      setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
+      let hasMoreData = limit * page < res.data.pagination.totalItems;
+      setHasMore(hasMoreData);
+      if (hasMoreData) {
+        setPage(page + 1);
+      }
+    } else if (res && res.data.responseCode === 400) {
+      setPosts([]);
+      toast.error(res.data.errMessage);
     } else {
       toast.error("Something went wrong...");
     }
@@ -57,19 +66,29 @@ function MyBlog({postTitle}) {
   };
 
   const getAllUserPostByLabel = async (label) => {
-    let res = await getPostByLabel({ label: label }, user.accessToken);
+    let res = await getPostByLabel(
+      { label: label },
+      user.accessToken,
+      page,
+      limit
+    );
     // console.log("labelss", label);
     if (res && res.data.responseCode === 401) {
       toast.error(res.data.errMessage);
     } else if (res && res.data.responseCode === 200) {
-      setPosts(res.data.data);
+      setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
+      let hasMoreData = limit * page < res.data.pagination.totalItems;
+      setHasMore(hasMoreData);
+      if (hasMoreData) {
+        setPage(page + 1);
+      }
     } else if (res && res.data.responseCode === 400) {
       toast.error(res.data.errMessage);
     } else {
       toast.error("Something went wrong..");
     }
   };
-  
+
   const removePost = async (e, postId) => {
     let res = await deletePost(postId, user.accessToken);
     if (res && res.data.responseCode === 401) {
@@ -78,46 +97,79 @@ function MyBlog({postTitle}) {
     //  else if (res && res.data.responseCode === 403) {
     //   toast.error(res.data.errMessage);
     // }
-     else if (res && res.data.responseCode === 200) {
+    else if (res && res.data.responseCode === 200) {
       toast.success(res.data.resMessage);
-      getmyPost();
-    } else if (res && res.data.responseCode ===400){
+      // getmyPost();
+      let result = posts.filter((post) => post._id != postId);
+      setPosts(result);
+      allUsedLabels();
+    } else if (res && res.data.responseCode === 400) {
       toast.error(res.data.errMessage);
     } else {
-      toast.error("Something went wrong..")
+      toast.error("Something went wrong..");
     }
     console.log(res);
     e.stopPropagation();
   };
   useEffect(() => {
-    getmyPost();
+    // getmyPost();
     allUsedLabels();
   }, []);
 
-  
-  const getPostByTitle = async ()=>{
-    let res = await searchPostByTitle({title:postTitle}, user.accessToken)
+  const getPostByTitle = async () => {
+    let res = await searchPostByTitle(
+      { title: postTitle },
+      user.accessToken,
+      page,
+      limit
+    );
     if (res && res.data.responseCode === 401) {
       toast.error(res.data.errMessage);
-    }else if(res && res.data.responseCode === 200){
-      setPosts(res.data.data);
-    }else if(res && res.data.responseCode === 400){
+    } else if (res && res.data.responseCode === 200) {
+      // setPosts(res.data.data);
+      setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
+
+      let hasMoreData = limit * page < res.data.pagination.totalItems;
+      setHasMore(hasMoreData);
+      if (hasMoreData) {
+        setPage(page + 1);
+      }
+    } else if (res && res.data.responseCode === 400) {
       // toast.error("Post dosen't exists")
       // setPosts([])
       toast.error(res.data.errMessage);
-    }else{
+    } else {
       toast.error("Something went wrong..");
     }
-  }
+  };
 
-  useEffect(()=>{
-    if(!postTitle){
-      getmyPost()
-    }else{
-      debounce(getPostByTitle,500)
+  const debouncedGetPostByTitle = () => {
+    debounce(() => {
+      getPostByTitle();
+    }, 800);
+  };
+
+  // useEffect(()=>{
+  //   if(!postTitle){
+  //     getmyPost()
+  //   }else{
+  //     debounce(getPostByTitle,500)
+  //   }
+  // },[postTitle])
+
+  useEffect(() => {
+    setPage(1);
+    setPosts([]);
+    if (active === "all") {
+      if (!postTitle) {
+        getmyPost();
+      } else {
+        debouncedGetPostByTitle();
+      }
+    } else {
+      getAllUserPostByLabel(active);
     }
-  },[postTitle])
-
+  }, [postTitle, active]);
   // const extractImage =()=>{
 
   // }
@@ -125,40 +177,68 @@ function MyBlog({postTitle}) {
     <>
       {user != null ? (
         <div className="col-10 offset-1">
-        <div className="outer_label_container position-fixed">
-          <div className="container label_container py-2">
-            <span
-              className={active == "all" ? "badge  py-2 px-4 mx-3 my-2 border-1 pos bg-success fs-6 rounded-4" : " badge text-dark  py-2 px-4 mx-3 my-2 border border-3 pos fs-6 rounded-4"}
-              onClick={()=>{
-                getmyPost()
-                setActive("all")
-              }}
-            >
-              All
-            </span>
-            {usedLabels.length != 0 &&
-              usedLabels.map((item) => {
-                return (
-                  <span
-                  className={(item ==active) ? "badge  py-2 px-4 mx-3 my-2 border-1 pos bg-success fs-6 rounded-4" : " badge text-dark py-2 px-4 mx-3 my-2 border border-3 pos fs-6 rounded-4"}
-                  onClick={() => {
-                    getAllUserPostByLabel(item);
-                    setActive(item)
-                    console.log("item",typeof item)
-                    }}
-                    value={item}
-                  >
-                    {item}
-                  </span>
-                );
-              })}
+          <div className="outer_label_container position-fixed">
+            <div className="container label_container py-2">
+              <span
+                className={
+                  active == "all"
+                    ? "badge  py-2 px-4 mx-3 my-2 border-1 pos bg-success fs-6 rounded-4"
+                    : " badge text-dark  py-2 px-4 mx-3 my-2 border border-3 pos fs-6 rounded-4"
+                }
+                onClick={() => {
+                  // getmyPost();
+                  setActive("all");
+                }}
+              >
+                All
+              </span>
+              {usedLabels.length != 0 &&
+                usedLabels.map((item) => {
+                  return (
+                    <span
+                      className={
+                        item == active
+                          ? "badge  py-2 px-4 mx-3 my-2 border-1 pos bg-success fs-6 rounded-4"
+                          : " badge text-dark py-2 px-4 mx-3 my-2 border border-3 pos fs-6 rounded-4"
+                      }
+                      onClick={() => {
+                        // getAllUserPostByLabel(item);
+                        setPage(1);
+                        setPosts([]);
+                        setActive(item);
+                      }}
+                      value={item}
+                    >
+                      {item}
+                    </span>
+                  );
+                })}
+            </div>
           </div>
-        </div>
           <div className="container all_post_container py-3 border border-1">
             <h4>All Posts</h4>
+            {posts.length ? (
+              <InfiniteScroll
+                dataLength={posts.length}
+                next={() => {
+                  if (postTitle) {
+                    debouncedGetPostByTitle(); // If searching by title
+                  } else if (active === "all") {
+                    getmyPost(); // If viewing all posts
+                  } else {
+                    getAllUserPostByLabel(active); // If filtering by label
+                  }
+                }}
+                hasMore={hasMore}
+                loader={<h4>Loading...</h4>}
+                endMessage={
+                  <p style={{ textAlign: "center" }}>
+                    <b>Yipee! You have seen all posts</b>
+                  </p>
+                }
+              >
             <ul className="list-group">
-              { posts.length ? (
-                posts.map((item) => {
+              {posts.map((item) => {
                   return (
                     <li
                       key={item._id}
@@ -176,9 +256,26 @@ function MyBlog({postTitle}) {
                           <h6>{item.title}</h6>
                           <p>{}</p>
                           {/* {item.createdAt == item.updatedAt?<span>Created : {item.createdAt.split("GMT")[0]}</span>:<span>Updated : {item.updatedAt.split("GMT")[0]}</span>} */}
+                          
                           <span>
-                            {item.createdAt==item.updatedAt?<span>Created At : { moment.parseZone(item?.createdAt)?.tz('Asia/Kolkata')?.format('ddd MMMM D, YYYY [at] h:mm:ss A')}</span>:<span>Updated At : {moment.parseZone(item?.updatedAt)?.tz('Asia/Kolkata')?.format('ddd MMMM D, YYYY [at] h:mm:ss A')}</span>}
-                          </span>
+                              {item.createdAt == item.updatedAt ? (
+                                <span>
+                                  Created At :{" "}
+                                  {moment
+                                    .parseZone(item?.createdAt)
+                                    ?.tz("Asia/Kolkata")
+                                    ?.format("ddd MMMM D, YYYY [at] h:mm:ss A")}
+                                </span>
+                              ) : (
+                                <span>
+                                  Updated At :{" "}
+                                  {moment
+                                    .parseZone(item?.updatedAt)
+                                    ?.tz("Asia/Kolkata")
+                                    ?.format("ddd MMMM D, YYYY [at] h:mm:ss A")}
+                                </span>
+                              )}
+                            </span>
                         </div>
                         <div className="mid d-flex gap-2 align-self-end">
                           {item.labels.map((label) => {
@@ -220,7 +317,11 @@ function MyBlog({postTitle}) {
                             <h6 className="m-0">{user.username}</h6>
                             {/* <i class="fa-solid fa-trash"></i> */}
                             <div className="profile_pic broder border-2 rounded-circle">
-                              <img src={profilePic} alt="U" className="img-fluid" />
+                              <img
+                                src={profilePic}
+                                alt="U"
+                                className="img-fluid"
+                              />
                             </div>
                           </div>
                           <div className="stats d-flex gap-0 p-2">
@@ -237,12 +338,14 @@ function MyBlog({postTitle}) {
                       </div>
                     </li>
                   );
-                }) ): (
-                  <div className="text-center">
-                    <h5>No Post Available</h5>
-                  </div>
-                )}
-            </ul>
+                })}
+                </ul>
+                </InfiniteScroll>
+              ) : (
+                <div className="text-center">
+                  <h5>No Post Available</h5>
+                </div>
+              )}
           </div>
         </div>
       ) : (
