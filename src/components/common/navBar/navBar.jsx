@@ -204,7 +204,7 @@ function NavBar({ handleClick, handleInputTitle }) {
       <div
         className="modal fade"
         id="createBlogModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="createBlogModalLabel"
         aria-hidden="true"
       >
