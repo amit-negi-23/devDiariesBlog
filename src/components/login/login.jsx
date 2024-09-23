@@ -86,6 +86,7 @@ function LogIn() {
                   type="text"
                   className= {formik.touched.username_email &&
                     formik.errors.username_email ? "border border-danger login_input  d-block w-100 p-2" : "border login_input  d-block w-100 p-2" }
+                  id="username_email"
                   placeholder="Enter your email or username"
                   value={formik.values.username_email}
                   onChange={formik.handleChange}
