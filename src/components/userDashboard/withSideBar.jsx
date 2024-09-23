@@ -83,15 +83,15 @@ const WithSideBar = ({
                 >
                   <div className="accordion-body" style={{padding:"0px", maxHeight: "200px", overflowY: "auto"}}>
                     <div className="list-group list-group-flush">
-                      <div className="list-group-item list-group-item-action" style={listStyle}>
+                      <div className="list-group-item list-group-item-action list-group-hover" style={listStyle}>
                         <Link
                           to={"/userpage/blogs/sports"}
-                          className="nav-link"
+                          className="nav-link "
                         >
                           Development
                         </Link>
                       </div>
-                      <div className="list-group-item list-group-item-action" style={listStyle}>
+                      <div className="list-group-item list-group-item-action list-group-hover" style={listStyle}>
                         <Link
                           to={"/userpage/blogs/health"}
                           className="nav-link"
@@ -99,7 +99,7 @@ const WithSideBar = ({
                           Programming language
                         </Link>
                       </div>
-                      <div className="list-group-item list-group-item-action" style={listStyle}>
+                      <div className="list-group-item list-group-item-action list-group-hover" style={listStyle}>
                         <Link
                           to={"/userpage/blogs/technology"}
                           className="nav-link"
@@ -107,7 +107,7 @@ const WithSideBar = ({
                           Technology
                         </Link>
                       </div>
-                      <div className="list-group-item list-group-item-action" style={listStyle}>
+                      <div className="list-group-item list-group-item-action list-group-hover" style={listStyle}>
                         <Link
                           to={"/userpage/blogs/business"}
                           className="nav-link"
@@ -115,7 +115,7 @@ const WithSideBar = ({
                           DevOps
                         </Link>
                       </div>
-                      <div className="list-group-item list-group-item-action" style={listStyle}>
+                      <div className="list-group-item list-group-item-action list-group-hover" style={listStyle}>
                         <Link
                           to={"/userpage/blogs/science"}
                           className="nav-link"
@@ -123,7 +123,7 @@ const WithSideBar = ({
                           Cloud
                         </Link>
                       </div>
-                      <div className="list-group-item list-group-item-action" style={listStyle}>
+                      <div className="list-group-item list-group-item-action list-group-hover" style={listStyle}>
                         <Link
                           to={"/userpage/blogs/general"}
                           className="nav-link"
@@ -131,7 +131,7 @@ const WithSideBar = ({
                           Career & Growth
                         </Link>
                       </div>
-                      <div className="list-group-item list-group-item-action" style={listStyle}>
+                      <div className="list-group-item list-group-item-action list-group-hover" style={listStyle}>
                         <Link
                           to={"/userpage/blogs/entertainment"}
                           className="nav-link"
@@ -139,7 +139,7 @@ const WithSideBar = ({
                           Tools
                         </Link>
                       </div>
-                      <div className="list-group-item list-group-item-action" style={listStyle}>
+                      <div className="list-group-item list-group-item-action list-group-hover" style={listStyle}>
                         <Link
                           to={"/userpage/blogs/general"}
                           className="nav-link"
