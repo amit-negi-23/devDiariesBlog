@@ -42,16 +42,11 @@ function CreatePost() {
   const [myLabel, setMyLabel] = useState(postdata?.labels ?? []);
   const [searchedLabel, setSearchedLAbel] = useState({ name: undefined });
 
-  // const selectedLabel = (label) => {
-  //   setMyLabel((preVal) => {
-  //     return [...preVal, label];
-  //   });
-  // };
 
   const selectedLabel = (label) => {
     if (myLabel.length < 3) {
       setMyLabel((prevVal) => {
-        return [...prevVal, label.name];
+        return [...prevVal, label];
       });
     } else {
       toast.error("You can select a maximum of 3 labels");
