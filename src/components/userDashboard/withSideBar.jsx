@@ -33,7 +33,7 @@ const WithSideBar = ({
         {/**style={{ margin: "0" }} */}
         <div className={`sidebar ${isSidebarExpanded ? "expanded" : ""}`}>
           <div
-            className="list-group mb-2"
+            className="list-group mb-2 body-color"
             style={{ marginTop: "20px", padding: "10px" }}
           >
             <div className="list-group-item  pt-4 pb-3">

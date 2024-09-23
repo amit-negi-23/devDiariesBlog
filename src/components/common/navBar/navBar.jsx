@@ -5,6 +5,8 @@ import { useAppContext } from "../../../contextApi/context";
 import { useState } from "react";
 import demoimg from "../../../assets/images/demo-img.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router-dom";
+
 
 function NavBar({ handleClick, handleInputTitle }) {
   const {
@@ -102,7 +104,7 @@ function NavBar({ handleClick, handleInputTitle }) {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <Link className="navbar-brand logo d-none d-lg-block" to="/">
+            <Link className="navbar-brand logo d-none d-lg-block common_text_color" to="/">
               DevDiaries
             </Link>
             <div
@@ -111,70 +113,73 @@ function NavBar({ handleClick, handleInputTitle }) {
             >
               <ul className="navbar-nav mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link
-                    className="nav-link active categories"
+                  <NavLink
+                    className={({isActive})=> isActive ? "nav-link navbar-link active button_text" : "nav-link navbar-link button_text"}
                     to="/blogs/sport"
                   >
                     Development
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link categories " to="/blogs/health">
+                  <NavLink className={({isActive})=> isActive ? "nav-link navbar-link active button_text" : "nav-link navbar-link button_text"} to="/blogs/health">
                     Programming language
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-white" to="/blogs/technology">
+                  <NavLink className={({isActive})=> isActive ? "nav-link navbar-link active button_text" : "nav-link navbar-link button-text" } to="/blogs/technology">
                     Technology
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-white" to="/blogs/business">
+                  <NavLink className={({isActive})=> isActive ? "nav-link navbar-link active button_text" : "nav-link navbar-link button-text" } to="/blogs/business">
                     Devops
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-white" to="/blogs/science">
+                  <NavLink className={({isActive})=> isActive ? "nav-link navbar-link active button_text" : "nav-link navbar-link button-text" } to="/blogs/science">
                     Cloud
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-white" to="/blogs/general">
+                  <NavLink className={({isActive})=> isActive ? "nav-link navbar-link active button_text" : "nav-link navbar-link button-text" } to="/blogs/general">
                     Career & growth
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link
-                    className="nav-link text-white"
+                  <NavLink
+                    className={({isActive})=> isActive ? "nav-link navbar-link active button_text" : "nav-link navbar-link button-text" }
                     to="/blogs/entertainment"
                   >
                     Tools
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-white" to="/blogs/general">
+                  <NavLink
+                    className={({isActive})=> isActive ? "nav-link navbar-link active button_text" : "nav-link navbar-link button-text" }
+                    to="/blogs/general"
+                  >
                     Others
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </div>
-            <div className="d-flex align-items-center ms-auto d-block">
+            <div className="d-flex align-items-center ms-auto d-block common_text_color">
               <FontAwesomeIcon
                 icon="fas fa-search"
                 style={{ color: "#1E4682" }}
               />
 
-              <span className="categories mx-2  ">|</span>
+              <span className="common_text_color categories mx-2  ">|</span>
 
               <Link
-                className="mx-2 fw-light text-decoration-none fs-6"
+                className="mx-2 m-auto fw-light text-decoration-none fs-6 common_text_color"
                 style={{ color: "#1BB9BE" }}
                 to="/login"
               >
                 Login
               </Link>
               <Link
-                className="mx-2 fw-light text-decoration-none fs-6"
+                className="mx-2 m-auto fw-light text-decoration-none fs-6 common_text_color"
                 style={{ color: "#1BB9BE" }}
                 to="/register"
               >

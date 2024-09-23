@@ -197,7 +197,7 @@ function MyBlog({ postTitle }) {
   return (
     <>
       {user != null ? (
-        <div className="col-10 offset-1 body-color">
+        <div className="col-10 offset-1 body-height">
           <div className="outer_label_container position-fixed">
             <div className="container label_container py-2 sticky-top">
               {/* <span
