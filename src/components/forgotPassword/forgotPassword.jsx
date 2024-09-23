@@ -7,8 +7,8 @@ function ForgotPassword() {
   return (
     <>
       <NavBar />
-      <div class="row pt-5 w-100">
-        <div class="col-lg-6 col-sm-12 mt-5 text-center py-5 mx-5">
+      <div className="row pt-5 w-100">
+        <div className="col-lg-6 col-sm-12 mt-5 text-center py-5 mx-5">
           <h1 className="fw-bold px-5 pt-5 mx-5">You forgot your password?</h1>
           <p className="fs-3 fw-bold text-muted mt-5">
             Calm down we will help you !!
@@ -18,9 +18,9 @@ function ForgotPassword() {
             instructions to reset your password.
           </p>
         </div>
-        <div class="col-lg-4 col-sm-12 my-5 px-1">
+        <div className="col-lg-4 col-sm-12 my-5 px-1">
           <form className=" fpass-form-container border border-muted px-5 py-4 mx-5">
-            <i class="fa-solid fa-lock fs-1 mb-5 text-primary text-center lock-icon"></i>
+            <i className="fa-solid fa-lock fs-1 mb-5 text-primary text-center lock-icon"></i>
             <h3 className="text-center">Trouble logging in?</h3>
             <p className="text-muted text-center">
               Enter your email and we'll send you a link to get back into your

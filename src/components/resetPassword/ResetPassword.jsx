@@ -21,8 +21,8 @@ function ResetPassword() {
   return (
     <>
       {/* <NavBar /> */}
-      <div class="row py-5 ms-0 w-100">
-        <div class="col-lg-7 col-sm-12 my-4">
+      <div className="row py-5 ms-0 w-100">
+        <div className="col-lg-7 col-sm-12 my-4">
           <h1 className="fw-bolder ps-5 text-black">
             Enter your new password to update the old password
           </h1>
@@ -34,7 +34,7 @@ function ResetPassword() {
             tempore officia ea tenetur
           </p>
         </div>
-        <div class="custom col-lg-5 col-sm-12 my-4 px-1">
+        <div className="custom col-lg-5 col-sm-12 my-4 px-1">
           <form
             className=" form-container border border-dark p-5 mx-2"
             onSubmit={formik.handleSubmit}

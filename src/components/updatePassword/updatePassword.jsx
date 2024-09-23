@@ -19,8 +19,8 @@ function UpdatePassword() {
   });
   return (
     <>
-      <div class="row py-5 ms-0 w-100">
-        <div class="col-lg-7 col-sm-12 my-4 px-5">
+      <div className="row py-5 ms-0 w-100">
+        <div className="col-lg-7 col-sm-12 my-4 px-5">
           <h1 className="fw-bolder ps-5 text-black">
             Enter your new password to update the old password
           </h1>
@@ -31,13 +31,13 @@ function UpdatePassword() {
             and symbols for better security."
           </p>
         </div>
-        <div class="custom col-lg-5 col-sm-12 my-4 px-5">
+        <div className="custom col-lg-5 col-sm-12 my-4 px-5">
           <form
             className="container upass-form-container border  px-5 py-4"
             onSubmit={formik.handleSubmit}
           >
             <h1 className="heading ps-2 text-center">DevDiaries</h1>
-            <i class="fa-solid fa-key mb-5 text-center key-icon"></i>
+            <i className="fa-solid fa-key mb-5 text-center key-icon"></i>
             <div className="">
               <label for="currentPassword">Current Password</label>
               <input

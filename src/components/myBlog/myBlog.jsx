@@ -397,7 +397,7 @@ function MyBlog({ postTitle }) {
                             <div className="end_icons">
                               <div className="username d-flex align-items-center gap-1">
                                 <h6 className="m-0">{user.username}</h6>
-                                {/* <i class="fa-solid fa-trash"></i> */}
+                                {/* <i className="fa-solid fa-trash"></i> */}
                                 <div className="profile_pic broder border-2 rounded-circle">
                                   <img
                                     src={profilePic}
