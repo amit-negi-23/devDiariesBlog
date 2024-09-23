@@ -50,7 +50,7 @@ function MyBlog({ postTitle }) {
     // }
     else if (res && res.data.responseCode === 200) {
       setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
-      let hasMoreData = limit * page < res.data.pagination.totalItems;
+      let hasMoreData = limit * page < res.data.pagination?.totalItems;
       setHasMore(hasMoreData);
       if (hasMoreData) {
         setPage(page + 1);
@@ -91,7 +91,7 @@ function MyBlog({ postTitle }) {
       toast.error(res.data.errMessage);
     } else if (res && res.data.responseCode === 200) {
       setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
-      let hasMoreData = limit * page < res.data.pagination.totalItems;
+      let hasMoreData = limit * page < res.data.pagination?.totalItems;
       setHasMore(hasMoreData);
       if (hasMoreData) {
         setPage(page + 1);
@@ -147,7 +147,7 @@ function MyBlog({ postTitle }) {
       // setPosts(res.data.data);
       setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
 
-      let hasMoreData = limit * page < res.data.pagination.totalItems;
+      let hasMoreData = limit * page < res.data.pagination?.totalItems;
       setHasMore(hasMoreData);
       if (hasMoreData) {
         setPage(page + 1);

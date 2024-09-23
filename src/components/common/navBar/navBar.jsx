@@ -166,21 +166,18 @@ function NavBar({ handleClick, handleInputTitle }) {
             <div className="d-flex align-items-center ms-auto d-block common_text_color">
               <FontAwesomeIcon
                 icon="fas fa-search"
-                style={{ color: "#1E4682" }}
               />
 
               <span className="common_text_color categories mx-2  ">|</span>
 
               <Link
                 className="mx-2 m-auto fw-light text-decoration-none fs-6 common_text_color"
-                style={{ color: "#1BB9BE" }}
                 to="/login"
               >
                 Login
               </Link>
               <Link
                 className="mx-2 m-auto fw-light text-decoration-none fs-6 common_text_color"
-                style={{ color: "#1BB9BE" }}
                 to="/register"
               >
                 Register
