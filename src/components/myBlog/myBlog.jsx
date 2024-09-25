@@ -144,8 +144,9 @@ function MyBlog({ postTitle }) {
     if (res && res.data.responseCode === 401) {
       toast.error(res.data.errMessage);
     } else if (res && res.data.responseCode === 200) {
-      // setPosts(res.data.data);
-      setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
+      setPosts(res.data.data);
+      console.log("check",res.data.data)
+      // setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
 
       let hasMoreData = limit * page < res.data.pagination?.totalItems;
       setHasMore(hasMoreData);
