@@ -1,4 +1,5 @@
 import './Footer.css'
+import { Link } from 'react-router-dom';
 function Footer() {
   // console.log('footer is called')
   return (
@@ -25,81 +26,58 @@ function Footer() {
                 <h5 style={{ marginBottom: "22px", color: "white" }}>World</h5>
                 <ul className="nav flex-column">
                   <li className="nav-item mb-2">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Politics
-                    </a>
+                    </Link>
                   </li>
-                  {/* <li className="nav-item mb-2">
-                    <a
-                      href="#"
-                      className="nav-link p-0 text-white text-opacity-75"
-                    >
-                      Health
-                    </a>
-                  </li>
+                  
                   <li className="nav-item mb-2">
-                    <a
-                      href="#"
-                      className="nav-link p-0 text-white text-opacity-75"
-                    >
-                      Business
-                    </a>
-                  </li> */}
-                  <li className="nav-item mb-2">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Tech
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item mb-2">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Entertainment
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
               <div className="col col-lg-1 mb-3 footer-column">
                 <h5 className="text-white mb-4">Tech</h5>
                 <ul className="nav flex-column">
-                  {/* <li className="nav-item mb-2">
-                    <a
-                      href="#"
-                      className="nav-link p-0 text-white text-opacity-75"
-                    >
-                      Siance
-                    </a>
-                  </li> */}
                   <li className="nav-item mb-2">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Magazine
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item mb-2">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       StartUp
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item mb-2">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Crypto
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -112,45 +90,21 @@ function Footer() {
               >
                 <h5 style={{ marginBottom: "22px", color: "white" }}>Life</h5>
                 <ul className="nav flex-column">
-                  {/* <li className="nav-item mb-2">
-                    <a
-                      href="#"
-                      className="nav-link p-0 text-white text-opacity-75"
-                    >
-                      Food
-                    </a>
-                  </li>
                   <li className="nav-item mb-2">
-                    <a
-                      href="#"
-                      className="nav-link p-0 text-white text-opacity-75"
-                    >
-                      Style
-                    </a>
-                  </li>
-                  <li className="nav-item mb-2">
-                    <a
-                      href="#"
-                      className="nav-link p-0 text-white text-opacity-75"
-                    >
-                      Sport
-                    </a>
-                  </li> */}
-                  <li className="nav-item mb-2">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Movie
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item mb-2">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Music
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -167,28 +121,28 @@ function Footer() {
                 </h5>
                 <ul className="nav flex-column">
                   <li className="nav-item mb-2">
-                    <a
-                      href="/"
+                    <Link
+                      to="/"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Fasion
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item mb-2">
-                    <a
-                      href="/"
+                    <Link
+                      to="/"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Blogger
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item mb-2">
-                    <a
-                      href="/"
+                    <Link
+                      to="/"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       People
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -203,28 +157,28 @@ function Footer() {
                 <h5 style={{ marginBottom: "22px", color: "white" }}>Other</h5>
                 <ul className="nav flex-column">
                   <li className="nav-item mb-2">
-                    <a
-                      href="/"
+                    <Link
+                      to="/"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       About
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item mb-2">
-                    <a
-                      href="/"
+                    <Link
+                      to="/"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Contact us
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item mb-2">
-                    <a
-                      href="/"
+                    <Link
+                      to="/"
                       className="nav-link p-0 text-white text-opacity-75"
                     >
                       Terms & Conditions
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
