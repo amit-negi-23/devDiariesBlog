@@ -315,6 +315,7 @@ function MyBlog({ postTitle }) {
                         to={`/userpage/post/${user.id}/blogdetailpage`}
                         state={item}
                         className="nav-link d-inline-block mb-2"
+                        key={item._id}
                       >
                         <li
                           key={item._id}
