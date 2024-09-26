@@ -1,11 +1,12 @@
 import axios from "axios";
+let backendURL = process.env.REACT_APP_BACKEND_URL;
 
 //---------------GET LABEL---------------------
 
 export const getAllLabels = async () => {
   try {
     const response = await axios.get(
-      "http://localhost:8080/label/get-all-label"
+      `${backendURL}/label/get-all-label`
     );
     return response;
   } catch (error) {
@@ -17,7 +18,7 @@ export const getAllLabels = async () => {
 
 export const getLabelByName = async (label_name) => {
   try {
-    const response = await axios.post("http://localhost:8080/label/get-label", {
+    const response = await axios.post(`${backendURL}/label/get-label`, {
       name: label_name.name,
     });
     return response;
@@ -31,7 +32,7 @@ export const getLabelByName = async (label_name) => {
 
 export const createNewLabel = async (labelName)=>{
  try {
-  const response =  await axios.post("http://localhost:8080/label/create-label",{
+  const response =  await axios.post(`${backendURL}/label/create-label`,{
     name: labelName
   });
   return response;
