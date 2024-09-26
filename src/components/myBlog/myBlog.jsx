@@ -34,7 +34,6 @@ function MyBlog({ postTitle }) {
   const [active, setActive] = useState("all");
   const [Loading, setLoading] = useState(true);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  // console.log(typeof active)
 
   // const debounce = useDebounce()
 
@@ -49,7 +48,8 @@ function MyBlog({ postTitle }) {
     //   toast.error(res.data.errMessage);
     // }
     else if (res && res.data.responseCode === 200) {
-      setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
+      // setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
+      setPosts(res.data.data);
       let hasMoreData = limit * page < res.data.pagination?.totalItems;
       setHasMore(hasMoreData);
       if (hasMoreData) {
@@ -140,12 +140,12 @@ function MyBlog({ postTitle }) {
       page,
       limit
     );
-    
+
     if (res && res.data.responseCode === 401) {
       toast.error(res.data.errMessage);
     } else if (res && res.data.responseCode === 200) {
       setPosts(res.data.data);
-      console.log("check",res.data.data)
+      console.log("check", res.data.data);
       // setPosts((prevPosts) => [...prevPosts, ...res.data.data]);
 
       let hasMoreData = limit * page < res.data.pagination?.totalItems;
@@ -155,7 +155,7 @@ function MyBlog({ postTitle }) {
       }
     } else if (res && res.data.responseCode === 400) {
       // toast.error("Post dosen't exists")
-      // setPosts([])
+      setPosts([]);
       toast.error(res.data.errMessage);
     } else {
       toast.error("Something went wrong..");
@@ -165,9 +165,7 @@ function MyBlog({ postTitle }) {
   };
 
   const debouncedGetPostByTitle = () => {
-    debounce(() => {
-      getPostByTitle();
-    }, 800);
+    debounce(getPostByTitle, 800);
   };
 
   // useEffect(()=>{
@@ -179,9 +177,10 @@ function MyBlog({ postTitle }) {
   // },[postTitle])
 
   useEffect(() => {
-    setPage(1);
-    setPosts([]);
-    setIsFirstLoad(true);
+    console.log("pt:", postTitle);
+    // setPage(1);
+    // setPosts([]);
+    // setIsFirstLoad(true);
     if (active === "all") {
       if (!postTitle) {
         getmyPost();
@@ -375,7 +374,7 @@ function MyBlog({ postTitle }) {
                           <div className="last d-flex gap-4">
                             <div className="end_btn me-4 d-flex justify-content-around">
                               <i
-                                className="fa-solid fa-trash fs-5 del_btn p-2"
+                                className="fa-solid fa-trash del_btn p-2 me-4 icon-size"
                                 onClick={(e) => {
                                   e.preventDefault();
                                   removePost(e, item._id);
@@ -384,16 +383,16 @@ function MyBlog({ postTitle }) {
                               <Link
                                 to={`/userpage/post/${item._id}/edit`}
                                 state={item}
-                                className="nav-link d-inline-block p-2"
+                                className="nav-link d-inline-block p-2 me-3"
                               >
-                                <i className="fa-solid fa-pen edit_btn fs-5"></i>
+                                <i className="fa-solid fa-pen edit_btn icon-size"></i>
                               </Link>
                               <Link
                                 to={`/userpage/${user.id}/post/blogdetailpage`}
                                 state={item}
                                 className="nav-link d-inline-block p-2"
                               >
-                                <i className="fa-regular fa-eye edit_btn fs-5"></i>
+                                <i className="fa-regular fa-eye edit_btn icon-size"></i>
                               </Link>
                             </div>
                             <div className="end_icons">

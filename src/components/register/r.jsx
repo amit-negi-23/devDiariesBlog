@@ -13,6 +13,7 @@ import "./Register.css";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
+  
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues = {
