@@ -11,9 +11,7 @@ function Footer() {
               <div className="col-md-12 col-lg-5  mb-3">
                 <h5 className="text-white">DevDiaries</h5>
                 <p className="text-white text-opacity-50 text">
-                  Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.
-                  rehenderit asperiores quo adipisci molestias commodi officiis
-                  possimus?
+                Coding the future, one line at a time. Stay connected with us as we grow, learn, and build together. Have feedback or want to collaborate? <Link to="/">Contact us</Link>.
                 </p>
               </div>
               <div
@@ -186,7 +184,7 @@ function Footer() {
 
             <div className="d-flex flex-column flex-sm-row justify-content-between py-1 my-0 border-top">
               <p className=" text-white ">
-                © 2024 Company, Inc. All rights reserved.
+                © 2024 DevDiariesBlog. All rights reserved.
               </p>
             </div>
           </footer>
