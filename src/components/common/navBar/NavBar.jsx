@@ -115,7 +115,7 @@ function NavBar({ handleClick, handleInputTitle }) {
                 <li className="nav-item">
                   <NavLink
                     className={({isActive})=> isActive ? "nav-link navbar-link active button_text" : "nav-link navbar-link button_text"}
-                    to="/blogs/sport"
+                    to="/blogs/sports"
                   >
                     Development
                   </NavLink>
