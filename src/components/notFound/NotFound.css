@@ -1,12 +1,3 @@
-body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #e4eef7, #e4eef7); 
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-  }
   
   .content {
     text-align: center;
@@ -15,8 +6,7 @@ body {
     border-radius: 15px;
   }
   
-  h1 {
-    font-size: 8rem;
+ .content h1 {
     animation: float 3s ease-in-out infinite;
     color: #95ff00;
   }
@@ -48,7 +38,6 @@ body {
     box-shadow: 0 0 10px #95ff00, 0 0 20px #95ff00;
   }
   
-  /* Additional padding and rounded borders for the button */
   .btn {
     padding: 10px 30px;
     font-size: 1.2rem;
