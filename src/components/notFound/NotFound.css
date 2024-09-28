@@ -1,0 +1,46 @@
+  
+  .notfound-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 50px;
+    border-radius: 15px;
+  }
+  
+ .notfound-content h1 {
+    animation: float 3s ease-in-out infinite;
+    color: #95ff00;
+  }
+  
+  /* Subtle float animation for the 404 number */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .text-neon {
+    color: #ff00ff;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  }
+  
+  .btn-neon {
+    border: 2px solid #ff00ff;
+    color: #ff00ff;
+    background: transparent;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  
+  .btn-neon:hover {
+    background-color: #95ff00;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #95ff00, 0 0 20px #95ff00;
+  }
+  
+  .btn-neon {
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+  }
+  
