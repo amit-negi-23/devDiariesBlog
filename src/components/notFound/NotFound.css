@@ -1,0 +1,65 @@
+/* Set up the background gradient and general styling */
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a); /* Dark grey/black */
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    margin: 0;
+  }
+  
+  /* Style for the main content */
+  .content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05); /* Semi-transparent white */
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.8); /* Strong shadow */
+    border: 1px solid #00f7ff; /* Neon cyan border */
+  }
+  
+  /* Font size for the 404 text */
+  h1 {
+    font-size: 8rem;
+    animation: float 3s ease-in-out infinite;
+    color: #00f7ff; /* Neon cyan for 404 */
+  }
+  
+  /* Subtle float animation for the 404 number */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  /* Additional style for the Oops text */
+  .text-neon {
+    color: #ff00ff; /* Neon pink */
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; /* Neon glow effect */
+  }
+  
+  /* Hover effect for the button */
+  .btn-neon {
+    border: 2px solid #00f7ff; /* Neon cyan */
+    color: #00f7ff;
+    background: transparent;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  
+  .btn-neon:hover {
+    background-color: #ff00ff; /* Neon pink on hover */
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; /* Glow effect on hover */
+  }
+  
+  /* Additional padding and rounded borders for the button */
+  .btn {
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+  }
+  
