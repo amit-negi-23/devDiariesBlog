@@ -17,7 +17,6 @@ import CreatePost from "./components/createPost/CreatePost";
 import NavBar from "./components/common/navBar/NavBar";
 import ResetPassword from "./components/resetPassword/ResetPassword";
 
-
 function App() {
   return (
     <AppProvider>
@@ -38,27 +37,43 @@ function App() {
           <Route
             path="/"
             element={
-              <PrivateRoute>
-                <Home />
-              </PrivateRoute>
+              <Home />
             }
           ></Route>
 
           <Route
             path="/home"
             element={
-              <PrivateRoute>
-                <Home />
-              </PrivateRoute>
+              <Home />
+            }
+          ></Route>
+
+          <Route
+            path="/login"
+            element={
+              <LogIn />
             }
           ></Route>
 
           <Route
             path="/register"
             element={
-              <PrivateRoute>
-                <Register />
-              </PrivateRoute>
+              <Register />
+            }
+          ></Route>
+          <Route
+            path="/forgotpassword"
+            element={
+              <ForgotPassword />
+            }
+          ></Route>
+
+          <Route
+            path="/resetpassword"
+            element={
+              <UserLayoutPage>
+                <ResetPassword />
+              </UserLayoutPage>
             }
           ></Route>
 
@@ -70,24 +85,6 @@ function App() {
                   <UpdatePassword />
                 </UserLayoutPage>
               </PrivateRoute>
-            }
-          ></Route>
-          <Route
-            path="/forgotpassword"
-            element={
-              <PrivateRoute>
-                <ForgotPassword />
-              </PrivateRoute>
-            }
-          ></Route>
-          <Route
-            path="/resetpassword"
-            element={
-
-              <UserLayoutPage>
-                <ResetPassword />
-              </UserLayoutPage>
-
             }
           ></Route>
           <Route
@@ -126,7 +123,7 @@ function App() {
             path="/userpage/post/:postId/edit"
             element={
               <PrivateRoute>
-                  <NavBar />
+                <NavBar />
                 <div>
                   <CreatePost />
                 </div>
@@ -164,14 +161,7 @@ function App() {
               </PrivateRoute>
             }
           ></Route>
-          <Route
-            path="/login"
-            element={
-              <PrivateRoute>
-                <LogIn />
-              </PrivateRoute>
-            }
-          ></Route>
+
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
