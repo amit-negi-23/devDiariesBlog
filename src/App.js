@@ -143,7 +143,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="blogs/:category"
+            path="/blogs/:category"
             element={<BlogPage isLayout={true} />}
           ></Route>
 
