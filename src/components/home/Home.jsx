@@ -3,7 +3,6 @@ import Footer from "../common/footer/Footer";
 import NavBar from "../common/navBar/NavBar";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import "./Home.css";
-import { useAppContext } from "../../contextApi/context";
 
 function Home() {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -12,7 +11,6 @@ function Home() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const {store } = useAppContext();
 
 
 
@@ -21,14 +19,7 @@ function Home() {
       navigate("/home");
     }
   }, []);
-// --------------------------------
-useEffect(()=>{
-  if(store.user.isLogin){
-    navigate(`/userpage/${store.user.id}`)
-    console.log("tring4:----")
-  }
-},[])
-// ------------------------------
+
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {

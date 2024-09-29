@@ -16,6 +16,7 @@ import UserLayoutPage from "./components/userDashboard/UserLayoutPage";
 import CreatePost from "./components/createPost/CreatePost";
 import NavBar from "./components/common/navBar/NavBar";
 import ResetPassword from "./components/resetPassword/ResetPassword";
+import PublicRoute from "./components/common/publicRoute/PublicRoute";
 
 function App() {
   return (
@@ -37,34 +38,44 @@ function App() {
           <Route
             path="/"
             element={
-              <Home />
+              <PublicRoute>
+                <Home />
+              </PublicRoute>
             }
           ></Route>
 
           <Route
             path="/home"
             element={
-              <Home />
+              <PublicRoute>
+                <Home />
+              </PublicRoute>
             }
           ></Route>
 
           <Route
             path="/login"
             element={
-              <LogIn />
+              <PublicRoute>
+                <LogIn />
+              </PublicRoute>
             }
           ></Route>
 
           <Route
             path="/register"
             element={
-              <Register />
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
             }
           ></Route>
           <Route
             path="/forgotpassword"
             element={
-              <ForgotPassword />
+              <PublicRoute>
+                <ForgotPassword />
+              </PublicRoute>
             }
           ></Route>
 
