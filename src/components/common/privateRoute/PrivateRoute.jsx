@@ -8,18 +8,18 @@ function PrivateRoute({ children }) {
   // console.log("Private route hit");
   let decisionInput = useLocation();
   if (!user.isLogin) {
-    // console.log("user.isLogout hit");
+    console.log("user.isLogout hit");
 
-    switch (decisionInput.pathname) {
-      case "/":
-      case "/home":
-      case "/login":
-      case "/register":
-      case "/forgotpassword":
-        return children;
-      default:
+    // switch (decisionInput.pathname) {
+    //   case "/":
+    //   case "/home":
+    //   case "/login":
+    //   case "/register":
+    //   case "/forgotpassword":
+    //     return children;
+    //   default:
         return <Navigate to="/" />;
-    }
+    // }
 
     // const validPath = ["/", "/home", "/login", "/register", "/forgotpassword"];
     // if(validPath.includes(decisionInput.pathname)){
@@ -29,18 +29,18 @@ function PrivateRoute({ children }) {
     // }
   }
   if (user.isLogin) {
-    // console.log("user.isLogin hit");
+    console.log("user.isLogin hit");
 
-    switch (decisionInput.pathname) {
-      case "/":
-      case "/home":
-      case "/login":
-      case "/register":
-      case "/forgotpassword":
-        return <Navigate to={`/userpage/${user.id}`} />;
-        default:
+    // switch (decisionInput.pathname) {
+    //   case "/":
+    //   case "/home":
+    //   case "/login":
+    //   case "/register":
+    //   case "/forgotpassword":
+    //     return <Navigate to={`/userpage/${user.id}`} />;
+    //     default:
         return children;
-    }
+    // }
 
     // const invalidPath = ["/", "/home", "/login", "/register", "/forgotpassword"];
     // if(invalidPath.includes(decisionInput.pathname)){
