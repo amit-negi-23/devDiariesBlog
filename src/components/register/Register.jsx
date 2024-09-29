@@ -2,7 +2,7 @@ import Footer from "../common/footer/Footer";
 import NavBar from "../common/navBar/NavBar";
 import { Link } from "react-router-dom";
 import { createUser } from "../common/api/authUser";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useFormik } from "formik";
 import { signUpSchema } from "../../Schema/SignUpSchema";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,10 +11,12 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../contextApi/context";
 
 function Register() {
   
   const [showPassword, setShowPassword] = useState(false);
+  const {store} = useAppContext()
 
   const initialValues = {
     username: "",
@@ -25,6 +27,14 @@ function Register() {
   };
 
   const navigate = useNavigate();
+  // --------------------------------
+  useEffect(()=>{
+    if(store.user.isLogin){
+      navigate(`/userpage/${store.user.id}`)
+      console.log("tring2:----")
+    }
+  },[])
+// ------------------------------
   const newUser = async (form_data) => {
     console.log(form_data);
     const res = await createUser(form_data);

@@ -1,9 +1,23 @@
 import Footer from "../common/footer/Footer";
 import NavBar from "../common/navBar/NavBar";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useAppContext } from "../../contextApi/context";
+import { useNavigate } from "react-router-dom";
 import "./ForgotPassword.css";
 
 function ForgotPassword() {
+  const {store} = useAppContext()
+  const navigate = useNavigate()
+  // --------------------------------
+
+  useEffect(()=>{
+    if(store.user.isLogin){
+      navigate(`/userpage/${store.user.id}`)
+      console.log("tring3:----")
+    }
+  },[])
+// ------------------------------
   return (
     <>
       <NavBar />

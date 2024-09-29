@@ -3,7 +3,7 @@ import Footer from "../common/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/fontawesome-free-solid";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,13 +18,21 @@ import { AppContext } from "../../contextApi/context";
 
 function LogIn() {
   const [showpassword, setShowpassword] = useState(false);
-  const { dispatch } = useContext(AppContext);
+  const { dispatch, store } = useContext(AppContext);
   const initialValues = {
     username_email: "",
     password: "",
   };
 
   const navigate = useNavigate();
+// --------------------------------
+  useEffect(()=>{
+    if(store.user.isLogin){
+      navigate(`/userpage/${store.user.id}`)
+      console.log("tring1:----")
+    }
+  },[])
+// ------------------------------
   const loginInfo = async (user_data) => {
     const resp = await loginUser(user_data);
     //  console.log(res.data)
