@@ -19,31 +19,35 @@ function UpdatePassword() {
   });
   return (
     <>
-      <div className="row py-5 ms-0 w-100">
-        <div className="col-lg-7 col-sm-12 my-4 px-5">
-          <h1 className="fw-bolder ps-5 text-black">
+      <div className="row py-5 w-100">
+        <div className="col-lg-6 col-sm-12 p-5 mt-5">
+          <h1 className="fw-bolder px-5  mx-5 text-black">
             Enter your new password to update the old password
           </h1>
 
-          <p className="p-5 pe-4 mt-5 text-secondary">
+          <p className="px-5 mt-5 mx-5 text-secondary">
             "Please enter your new password to update your old one. Make sure
             it's at least 8 characters long, includes a mix of letters, numbers,
             and symbols for better security."
           </p>
         </div>
-        <div className="custom col-lg-5 col-sm-12 my-4 px-5">
+        <div className="col-lg-4 col-sm-12">
           <form
-            className="container upass-form-container border  px-5 py-4"
+            className="container upass-form-container border rounded  px-5 py-4 w-100"
             onSubmit={formik.handleSubmit}
           >
-            <h1 className="heading ps-2 text-center">DevDiaries</h1>
+            {/* <h1 className="heading ps-2 text-center">DevDiaries</h1> */}
             <i className="fa-solid fa-key mb-5 text-center key-icon"></i>
             <div className="">
               <label for="currentPassword">Current Password</label>
               <input
                 type="password"
                 autoComplete="new-password"
-                className="form-control "
+                className={
+                  formik.errors.currentPassword && formik.touched.currentPassword
+                    ? "border border-danger update_input  w-100 p-2 "
+                    : " border update_input  w-100 p-2"
+                }
                 id="currentPassword"
                 placeholder="Enter your password"
                 value={formik.values.currentPassword}
@@ -64,8 +68,8 @@ function UpdatePassword() {
                 autoComplete="new-password"
                 className={
                   formik.errors.password && formik.touched.password
-                    ? "border border-danger register_input  w-100 p-2 "
-                    : " border register_input  w-100 p-2"
+                    ? "border border-danger update_input  w-100 p-2 "
+                    : " border update_input  w-100 p-2"
                 }
                 id="password"
                 placeholder="Enter your password"
@@ -81,7 +85,11 @@ function UpdatePassword() {
               <label for="confirmPassword">Confirm Password</label>
               <input
                 type="password"
-                className="form-control"
+                className={
+                  formik.errors.confirmPassword && formik.touched.confirmPassword
+                    ? "border border-danger update_input  w-100 p-2 "
+                    : " border update_input  w-100 p-2"
+                }
                 id="confirmPassword"
                 placeholder="Confirm your password"
                 value={formik.values.confirmPassword}
@@ -96,7 +104,7 @@ function UpdatePassword() {
               ) : null}
             </div>
 
-            <button type="submit" className="btn btn-primary button">
+            <button type="submit" className="btn btn-primary button mt-4">
               Submit
             </button>
             <div className="para pt-3">
