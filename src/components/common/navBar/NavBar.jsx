@@ -164,7 +164,7 @@ function NavBar({ handleClick, handleInputTitle }) {
                 </li>
               </ul>
             </div>
-            <div className="d-flex align-items-center ms-auto d-block common_text_color">
+            <div className="d-lg-flex d-none align-items-center ms-auto d-block common_text_color">
               <FontAwesomeIcon
                 icon="fas fa-search"
               />

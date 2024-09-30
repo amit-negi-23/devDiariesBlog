@@ -21,13 +21,13 @@ function ResetPassword() {
   return (
     <>
       {/* <NavBar /> */}
-      <div className="row py-5 ms-0 w-100">
-        <div className="col-lg-7 col-sm-12 my-4">
-          <h1 className="fw-bolder ps-5 text-black">
+      <div className="row py-lg-5 pt-3 pb-2 ms-0 w-100">
+        <div className="col-lg-7 col-sm-12 my-4 px-2">
+          <h1 className="fw-bolder ps-lg-5 ps-0 text-black">
             Enter your new password to update the old password
           </h1>
 
-          <p className="p-5 pe-4 mt-5 text-secondary">
+          <p className="p-5 pe-4 mt-5 text-secondary d-none d-lg-block">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
             cumque suscipit rem nisi impedit rerum ad. Sed voluptatem tempora
             delectus unde modi harum nesciunt rerum labore ratione? Ex maiores,
@@ -36,7 +36,7 @@ function ResetPassword() {
         </div>
         <div className="custom col-lg-5 col-sm-12 my-4 px-1">
           <form
-            className=" form-container border border-dark p-5 mx-2"
+            className=" form-container border border-dark p-lg-5 px-3 py-4 mx-3"
             onSubmit={formik.handleSubmit}
           >
             <h1 className="heading ps-2 text-center">DevDiaries</h1>
@@ -79,14 +79,14 @@ function ResetPassword() {
               <p className="form-error mt-0">{formik.errors.confirmPassword}</p>
             ) : null}
 
-            <button type="submit" className="btn btn-primary button">
+            <button type="submit" className="btn btn-primary button mt-3">
               Submit
             </button>
             <div className="para pt-3">
               <p>
                 {" "}
                 Do you already have an account??{" "}
-                <Link to="/login" className="text-decoration-none">
+                <Link to="/login" className="text-decoration-none d-lg-inline d-block">
                   Login Now
                 </Link>
               </p>

@@ -19,13 +19,13 @@ function UpdatePassword() {
   });
   return (
     <>
-      <div className="row py-5 w-100">
-        <div className="col-lg-6 col-sm-12 p-5 mt-5">
+      <div className="row py-lg-5 pt-3 pb-2">
+        <div className="col-lg-6 col-sm-12 p-lg-5 px-3 py-4 text-center mt-lg-5 mt-0">
           <h1 className="fw-bolder px-5  mx-5 text-black">
             Enter your new password to update the old password
           </h1>
 
-          <p className="px-5 mt-5 mx-5 text-secondary">
+          <p className="px-5 mt-5 mx-5 text-secondary d-none d-lg-block">
             "Please enter your new password to update your old one. Make sure
             it's at least 8 characters long, includes a mix of letters, numbers,
             and symbols for better security."
@@ -33,7 +33,7 @@ function UpdatePassword() {
         </div>
         <div className="col-lg-4 col-sm-12">
           <form
-            className="container upass-form-container border rounded  px-5 py-4 w-100"
+            className="container upass-form-container border rounded  px-lg-5 py-lg-4 p-3"
             onSubmit={formik.handleSubmit}
           >
             {/* <h1 className="heading ps-2 text-center">DevDiaries</h1> */}
@@ -110,8 +110,8 @@ function UpdatePassword() {
             <div className="para pt-3">
               <p>
                 {" "}
-                Do you already have an account??{" "}
-                <Link to="/login" className="text-decoration-none">
+                Do you already have an account?{" "}
+                <Link to="/login" className="text-decoration-none d-block d-lg-inline">
                   Login Now
                 </Link>
               </p>

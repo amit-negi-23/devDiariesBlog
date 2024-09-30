@@ -66,18 +66,18 @@ function LogIn() {
       <NavBar />
       <div className="container  login-page position-relative z-0">
       <div className="left text-center mt-5">
-        <div className="pt-5">
-        <h6 className="fs-1 fw-bold mt-5 mb-5">Welcome back, Developer!</h6>
+        <div className="pt-lg-5 pt-2">
+        <h6 className="fs-1 fw-bold mt-lg-5 mb-lg-3">Welcome back, Developer!</h6>
             <p className="fs-4">We’re excited to see you again! </p>
-            <div className="me-5 ms-5">
-            <p className="me-5 ms-5 text-muted mt-3">"Let’s continue building the future of tech together—log in to share your latest discoveries and explore new ideas. Ready to dive into your next coding adventure? Log in to keep sharing your insights, learn from fellow developers, and contribute to the <span className="text-warning fs-5">DevDiaries</span> community. Your next big breakthrough is just a login away, so share your programming tips, tricks, and experiences with the community!"</p>
+            <div className="mx-lg-5 d-lg-block d-none">
+            <p className="mx-lg-5 text-muted mt-3">"Let’s continue building the future of tech together—log in to share your latest discoveries and explore new ideas. Ready to dive into your next coding adventure? Log in to keep sharing your insights, learn from fellow developers, and contribute to the <span className="text-warning fs-5">DevDiaries</span> community. Your next big breakthrough is just a login away, so share your programming tips, tricks, and experiences with the community!"</p>
             </div>
         </div>
         </div>
 
         <div className="login">
           <form onSubmit={formik.handleSubmit}>
-          <h1 className="text-center mb-5" style={{color: "#1E4682"}}>Login</h1>
+          <h1 className="text-center mb-4" style={{color: "#1E4682"}}>Login</h1>
           <div className="mb-3">
               <label htmlFor="username_email" className="form-label">
                 Email address or User Name
@@ -133,7 +133,7 @@ function LogIn() {
                 <label className="form-check-label pe-2" htmlFor="exampleCheck1">
                   Remember me?
                 </label>
-                {" "}
+                {""}
                 <Link to="/forgotpassword" style={{ textDecoration: "none" }}>
                   Forgot password
                 </Link>

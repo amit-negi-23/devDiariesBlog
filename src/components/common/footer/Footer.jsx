@@ -7,7 +7,7 @@ function Footer() {
       <div className="footer">
         <div className="container ">
           <footer className="py-2">
-            <div className="row ">
+            <div className="row flex-column flex-md-row mx-2 my-3">
               <div className="col-md-12 col-lg-5  mb-3">
                 <h5 className="text-white">DevDiaries</h5>
                 <p className="text-white text-opacity-50 text">
@@ -15,14 +15,14 @@ function Footer() {
                 </p>
               </div>
               <div
-                className="col col-lg-1 mb-3"
+                className="col col-lg-1 mb-lg-3 mb-0"
                 style={{
                   fontSize: "1rem",
                   lineHeight: "2",
                 }}
               >
-                <h5 style={{ marginBottom: "22px", color: "white" }}>World</h5>
-                <ul className="nav flex-column">
+                <h5 style={{ color: "white" }} className='mb-lg-4 mb-3'>World</h5>
+                <ul className="nav flex-column d-none d-lg-block">
                   <li className="nav-item mb-2">
                     <Link
                       to="#"
@@ -50,9 +50,9 @@ function Footer() {
                   </li>
                 </ul>
               </div>
-              <div className="col col-lg-1 mb-3 footer-column">
-                <h5 className="text-white mb-4">Tech</h5>
-                <ul className="nav flex-column">
+              <div className="col col-lg-1 mb-lg-3 mb-0 footer-column">
+                <h5 className="text-white mb-lg-4 mb-3">Tech</h5>
+                <ul className="nav flex-column d-none d-lg-block">
                   <li className="nav-item mb-2">
                     <Link
                       to="#"
@@ -80,14 +80,14 @@ function Footer() {
                 </ul>
               </div>
               <div
-                className="col col-lg-1 mb-3"
+                className="col col-lg-1 mb-lg-3 mb-0"
                 style={{
                   fontSize: "1rem",
                   lineHeight: "2",
                 }}
               >
-                <h5 style={{ marginBottom: "22px", color: "white" }}>Life</h5>
-                <ul className="nav flex-column">
+                <h5 style={{color: "white" }} className='mb-lg-4 mb-3'>Life</h5>
+                <ul className="nav flex-column d-none d-lg-block">
                   <li className="nav-item mb-2">
                     <Link
                       to="#"
@@ -108,16 +108,16 @@ function Footer() {
               </div>
 
               <div
-                className="col col-lg-1 mb-3"
+                className="col col-lg-1 mb-lg-3 mb-0"
                 style={{
                   fontSize: "1rem",
                   lineHeight: "2",
                 }}
               >
-                <h5 style={{ marginBottom: "22px", color: "white" }}>
+                <h5 style={{color: "white" }} className='mb-lg-4 mb-3'>
                   Magazine
                 </h5>
-                <ul className="nav flex-column">
+                <ul className="nav flex-column d-none d-lg-block">
                   <li className="nav-item mb-2">
                     <Link
                       to="/"
@@ -146,14 +146,14 @@ function Footer() {
               </div>
 
               <div
-                className="col col-lg-1 mb-3"
+                className="col col-lg-1 mb-lg-3 mb-0"
                 style={{
                   fontSize: "1rem",
                   lineHeight: "2",
                 }}
               >
-                <h5 style={{ marginBottom: "22px", color: "white" }}>Other</h5>
-                <ul className="nav flex-column">
+                <h5 style={{color: "white" }} className='mb-lg-4 mb-3'>Other</h5>
+                <ul className="nav flex-column d-none d-lg-block">
                   <li className="nav-item mb-2">
                     <Link
                       to="/"
@@ -183,7 +183,7 @@ function Footer() {
             </div>
 
             <div className="d-flex flex-column flex-sm-row justify-content-between py-1 my-0 border-top">
-              <p className=" text-white ">
+              <p className=" text-white text-center px-2">
                 © 2024 DevDiariesBlog. All rights reserved.
               </p>
             </div>

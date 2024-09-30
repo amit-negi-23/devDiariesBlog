@@ -3,7 +3,7 @@
   width: 55%;
 }
 .login{
-    width: 32%;
+    width: 35%;
     padding: 45px;
     margin: 55px 0px;
     border-radius: 12px;
@@ -36,12 +36,15 @@
 @media only screen and (min-device-width: 1080px){
   .login-page{
     display: flex;
+    gap: 30px;
   }
 }
 @media only screen and (max-device-width: 1079px){ 
   .login{
     display: block;
     width: 100%;
+    padding: 20px;
+    margin: 35px 0;
   }
   .left{
     display: block;

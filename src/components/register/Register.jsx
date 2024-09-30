@@ -59,8 +59,8 @@ function Register() {
     <>
       <NavBar />
       <div className="container text-center register-form-container position-relative z-0">
-        <div className="row">
-          <div className="col mt-5 ">
+        <div className="row flex-column flex-lg-row gap-lg-4">
+          <div className="col mt-lg-5 mt-3">
             <h1
               className="heading mt-3 mb-3 fs-1 fw-bold"
               style={{ color: "#2B3654" }}
@@ -68,7 +68,7 @@ function Register() {
               Join DevDiaries Today
             </h1>
             <p className="fs-4">Empower Your Coding Journey!</p>
-            <p className="me-5 ms-5 text-muted">
+            <p className="me-5 ms-5 text-muted d-none d-lg-block">
               We’re thrilled to have you join our growing community of
               passionate developers, coders, and tech enthusiasts. At
               DevDiariesBlog, we believe that coding is not just about writing
@@ -80,7 +80,7 @@ function Register() {
               you're a seasoned professional or just beginning your journey in
               development, DevDiariesBlog has something for everyone.
             </p>
-            <p className="me-5 ms-5 text-muted ">
+            <p className="me-5 ms-5 text-muted d-none d-lg-block">
               Explore in-depth articles, engage in thought-provoking
               discussions, and discover coding tips and tricks tailored to your
               learning needs. Our mission is to empower you with the tools and
@@ -96,7 +96,7 @@ function Register() {
               onSubmit={formik.handleSubmit}
             >
               <div className="register">
-                <h1 className="text-center mb-4" style={{ color: "#1E4682" }}>
+                <h1 className="text-center mb-lg-4 mb-3" style={{ color: "#1E4682" }}>
                   Register
                 </h1>
               </div>
@@ -224,9 +224,9 @@ function Register() {
               </button>
               <div className="para">
                 <p>
-                  Do you already have an account??
-                  <Link to="/login" style={{ textDecoration: "none" }}>
-                    Login Now
+                  Do you already have an account?
+                  <Link to="/login" style={{ textDecoration: "none" }} className="d-block d-lg-inline">
+                   {" "} Login Now
                   </Link>
                 </p>
               </div>

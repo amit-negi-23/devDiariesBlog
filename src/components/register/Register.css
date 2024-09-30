@@ -6,7 +6,7 @@
   margin-bottom: 40px;
 }
 .register-form {
-  width: 70%;
+  width: 75%;
   background-color: #e4f6fb;
   box-shadow:17px 6px 15px #aec8f0;
   border-radius: 12px;
@@ -44,9 +44,9 @@ label {
 
 @media only screen and (max-device-width: 1080px) {
   .register-form {
-    border: 1px solid #2b2d42;
-    width: 90%;
-    padding: 50px 20px;
+    /* border: 1px solid #2b2d42; */
+    width: 100%;
+    padding: 30px 20px;
     text-align: left;
   }
 }
