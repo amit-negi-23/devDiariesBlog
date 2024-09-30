@@ -86,6 +86,7 @@ function NavBar({ handleClick, handleInputTitle }) {
               >
                 Logout{" "}
               </button>
+              <Link to={"/updatepassword" } className="nav-link"><button className="mt-3 btn btn-primary">Update Password</button></Link>
             </div>
           </div>
         </div>
