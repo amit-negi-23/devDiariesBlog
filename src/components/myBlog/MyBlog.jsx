@@ -36,6 +36,7 @@ function MyBlog({ postTitle }) {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   // const debounce = useDebounce()
+  console.log("lb",usedLabels)
 
   const getmyPost = async () => {
     setLoading(true);
@@ -245,7 +246,7 @@ function MyBlog({ postTitle }) {
                   usedLabels.map((item, index) => {
                     return (
                       <button
-                        key={index}
+                        key={index.id}
                         className={
                           item == active
                             ? "btn btn-label btn-active"
@@ -259,7 +260,7 @@ function MyBlog({ postTitle }) {
                         }}
                         value={item}
                       >
-                        {item}
+                        {item.name}
                       </button>
                     );
                   })}
